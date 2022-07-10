@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>50_switch문</title>
+</head>
+<body>
+    <h1>switch()문은 다중 if 문과 매우 비슷하다.</h1>
+
+    <pre>
+    switch(조건비교할 변수){
+        case 비교값 1 : 
+            실행할 코드;
+            break;
+        
+        case 비교값 2 : 
+            실행할 코드;
+            break;
+
+        case 비교값 3 : 
+            실행할 코드;
+            break;
+
+        default : 
+            실행할 코드;
+
+    }
+    </pre>
+
+    <script>
+        const score = prompt('학점을 입력하세요','A or B or C');
+
+        switch(score){
+            case 'A' :
+                console.log('당신의 점수는 90점 이상입니다.');
+                break;
+
+            case 'B' :
+                console.log('당신의 점수는 80점 이상입니다.');
+                break;
+
+            case 'C' :
+                console.log('당신의 점수는 70점 이상입니다.');
+                break;
+
+            default:
+                console.log('해당사항 없음.')
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>20_단순_if(걸음수)</title>
+</head>
+<body>
+    <h1>단순_if(걸음수)</h1>
+    <script>
+    /*
+        문제) 걸음수가 20000보 이상이면 "오늘은 2만보 이상 걸으셨네요" 라고 출력되고, 걸음수가 10000보 이상, 20000보 미만이면 "오늘은 1만보 이상 걸으셨네요" 라고 출력되도록 코드를 작성하세요
+    */   
+
+    let step = parseInt(prompt('걸음 수를 입력하세요.'));
+
+    if(step >= 20000){
+        alert('오늘은 2만보 이상 걸으셨네요.')
+    }else if(step >= 10000 && step < 20000){
+        alert('오늘은 1만보 이상 걸으셨네요.')
+    }else{
+        alert('하루 1만보이상 걷기는 겅강에 좋습니다.')
+    }
+    </script>
+</body>
+</html>
