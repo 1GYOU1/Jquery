@@ -48,4 +48,37 @@ num = parseInt(num);
 console.log(`num = ${num}`);
 console.log(`num = ${typeof num}`);//number
 ```
+
+<br>
+
+## __다중if(시험등급)__
+
+<br>
+수학점수 score 를 입력받고,<br>
+90<=score<=100  이면 "1등급",<br>
+80<=score<90  이면 "2등급",<br>
+70<=score<80  이면 "3등급",<br>
+60<=score<70  이면 "4등급",<br>
+60점 이하이면 "재평가 대상입니다." 으로 알림창 출력하는 코드를 작성하세요.
+
+<br>
+
+```js
+const score = parseInt(prompt('수학점수를 입력해주세요.'));
+
+if(100 >= score && score >= 90 ){
+    alert('1등급');
+}else if(90 > score && score >= 80){
+    alert('2등급');
+}else if(80 > score && score >= 70){
+    alert('3등급');
+}else if(70 > score && score >= 60){
+    alert('4등급');
+}else if(60 > score){
+    alert('60점 이하이면 "재평가 대상입니다."');
+}else{
+    alert('다시 입력해주세요.')
+}
+```
+
 <br>
