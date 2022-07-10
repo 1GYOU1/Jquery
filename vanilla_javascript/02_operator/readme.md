@@ -62,3 +62,28 @@ console.log(`result = ${result}`);
 console.log(typeof result);//변수의 타입확인
 ```
 <br>
+
+## 누적의개념과_복합대입연산자
+
+```js
+let busCard = 1000;
+let money = 15000;
+
+//버스카드에 15000원을 충전하면 얼마가 될까?
+
+/*
+점원이 버스카드를 충전기에 삽입한다.
+충전금액을 입력한다.
+
+기존 버스카드에 남아있는 잔액을 읽어와 충전금액과 합한다.
+합산한 금액을 버스카드에 대입한다.
+*/
+busCard = busCard + money;//왼쪽 = 으로 넘겨줌. 자기자신에게 할당.//16000
+busCard += money;//약식표현법(복합대입연산자)//31000
+
+busCard = busCard - 3000;//28000
+busCard -= 3000;//25000
+
+console.log(`busCard = ${busCard}`)
+```
+<br>
