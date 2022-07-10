@@ -62,6 +62,7 @@ console.log(`num = ${typeof num}`);//number
 60점 이하이면 "재평가 대상입니다." 으로 알림창 출력하는 코드를 작성하세요.
 
 <br>
+<br>
 
 ```js
 const score = parseInt(prompt('수학점수를 입력해주세요.'));
