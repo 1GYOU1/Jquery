@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>20_논리연산자</title>
+</head>
+<body>
+    <h1>논리연산자의 결과는 true, false이고 타입은 boolean</h1>
+    <script>
+        let result = true;
+
+        //and의 개념
+        result = true && true;//true
+        result = true && false;//false
+        result = false && true;//false
+
+        //or의 개념
+        result = true || false;//true
+        result = false || false;//false
+
+        //Not의 개념(부정 - 반대로)
+        result = !result;//false
+
+        console.log(`result = ${result}`);
+        console.log(typeof result);//변수의 타입확인
+    </script>
+</body>
+</html>

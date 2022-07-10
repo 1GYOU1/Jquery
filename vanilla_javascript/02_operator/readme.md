@@ -1,0 +1,64 @@
+## 산술연산자와 대입연산자
+
+```js
+let result = true;
+
+const num_1 = 100;
+const num_2 = 2;
+
+let result = num_1 + num_2;
+
+//템플릿 문자열을 이용해서 출력
+console.log(`result = ${result}`);
+
+console.log('----------')
+
+
+//문제1
+//10을 할당받는 상수 x와 3을 할당받는 상수 y를 선언하시오.
+
+const x = 10;
+const y = 3;
+
+console.log(x+y);
+
+console.log('----------')
+
+//문제2
+//x, y 의 합을 상수 hab에 대입하는 코드를 작성후 콘솔창에 출력하시오.
+//출력형식 : hab = 20
+
+const hab = x+y;
+
+console.log('hab =',hab);
+console.log('hab = '+hab);
+console.log(`hab = ${hab}`)
+
+console.log(`x-y = ${x-y}`);
+console.log(`x*y = ${x*y}`);
+console.log(`x/y = ${x/y}`);//64비트 부동소수점으로 처리
+console.log(`x%y = ${x%y}`);//% : 나머지를 구하는 연산자
+```
+<br>
+
+## 논리연산자의 결과는 true, false이고 타입은 boolean
+
+```js
+let result = true;
+
+//and의 개념
+result = true && true;//true
+result = true && false;//false
+result = false && true;//false
+
+//or의 개념
+result = true || false;//true
+result = false || false;//false
+
+//Not의 개념(부정 - 반대로)
+result = !result;//false
+
+console.log(`result = ${result}`);
+console.log(typeof result);//변수의 타입확인
+```
+<br>
