@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>글렘쉘</title>
+  
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+  <script>
+
+    /*
+
+    BOM : browser object Mode (윈도우객체 및 브라우저관련 객체를 다룸 )
+    window, history, location, scroll ... 관련 객체들의 속성과 메서드 (실행함수) 들을 이해 
+
+    
+    window.open() : 새창열기함수  window.open("문서이름","창이름","옵션(크기,위치.....")
+
+    주의) toobar, menubar, scrollbars, resizable 관련옵션은 IE 하위버전 (6,7,8) 에서만 적용
+
+
+    */
+  
+   
+    $(document).ready(function(){
+
+      $("#newwin_btn").on("click",onOpenWindow)
+
+
+      function onOpenWindow(){
+
+        window.open("","contentsWin","width=600, height=700, left=100, top=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes")
+        
+      } 
+      
+    })
+  
+  
+  
+  </script>
+
+
+</head>
+<body>
+  
+  <p id="newwin_btn">새창열기</p>
+
+
+</body>
+</html>

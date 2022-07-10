@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 함수연습_01 </title>
+  <script>
+  
+  /*홀수 짝수 알아보기  ( 함수사용전 )
+
+  let num=10;  
+
+  if(num%2==0){
+
+    document.write(" 짝수입니다.")
+
+  }else{
+
+    document.write(" 홀수입니다.")
+
+  }
+  */
+
+
+// 함수사용  ( 매개변수 사용안함 )
+
+/*
+
+function checkEvenOdd(){ 
+
+  let num=10; // 체크할 숫자를 함수안에 지정 ( 비효율적 )
+
+  if(num%2==0){ 
+
+    document.write(" 짝수입니다.")
+
+  }else{
+
+    document.write(" 홀수입니다.")
+
+  }
+
+}
+
+checkEvenOdd();  // 함수호출
+
+*/
+  // 함수사용  ( 매개변수 사용 )
+
+  checkEvenOdd(10); // 바꿔가면서 사용할수를 매개변수(인자)로 지정 
+
+  function checkEvenOdd(selectNum){ // 바꿔가면서 사용할수를 매개변수(인수)로 지정 
+    
+    if(selectNum%2==0){ // 조건을 지정할때도 매개변수(인수)로 대입 
+
+      document.write(" 짝수입니다.")
+
+    }else{
+
+      document.write(" 홀수입니다.")
+
+    }
+
+  }     
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

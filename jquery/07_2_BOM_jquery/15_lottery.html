@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lottery</title>
+
+  <style>
+    
+    body{
+			font-size:9pt;
+		}
+
+    #wrap{
+      width:400px; height:500px; position:absolute; left:50%; margin-left:-200px; top:200px; 
+    }
+
+		#panel{
+			border:1px #000000 solid;
+			line-height:400px;
+			font-size:100px;
+			width:400px;
+			height:400px;
+			text-align:center;
+			vertical-align:middle;		
+      margin-bottom:30px; 
+		}
+
+    #nav{
+      text-align:center; 
+    }
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>  
+
+		
+		$(document).ready(function(){
+			
+			var $panel= $("#panel"); // 숫자를 출력할 div 
+			var $totalWrap=$("#total_wrap") // 인원수를 입력할 input 요소 
+			var totalMember;	 // 입력된 총인원수 (전역변수)
+			var isPlay=false; // 작동되고 있는지 작동안하고 있는지를 체크하는 상태변수 (전역변수)
+			var timer; // setinterval () 함수를 대입할 변수 (전역변수)
+	
+			
+			$("#start_btn").on("click", onStart);				
+			$("#stop_btn").on("click", onStop);			
+
+
+			function onStart(){	
+				
+				if(isPlay==false){ // 카운팅이 시작되고 있을때는 다시 시작되면 안되므로 
+					totalMember = parseInt($totalWrap.val()); 
+					// 입력된 총인원수를 구함 ( val() : 안에입력된값을 구하는함수 ) ;
+					//alert(totalMember)  // 인원수가 맞는지 테스트 
+
+					$panel.css({"color":"black"}) // 폰트색상을 검정색으로 다시 돌림 
+
+					timer=setInterval (randomCount, 20);	 
+					// setinterval() 함수를 실행시키고 나중에 멈추게하기위해 timer 변수에 대입 
+					isPlay=true;	 // 진행되고 있을때 다시 시작되면 안되므로 진행되있다고 상태변수를 체크 
+				}
+			}
+					
+			function randomCount(){	
+				var count = parseInt(Math.random()*totalMember)+1 ; // 1~인원수까지의 숫자를 random 으로 출력 
+				$panel.html(count);	// panel div에 count를 넣어줌 			
+				$panel.css({"font-size":Math.random()*100+100}); 
+				// 폰트크기를 랜덤으로설정, 주의) 폰트칼라를 다시시작할때는 검정색으로 돌려줌 
+			}		
+			
+			function onStop(){
+				if(isPlay==true){ // 실행되고 있을때만 멈추도록 
+					clearInterval(timer); // timer 변수에 대입되었는 setInterval() 을 멈춤
+					isPlay = false; 
+					// 멈추면 반드시 isPlay=false 로 설정해야만 다시 시작할수 있음 	(다시시작할때 isPlay==false 일때만 시작하므로)
+					$panel.css({"color":"red","font-size":200}); // 카운트가 멈추면 폰트크기를 크게하고 빨간색으로 설정 			
+				}
+			}
+
+			
+		
+		});		
+			
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+  	<div id="wrap"> 
+	
+        <div id="panel" > 
+              
+        </div>
+    
+        <div id="nav">
+          참여인원 : <input type="text" id="total_wrap" value="10"></input>
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+       </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> Date() 클래스 </title>
+  <script>
+  
+    /*
+    Date() 배열 클래스  : 여러가지 날짜 시간에 관련된 메서드를 포함한 클래스 
+
+
+    인스턴스 생성방법
+
+    let userTime = new Date() // 클래스를 사용해서 인스턴스 생성  
+
+    Date() 클래스는 객체리터럴 생성방식이 없다.   
+    
+    
+    메서드 
+
+    getHours() : 현제 시를 0 ~ 23 정수로 출력 
+
+    getMinutes() : 현제 분을 0 ~ 59 정수로 출력 
+
+    getSeconds() : 현제 초를 0 ~ 59 정수로 출력 
+
+    getMilliseconds() : 현제 초를 밀리언 세컨즈 단위로 0 ~ 999 정수로 출력 
+
+    
+    주의) Date() 클래스는 인스턴스 생성시점의 시간정보를 담기 때문에  인스턴스 생성후 시간이 지나 다시 시간정보를 얻을때는 
+         반드시 Date() 클래스를 이용하여 다시 인스턴스를 생성해야 한다. 
+
+    
+    getFullYear()  : 현제 년도 출력 ( 네자리수 )
+
+    getMonth() : 현제 월 을  0 ~ 11 정수로 출력 ( 주의 0: 1월  11: 12월 - 실제월 출력시 +1)
+
+    getDate() : 현제 날짜를 1 ~ 31 정수로 출력 
+
+    getDay()  : 현제 요일을 0 ~ 6 까지 정수로 출력 ( 0:일요일   6:토요일 )
+
+    
+
+    */
+
+
+    // 현제 시간 출력 
+
+    let userTime=new Date();
+
+    let hours=userTime.getHours();
+
+    let minutes=userTime.getMinutes();
+
+    let seconds=userTime.getSeconds();
+
+    document.write(hours+":"+minutes+":"+seconds+"<br>")
+
+
+
+    let userDate=new Date(); // 반드시 new Date() 클래스를 사용하여 인스턴스를 다시 구함 
+
+    let year=userDate.getFullYear(); 
+
+    let month=userDate.getMonth(); // 주의 ) 현제 월을 0 ~ 11 까지 정수 ( 현제월표시 +1 ) 
+
+    let date=userDate.getDate()
+
+    let day=userDate.getDay()
+
+    let dayArray=["일","월","화","수","목","금","토"]
+
+
+    document.write(year+"년"+(month+1)+"월"+date+"일"+dayArray[day]+"요일")
+
+    
+    
+  
+  </script>
+</head>
+<body>
+  
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>show()_hide()</title>
+
+  <style>
+  
+  #wrap{
+    width:220px; height:220px; position:absolute; left:50%; margin-left:-110px; top:200px;
+  }
+  
+  #img_wrap{
+			border:1px #000000 solid;
+			width:220px;
+			height:220px;		
+			text-align:center;
+      margin-bottom:20px;
+      box-sizing:border-box; overflow:hidden;              
+					
+	}
+  #navi{
+    width:100%; text-align:left; 
+  }
+  
+  
+  
+  </style>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>  
+  
+  /*
+    animation 구문 
+
+    에니메이션대상.에니메이션메서드명 (에니메이션시간, "ease효과", 에니메이션 끝나면 실행할 함수 (콜백함수) - 없으면 생략가능 )
+    
+    중요) 매개변수없이  그냥 show() 또는 hide() 하면 바로 보여지고 사라짐       
+
+  */
+	
+  $(document).ready(function(){
+    $imgWrap=$('#img_wrap')
+
+    $('#hide_btn').on('click', hideImg)
+    $('#show_btn').on('click', showImg)
+    $('#toggle_btn').on('click', toggleImg)
+
+    function hideImg(){
+      $imgWrap.hide(3000, 'easeOutCubic', function(){ //function 끝나고나서 할일있을때 추가
+        alert('hide finish')
+      }) //3초동안 애니메이션을 실행.
+    }
+
+    //ease-in 갈수록 빨라지는 (가속)
+    //ease-out 갈수록 느려지는 (감속)
+    //jqeury.com-> jquery-ui -> easing ->document API 미리보기
+
+    function showImg(){
+      $imgWrap.show(3000, 'easeOutCubic', function(){
+        alert('show finish')
+      })
+    }
+
+    function toggleImg(){
+      $imgWrap.toggle(3000, 'easeOutCubic', function(){
+        alert('toggle finish')
+      })
+    }
+  })
+  
+
+
+
+
+
+
+
+  
+  </script>
+
+
+</head>
+<body>
+
+  <div id="wrap">
+    <div id="img_wrap">
+      <img id="img1" src="images/img1.jpg">
+    </div>
+    
+    <div id="navi">
+      <button id="show_btn">show</button>
+      <button id="hide_btn">hide</button>
+      <button id="toggle_btn">toggle</button>
+    </div>
+
+  </div>
+  
+</body>
+</html>

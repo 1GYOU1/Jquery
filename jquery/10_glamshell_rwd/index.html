@@ -1,0 +1,217 @@
+﻿<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>글렘쉘반응형웹페이지연습</title>
+
+<!--디바이스별해상도 최적화 viewport 설정-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!--파비콘및모바일아이콘설정-->
+<link href="test.ico" rel="shortcut icon"> 
+<link href="test.png" rel="apple-touch-icon-precomposed"> 
+<link href="test114.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+
+<!--모바일주소창가리기-->
+<script src="js/hide_url.js"></script>
+
+<link rel="stylesheet" href="css/reset.css">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans:regular,italic,700,700italic" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,regular,500,700,900" rel="stylesheet" />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'/>
+<link rel="stylesheet" href="css/style.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+<script src="./js/nav.js"></script>
+<!-- <script src="./js/nav_01.js"></script> --><!--연습-->
+<!-- <script src="./js/visual.js"></script> -->
+<script src="./js/visual_01.js"></script><!--연습-->
+<script src="./js/contents.js"></script>
+
+</head>
+
+<!--
+  중요작업 
+
+  - header_wrap 백그라운드 그라디언트 속성으로 처리 
+  - 상단빠른 메뉴 display:flex 속성으로 처리 , 구분바는 ul#topmenu_list li::before 속성으로 처리
+  - 메인메뉴  display:flex 속성으로 처리
+  - 모바일메뉴 fontawesome 아이콘으로 처리 
+  - 비쥬얼 배치 
+
+    초기설정 
+    ul#visual_list{
+	            width:2940px; height:auto; position:absolute; left:50%; margin-left
+              :-1470px; 
+    }
+    ul#visual_list li{
+      width:33.33%; height:auto;  float:left; 
+    }
+    ul#visual_list li img{
+      width:100%;
+    }
+    
+    반응형 설정 
+    @media screen and (max-width:980px){
+      ul#visual_list{
+        width:300%; margin-left:-150%; 
+      }
+    }
+
+  - 컨텐츠배치 display:grid 속성으로 처리 ( @media screen 해상도에 따라 배치 바꿔줌 )
+
+-->
+
+<body>
+	<div id="header_wrap">
+    	<header>
+          <h1 id="logo"><img src="images/logo.gif" alt="글렘쉘로고"></h1> 
+            <nav id="topmenu">
+              <h2 class="hidden">상단빠른메뉴</h2>
+              <ul id="topmenu_list">
+                <li><a href="#">LOGIN</a></li>
+                <li><a href="#">JOIN</a></li>
+                <li><a href="#">SERCH</a></li>
+                <li><a href="#">Q&A</a></li>
+                <li><a href="#">CUSTOM</a></li>
+              </ul>
+            </nav>              
+                  
+            <nav id="mainmenu">
+                <h2 class="hidden">메인메뉴</h2>
+                <ul id="mainmenu_list">
+                  <li>
+                    <a href="#">BRAND</a>
+                    <ul class="submenu_list">
+                      <li><a href="#">BRAND</a></li>
+                      <li><a href="#">DESIGN</a></li>
+                      <li><a href="#">BI</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">COLLECTION</a>
+                    <ul class="submenu_list">
+                      <li><a href="#">CRYSTAL</a></li>
+                      <li><a href="#">NANO</a></li>
+                      <li><a href="#">MAGIC</a></li>
+                      <li><a href="#">PUZZLE</a></li>
+                    </ul>   
+                  </li>
+                  <li>
+                    <a href="#">STORE</a>
+                    <ul class="submenu_list">
+                      <li><a href="#">ON-LINE</a></li>
+                      <li><a href="#">OFF-LINE</a></li>
+                      <li><a href="#">B2B</a></li>            
+                    </ul> 
+                  </li>
+                  <li>
+                    <a href="#">REVIEW</a>
+                    <ul class="submenu_list">
+                      <li><a href="#">EVENT</a></li>
+                      <li><a href="#">NOTICE</a></li>
+                      <li><a href="#">NEWS</a></li>
+                      <li><a href="#">INTERVIEW</a></li>             
+                    </ul>    
+                  </li>
+                  <li>
+                    <a href="#">CUSTOMER</a>
+                    <ul class="submenu_list">
+                      <li><a href="#">INSTALL</a></li>
+                      <li><a href="#">POWER REVIEW</a></li>
+                      <li><a href="#">Q&A</a></li>
+                      <li><a href="#">FAQ</a></li>             
+                    </ul>  
+                  </li>
+                </ul>
+              </nav>
+              <nav id="mobilemenu">
+                <h2 id="mobilemenu_icon"><a href="#"><i class="fas fa-bars"><span class="hidden">모바일메뉴</span></i></a></h2>
+              </nav>
+              <nav id="bestmenu">
+                <h2 id="bestmenu_icon"><a href="#">Weekly Best</a></h2>
+              </nav>    
+        </header>
+        <div id="sub_bg"></div> <!--서브메뉴배경-->    
+    </div>    
+    
+    <div id="visual_wrap">
+        <h2 class="hidden">메인비쥬얼</h2>
+        <section id="visual_inner">       
+          <ul id="visual_list">
+              <li><img src="images/visual_img_01.jpg" alt="이미지설명"></li>     
+              <li><img src="images/visual_img_02.jpg" alt="이미지설명"></li>     
+              <li><img src="images/visual_img_03.jpg" alt="이미지설명"></li> 
+              <li><img src="images/visual_img_04.jpg" alt="이미지설명"></li> 
+              <li><img src="images/visual_img_05.jpg" alt="이미지설명"></li>                        
+          </ul>
+          <span id="prev_btn"><img src="images/prev_btn.png" alt="" /></span>
+          <span id="next_btn"><img src="images/next_btn.png" alt="" /></span>
+        </section>    	  
+    </div>
+    
+    <div id="contents_wrap">
+    	<section id="contents">
+        	<h2 class="hidden">컨덴츠배너</h2>
+            <ul id="banner_list">
+            	<li>
+                	<p class="sum_title">
+                    	HOW TO INSTALL
+                    </p>
+                    <p class="sum_img">
+                    	<img src="images/banner_img_01.gif" alt="">
+                    </p>
+                      <p class="sum_text">
+                      제품 설치방법을 자세히 안내해드립니다. 
+                    </p>               
+                </li>
+                
+                <li>
+                	<p class="sum_title">
+                    EVENT
+                    </p>
+                    <p class="sum_img">
+                    	<img src="images/banner_img_02.gif" alt="">
+                    </p>
+                      <p class="sum_text">
+                        글렘쉘의 다양한 이벤트에 참여해보세요
+                    </p>                
+                </li>
+                
+                <li>
+                	<p class="sum_title">
+                    POWER REVIEW
+                    </p>
+                    <p class="sum_img">
+                    	<img src="images/banner_img_03.gif" alt="">
+                    </p>
+                      <p class="sum_text">
+                        사용후기등 고객님의 의견을 듣습니다.
+                    </p>               
+                </li>
+                
+                <li>
+                	<p class="sum_title">
+                    NANUM & HOPE
+                    </p>
+                    <p class="sum_img">
+                    	<img src="images/banner_img_04.gif" alt="">
+                    </p>
+                      <p class="sum_text">
+                        현재 활동중인 '나눔과 희망' 활동입니다.
+                    </p>               
+                </li>           
+            </ul>        
+        </section>   
+    </div>    
+    
+    <div id="footer_wrap">
+    	<footer>
+        	<h2 class="hidden">하단정보영역</h2>
+            <p id="copyright"><img src="images/copyright.gif" alt=""></p>       
+        </footer>  
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 지역변수_전역변수 </title>
+  <script>
+  
+   /*
+   
+    전역변수 : 함수 밖에서 var 선언된 변수 ( 모든 함수 안밖에서 사용이 가능 )
+    지역변수 : 함수 안에서 var 선언된 변수  ( 지역변수는 해당함수 밖에서 사용될수 없다. )    
+    주의) var 생략하여 선언한 변수는 전역변수로 취급 ( 변수충돌 주의 - 사용하지 않는다. )
+
+   */
+
+        function func1(){
+           let name="홍길동"; // 지역변수 ( 해당함수 안에서만 사용 )
+           document.write("1.name" + "=" + name+ "<br>"); // 해당함수 안에서 호출했기 때문에 사용 가능 
+        }
+        
+        func1();       
+        document.write("2.name" + "=" + name );  // name은 지역변수이기 때문에 전역에서 사용할 수 없다. 
+ 
+        /*
+         실행 결과:
+             1. name = 홍길동
+             2. name = undefined
+         */
+  
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

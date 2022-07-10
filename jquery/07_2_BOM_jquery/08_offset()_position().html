@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>position</title>
+
+  <style>
+  
+  div#red{
+    width:400px; height:400px; position:absolute; left:200px; top:200px; background:red;
+  }
+
+  div#yellow{
+    width:200px; height:200px; position:absolute; left:100px; top:100px; background:yellow;
+    
+  }
+  
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>
+  
+  /*
+    요소좌표 구하기 
+
+    offset().left   : document 기준으로 해당요소의 x축좌표 
+    
+    offset().top  : document 기준으로 해당요소의 y축좌표 
+
+    position().left : 부모요소를 기준으로 해당요소의 x축좌표 
+
+    position().top  : 부모요소를 기준으로 해당요소의 y축좌표 
+
+
+  */ 
+
+
+  $(document).ready(function(){
+
+    var $yellow=$("#yellow");
+
+    
+    console.log($yellow.offset().left); // document 기준 left 좌표 
+    console.log($yellow.offset().top);  // document 기분 top 좌표 
+
+    console.log($yellow.position().left); // 부모요소(red) 기준 left 좌표 
+    console.log($yellow.position().top); // 부모요소(red) 기준 top 좌표 
+
+
+
+  })
+  
+  
+  
+  </script>
+
+
+
+
+
+
+</head>
+<body>
+  
+  <div id="red">
+
+    parent
+
+    <div id="yellow">
+
+      child
+
+    </div>
+
+  </div>
+
+
+  
+
+  
+
+
+
+
+</body>
+</html>

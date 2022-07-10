@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+    
+    body{
+			font-size:9pt;		
+		}		
+
+    #wrap{
+      width:600px; height:500px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }
+
+		#panel{
+			width:600px;
+			height:400px;
+			position:relative;
+      		margin-bottom:30px; 
+		}
+		
+		
+		#img_wrap{			
+			width:220px;
+			height:220px;			
+			border:1px solid #999;
+			position:absolute; left:50%; margin-left:-110px; top:50%; margin-top:-110px;
+			overflow:hidden;
+		}
+		
+		#img_wrap img{
+			display:block;
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+ 
+  
+  </style>
+
+
+	<title> scrollImg </title>
+
+
+  <script>
+
+		document.addEventListener('DOMContentLoaded',()=>{
+
+			const imgWrap=document.querySelector('#img_wrap'); // 스크롤 대상 #img_wrap 찾음 
+
+			let imgNum=imgWrap.children.length; // 이미지의 총 갯수 구함 
+			let startY=0; // 스크롤 시작좌표를 0으로 지정 
+			let currentY=startY; // 스크롤할 현제 좌표의 초기값을 startY 로 지정 
+			let stepY=2; // 한번에 스크롤할 거리지정 ( 사용자 지정 - 스크롤 속도와 관련 )
+			let endY=imgWrap.clientHeight*(imgNum-1); // 스크롤이 끝나는 위치 지정 
+			// 중요) 모든 이미지들의 높이의 합에서 이미지 한개의 높이를 뺀값 ( 그림으로 이해 )
+			let isScroll=false; // 스크롤 여부를 체크하는 상태 변수 ( 초기값 false 지정 )
+			let timer; // setInterval() 함수를 제어하기 위해 대입할 변수 
+
+			document.querySelector('#start_btn').addEventListener('click',startScrollImg); // 시작버튼 클릭하면 스크롤 시작함수 실행 
+			document.querySelector('#stop_btn').addEventListener('click', stopScrollImg) // 멈춤버튼 클릭하면 스크롤 멈춤함수 실행 
+
+			function startScrollImg() {
+				if (isScroll == false) { // 스크롤 하고 있지 않을때만 스크롤하게 하는 setIntervall() 함수실행 
+					timer = setInterval(scrollImg, 20); 
+					isScroll = true; // 스크롤 하고 있다고 상태변수를 true로 변경 (다시 시작버튼을 클릭할때 setInterval()충돌 방지 )
+				}
+			}
+
+			function stopScrollImg() { // 스크롤을 멈추게 하는 함수 
+				if (isScroll == true) { // 스크롤을 하고 있을때만 스크롤을 멈추게 하는 clearInterval() 함수실행 
+					clearInterval(timer);
+					isScroll = false; // 스크롤이 멈췄다고 상태변수를 false로 변경 
+				}
+			}
+
+			function scrollImg() {	
+
+				currentY += stepY; // 스크롤할 좌표를 현제 Y좌표에 stepY를 더함 
+				
+				if (currentY >= endY || currentY <=0) {
+					// 현제 스크롤 좌표가 마지막 Y좌표에 도착하거나 다시 스크롤 시작좌표에 도착하면 stepY 값을 변경하여  스크롤 방향을 바꿈 
+					stepY *= -1
+				}
+
+				imgWrap.scrollTo(0,currentY); // imgWrap의 스크롤 Y좌표를 currentY로 변경하여 스크롤 진행 			
+
+			}	
+
+		})  
+		
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 
+	
+        <div id="panel">
+          <div id="img_wrap">	
+            <img src="images/img1.jpg">
+            <img src="images/img2.jpg">
+            <img src="images/img3.jpg">
+            <img src="images/img4.jpg">
+            <img src="images/img5.jpg">
+            <img src="images/img6.jpg">
+            <img src="images/img7.jpg">
+            <img src="images/img8.jpg">
+            <img src="images/img9.jpg">
+            <img src="images/img10.jpg">
+          </div>
+        </div>
+        <div id="nav">
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+      </div>
+
+
+
+</body>
+</html>

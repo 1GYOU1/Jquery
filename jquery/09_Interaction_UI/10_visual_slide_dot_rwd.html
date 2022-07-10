@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>visual_slide_dot_rwd</title>
+
+  <style>
+
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+    
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;       
+    }
+
+    div#visual_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; overflow:hidden;
+      border:solid 1px white; box-sizing:border-box;
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  float:left; 
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    
+    ul#dot_list{
+      width:130px; position:absolute; left:50%; margin-left:-65px; bottom:20px; 
+    }
+
+    ul#dot_list li{
+      width:16px; height:16px; float:left; margin-right:10px; border-radius:8px; background:#FFF;
+      -webkit-transition:0.2s ease;
+    }
+
+    ul#dot_list li.selected{
+      background:orange;  
+    }
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner{
+        width:100%; 
+      }
+
+    }
+
+   
+ 
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+	
+
+	$(window).load(function(){	 //$(document).ready의 경우 DOM 객체만 로드하면 실행되기 때문에 외부 리소스나 이미지를 불러오기전에 실행되므로 리사이즈할때 실제 크기를 구할 수 없다.
+		
+		var $visualWrap // 비주얼전체 영역 
+    var $visualInner // 비주얼영역     
+    var $visualList// 슬라이드할 비주얼리스트 
+    var $visualLi // // 비주얼리스트의 각 li
+    var $visualImg// 비주얼리스트안의 각 이미지들 
+    var $dot // 비주얼리스트 번호 dot  
+    var visualImgNum// 슬라이드할 비주얼이미지의 총갯수 
+    var visualImgWidth // 값이 유동적으로 변하는 비주얼가로크기를 대입할 변수 ( 가장중요한변수 )	
+    var timer // setInterval을 대입할 변수 
+    var visualOverNum=0; // 마우스를 dot에 올린순번 ( 초기값 0 )   
+
+    
+    init() // 초기설정함수 실행
+		visualReset()	// 비주얼 사이즈 유동조절 함수 실행 
+    onShowDot(0) // 비주얼 이미지 순번 dot 를 활성하 해주는 함수 실행 (처음 초기값 0번을 활성화 )	   
+	  onPlay() // setInterval 함수 실행 
+    inEvent()  // 이벤트 적용함수 실행 
+		
+    
+    function init(){ // 초기설정 함수 
+
+      $visualWrap=$("#visual_wrap"); // 비주얼전체 영역  
+      $visualInner=$("#visual_inner") // 비주얼 영역    
+      $visualList=$("#visual_list"); // 슬라이드할 비주얼리스트 
+      $visualLi=$visualList.children()// 비주얼리스트의 각 li
+      $visualImg=$("#visual_list img"); // 비주얼리스트안의 각 이미지들 
+      $dot=$("#dot_list").children() // 비주얼리스트 번호 dot  
+      visualImgNum=$visualList.children().size();	// 슬라이드할 비주얼이미지의 총갯수        
+
+    }
+
+
+    function visualReset(){
+
+      // 윈도우 사이즈가 조절될때 마다 (모바일 가로/세로 일때도 포함)  영역의 크기도 변화므로  영역의 가로 크기를 다시 구해서 visualImgWidth 값 다시구함 
+      visualImgWidth=$visualInner.innerWidth(); // 브라우저 해상도에 따라 유동적으로 변하는 $visualInner 영역에 크기를 얻어내서 visualImgWidth 변수로 지정 		
+      $visualLi.css({"width":visualImgWidth}) // 비주얼리스트의 각 li 크기를 visualImgWidth 크기에 맞춤 
+      $visualImg.css({"width":visualImgWidth}); // 비주얼리스트에 있는 이미지의 가로크기를 영역의 크기 visualImgWidth 값으로 맞춰서 이미지를 영역에 꽉채워줌  (이미지 세로크기는 자동 조절 )
+      $visualWrap.css({"height": $visualImg.outerHeight()}); // $visualWrap 세로크기를 이미지 크기에 맞춰 채워줌       
+      $visualList.css({"width":visualImgWidth*visualImgNum}); // 지정된 가로크기를 기준으로 비주얼리스트 전체크기를 전체 이미지갯수에 맞게 지정 > 이미지들을 가로로 정렬
+      $visualList.css({"left":-visualImgWidth*visualOverNum}) 
+      // 중요) 창의 크기를 조절 할때 바뀌는 visualImgWidth 크기에 따라 dot 번호에 따른 비주얼리스트의 위치를 다시 조정 
+
+    }
+		
+
+    function inEvent(){ // 이벤트 적용함수 
+
+      $(window).on("resize",visualReset) // 창크기를 조절 할때 마다 비주얼 크기를 다시 조절해줌 
+
+      $dot.on("mouseenter", onDotOver);	// 마우스를 dot에 올릴때 실행할 함수 적용 
+		         
+
+      $visualWrap.on("mouseenter", onStop); // $visualWrap 전체영역에 마우스를 올리면 setInterval 멈추게 ( dot이벤트와 충돌방지 ) 
+	    $visualWrap.on("mouseleave", onPlay); // $visualWrap 전체영역에서 마우스가 나가면 다시 setInterval 실행 
+
+    }
+
+    function onDotOver(){ // 마우스를 dot 에 올릴때 실행할 함수 
+
+      visualOverNum=$dot.index($(this)) // 마우스를 올린 dot 순번을 구함 
+
+      onVisualSlide(visualOverNum); // 마우스를 올린 dot 순번을 매개변수로 활용하여 비주얼 슬라이드 함수를 실행 
+      onShowDot(visualOverNum) // 마우스를 올린 dot 순번을 매개변수로 활용하여 dot 배경색을 활성화 하는 함수 실행 
+
+    }
+
+
+    function onVisualSlide(overNum){ // 매개변수에 따른 비주얼 리스트를 슬라이드 하는 함수 
+      
+      $("#visual_list:not(:animated)").animate({"left":-visualImgWidth*overNum},500,"easeOutCubic")
+
+      // 중요) 비주얼슬라이드가 이동할 좌표는 -visualImgWidth*마우스를 dot에 올린 순번 ( 그림설명 )
+    
+    }
+
+    function onShowDot(overNum){ // 매개변수에 따른 dot 배경색을 활성화 하는 함수 
+
+      $dot.removeClass("selected"); // 기존에 활성화된 배경색 모두 해제 
+      $dot.eq(overNum).addClass("selected") // 선택된 dot 에만 활성화 배경색 적용 
+
+    }
+    
+    
+    function onStop(){		      
+      
+      clearInterval(timer) // setInterval 멈춤
+      
+    }
+
+    function onPlay(){
+
+      timer=setInterval(autoDotNum,2000) // setInterval 함수 실행 
+
+    }
+    
+    function autoDotNum(){ // dot 순번을 자동으로 바꿔가면서 비주얼 슬라이드와 dot를 활성화 하는 함수를 자동으로 실행       
+      
+      visualOverNum++; // 마우스를 올리는 dot 순번을 자동으로 1씩증가 
+      if(visualOverNum>=visualImgNum){
+        visualOverNum=0 // 마지막 비주얼이미지가 되면 다시 0으로 되돌아감 
+      }
+
+      onVisualSlide(visualOverNum); // 마우스를 올린 dot 순번을 매개변수로 활용하여 비주얼 슬라이드 함수를 실행 
+      onShowDot(visualOverNum) // 마우스를 올린 dot 순번을 매개변수로 활용하여 dot 배경색을 활성화 하는 함수 실행     
+      
+    }
+
+
+
+	})
+	
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">   
+    
+      <div id="visual_inner">
+
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <ul id="dot_list">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>           
+        </ul>       
+    
+      </div>
+
+</div>
+
+
+
+
+
+  
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title> 클래스 </title>
+  <script>
+  
+     /* 클래스와 인스턴스 생성방법 	 
+     
+    
+     3. ES6 버전  class 구문을 활용한 방식 
+     
+
+    - ES6 버전에 추가된 class 구문을 활용하여 생성자함수(constructor)와 여러가지 메서드들을 바로 생성하는 방식 
+
+    
+    class 클래스명{
+
+      constructor(매개변수1, 매개변수2..){
+        this.속성1=값1;
+        this.속성2=값2;
+      }
+      메서드1{
+        실행할 명령 
+      }
+      메서드2{
+        실행할 명령 
+      }
+
+    }
+     
+     인스턴스(instance) 생성 
+     
+     let 생성할 인스턴스 명 = new 생성자함수(클래스)명("속성값1","속성값2","속성값3"....)   
+     
+     // 생성자 함수 (클래스) 매개변수에 새로운 속성값을 지정하고 new 연산자를 사용하여 새로운 객체(인스턴스)를 생성    
+ 
+               
+     인스턴스 속성 과 메서드 사용방법      
+    
+     인스턴스명 .속성 .메서드()   // . 을 사용하여 해댱 객체의 속성과 메서드를 실행시킨다.  
+
+     
+     장점) 생성자 함수와 메서드들을 분리하여 생성하지 않고 class 구문으로 묶어서 생성 ( 효율적 코드관리 )
+
+     */     
+     
+
+     class Burger{  //첫글자 무조건 대문자로 클래스만들기
+       constructor(name,patty,drink,side){    //생성자 함수
+         this.name=name;
+         this.patty=patty;
+         this.drink=drink;
+         this.side=side;
+       }
+       order(){
+        document.write('세트이름 : '+this.name+'<br>')
+        document.write('패티종류 : '+this.patty+'<br>')
+        document.write('음료종류 : '+this.drink+'<br>')
+        document.write('사이드이름 : '+this.side+'<br><br>')
+       }
+
+      }
+   
+
+      var shrimpBurger=new Burger('새우버거','새우','콜라','감자튀김')
+      var chickenBurger=new Burger('치킨버거','치킨','사이다','치즈스틱')
+      
+      shrimpBurger.order()
+      chickenBurger.order()
+
+
+
+      //확장해서 따로 하나 추가하기
+
+      class ShanghaiBurger extends Burger{  //extends=기존에 있는 클래스를 확장해서 만들겠다.(상속)
+        constructor(name,patty,drink,side,spicy){
+          super(name,patty,drink,side)  //그대로 상속해 오는 것들
+          this.spicy=spicy  //이것만 추가하겠다.
+        }
+        howspicy(){
+          document.write('매운정도:'+this.spicy+'<br>')
+        }
+      }
+
+      var ShangHaiChickenBurger=new ShanghaiBurger('상하이치킨버거','치킨','환타','양념감자튀김','보통매움')
+
+      ShangHaiChickenBurger.order()
+      ShangHaiChickenBurger.howspicy()
+
+
+
+
+
+
+
+
+   
+
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
+

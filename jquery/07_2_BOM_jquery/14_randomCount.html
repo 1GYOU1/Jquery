@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>randomCount</title>
+
+  <style>
+    
+    body{
+			font-size:9pt;	
+		}
+		
+		div#wrap{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}		
+		
+		#panel{
+
+      border: 1px dotted #CCC;
+			font-size:20px;	
+
+			width:600px;
+			overflow:visible;		
+		}
+ 
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>
+  
+    // 랜덤칼라변경하는 구문 :  	(parseInt(Math.random()*0xffffff)).toString(16)	
+	
+	
+		$(document).ready(function(){
+			
+			var $panel = $("#panel");
+			setInterval(randomCount,20);
+
+			function randomCount(){
+				var count=parseInt(Math.random()*99)+1; // 1~100 사이의 정수를 불규척으로 출력 
+				var $span = $("<span></span>"); // 숫자를 넣을 <span> 테그생성 
+				$span.html(count); // 생성된 <span> 태그에 숫자를 넣어줌 		
+									
+				var color = "#"+(parseInt(Math.random()*0xffffff)).toString(16); 
+				// 출력될 숫자의 칼라를 random으로 바꾸는 코드값을 이용하여 color 변수에 대입 
+				var fontSize = parseInt(Math.random()*40)+10+"px"; 
+				// 바꿀폰트 크기를 random() 으로 변수로 지정 	
+							
+				//$span.css("color",color);
+				//$span.css("fontSize",fontSize);
+				//$span.css("display","inline-block");			
+				// 숫자가 들어있는 $span 에 칼라,fontSize, display css() 함수를 이용하여 속성을 바꿔줌 			
+						
+				$span.css({color:color, fontSize:fontSize, display:"inline-block"}); // 객체속성을 이용하여 한꺼번에 속성변경 			
+				$span.appendTo($panel) // 숫자가 들어있는 $span 을 문서에 있는 $panel  div 에 출력 
+				
+				$(document).scrollTop($(document).outerHeight()-$(window).outerHeight()); 
+				// 계속 늘어나고 있는 document 높이에서 window 높이를 빼면 window를 벗어난 document부분, 그부분만큼 document를 스크롤  
+			}
+
+
+			
+		});		
+		
+		
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 		
+        <div id="panel">
+          
+        </div>
+      </div>    
+
+
+
+</body>
+</html>

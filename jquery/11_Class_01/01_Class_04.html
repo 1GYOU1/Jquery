@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title> 클래스 </title>
+  <script>
+  
+     /* 클래스 상속
+
+     클래스를 생성한 다음 extends 구문을 활용하면 해당 클래스의 상속이 가능하여 기존의 클래스가 가지고 있는 속성과 
+     메서드들을 모두 활용할 수 있고 또 별도로 필요한 속성이나 메서드들을 추가하여 사용할수 있다.
+
+     */     
+
+     
+    class Burger{
+     constructor(name,patty,drink,side){ // 여러가지 매개변수를 활용한 생성자 함수 생성 
+       this.name=name; // this 구문를 사용하여 속성과 매서드를 만듬
+       this.patty=patty;
+       this.drink=drink;
+       this.side=side;
+     }
+     order(){ // 실행할 메서드를 class구문 안에 바로 생성 
+      document.write("세트이름: "+this.name+"<br>");
+      document.write("패티종류: "+this.patty+"<br>");
+      document.write("음료: "+this.drink+"<br>");
+      document.write("사이드메뉴: "+this.side+"<br>");        
+     }
+    }
+
+   /*
+    var shrimpBurger = new Burger("새우버거세트","새우", "콜라","치즈스틱") // 생성자함수 매개변수에 새로운 속성값을 지정하고 new 연산자를 사용하여 새로운 인스턴스를 생성
+       
+        
+    shrimpBurger.order()  // 인스턴스 메서드 실행    
+
+
+    var chickenBurger= new Burger("치킨버거세트","치킨", "쉐이크", "어니언") 
+    
+    // 사용자에 따라 속성값을 바꿔가면서 다양한 인스턴스를 생성할수 있다. 
+    // 생성된 인스턴스에 대한 속성값과 메서드를 바꿔가면서 활용이 가능     
+    
+    chickenBurger.order() 	
+
+    */
+    
+    // 클래스 상속
+  
+    class ShanghaiBurger extends Burger{ // extends 구문을 활용하여 기본 Burger 클래스를 상속하여 ShanghaiBurger 클래스를 생성 
+      constructor(name,patty,drink,side,spicy){ // 기존 매개변수에 spicy 속성을 추가 
+        super(name,patty,drink,side); // super()구문을 사용하여 기존 속성들을 모두 상속 
+        this.spicy=spicy // spicy 속성을 추가 
+      }
+      howspicy(){      
+        document.write('매운정도:' + this.spicy+'<br>')        
+      }
+    }
+
+    const shanghaichickenBurger=new ShanghaiBurger('상하이치킨버거','치킨','쉐이크','어니언','매우매움')
+
+    shanghaichickenBurger.order();
+    shanghaichickenBurger.howspicy();      
+
+   
+
+
+   /*
+  	   	 
+  	 자바스크립트 클래스와 인스턴스 활용 ( 객체 지향 언어 )  
+  	 
+     자바스크립트에서는 웹에서 많이 쓰이는 여러가지  클래스들과 그 클래스들에 대한 속성 및 메서드(여러가지 실행함수)들을 미리 정의해두고 
+     사용자가 필요할때 그 클래스들을 호출하여 미리 정의된 속성 및 매서드(여러가지 실행함수)들을 실행하여 사용자가 필요한 여러가지 동적인 기능들을 수행한다. 
+  	 
+     따라서 여러가지 클래스들의 종류 및 생성방법, 속성 그리고 메서드 활용방법등을 공부하는 것이 매우 중요하며,      
+     웹컨텐츠를 제작할때 클래스와 인스턴스를 잘 활용하여 코드의 재사용과 코드관리의 효율성을 높이는 것이 중요하다.  	 
+  	   	 
+  	 자바스크립트 클래스는 크게 내장클래스와  외장클래스로 나눌수 있다.    	 
+  	 
+  	 
+  	 내장클래스 : 자바스크립트에서 미리 정의된 클래스와 인스턴스  	 
+  	 외장클래스: 직접 사용자가 만들어 생성된 클래스와 인스턴스   
+  	  	 
+  	 
+  	내장클래스 종류      
+  	 
+  	String(), Array(), Math(), Date() ...      
+
+    크게보면 앞서 배운  window객체 , document객체, browser 객체들도 여러가지 속성(property)과 메서드(method)들을 가지고 있는 클래스 성격과 비슷하다. 
+        
+    
+    내장클래스 사용방법         
+       
+    객체명.속성.매서드 ()      
+    
+    예) var times= new Date()    times.getHours()   :  Date() 클래스와 getHours() 메서드를 이용해서 현제시간 알아내기
+        
+    
+  */   	
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
+

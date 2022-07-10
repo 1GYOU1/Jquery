@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>visual_slide_index_rwd</title>
+
+  <style>     
+
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;       
+    }
+
+    div#visual_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+      border:solid 1px white; box-sizing:border-box; overflow:hidden;
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    
+    span#prev_btn{
+      display:block; position:absolute; left:0px; top:45%; 
+    }
+
+    
+
+    span#next_btn{
+      display:block; position:absolute; right:0px; top:45%; 
+    }
+
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner{
+        width:100%; 
+      }
+
+    }
+
+   
+ 
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+	
+
+	$(window).load(function(){	 //$(document).ready의 경우 DOM 객체만 로드하면 실행되기 때문에 외부 리소스나 이미지를 불러오기전에 실행되므로 리사이즈할때 실제 크기를 구할 수 없다.
+		
+		var $visualWrap // 비주얼전체 영역 
+    var $visualInner// 비주얼 영역 
+    var $visualList// 슬라이드할 비주얼리스트 
+    var $visualLi // // 비주얼리스트의 각 li
+    var $visualImg// 비주얼리스트안의 각 이미지들 
+    var $btnImg// 좌우버튼 이미지 
+    var visualImgNum// 슬라이드할 비주얼이미지의 총갯수 
+    var visualImgWidth // 값이 유동적으로 변하는 비주얼가로크기를 대입할 변수 ( 가장중요한변수 )	
+    var timer // setInterval을 대입할 변수 
+
+    var currentIndex=0; // 비주얼 이미지 현제순번 (초기값 0)
+    var nextIndex; // 비주얼 이미지 다음순번 
+    
+
+    
+    init() // 초기설정함수 실행
+		visualReset()	// 비주얼 사이즈 유동조절 함수 실행  	   
+	  onPlay() // setInterval 함수 실행 
+    inEvent()  // 이벤트 적용함수 실행 
+		
+    
+    function init(){
+
+      $visualWrap=$("#visual_wrap"); // 비주얼전체 영역 
+      $visualInner=$("#visual_inner"); // 비주얼 영역 
+      $visualList=$("#visual_list"); // 슬라이드할 비주얼리스트 
+      $visualLi=$visualList.children()// 비주얼리스트의 각 li
+      $visualImg=$("#visual_list img"); // 비주얼리스트안의 각 이미지들 
+      $btnImg=$("#visual_inner span img") // 좌우버튼 이미지 
+      visualImgNum=$visualList.children().size();	// 슬라이드할 비주얼이미지의 총갯수   
+
+      $visualLi.css({"opacity":0}); // 모든 비주얼 이미지의 투명도를 0 
+      $visualLi.eq(currentIndex).css({"opacity":1}) // 현제 순번의 비주얼 이미지만 투명도 1 ( 박스안에서 보이게 )   
+      
+
+    }
+
+
+    function visualReset(){
+
+      // 윈도우 사이즈가 조절될때 마다 (모바일 가로/세로 일때도 포함)  영역의 크기도 변화므로  영역의 가로 크기를 다시 구해서 visualImgWidth 값 다시구함 
+      visualImgWidth=$visualInner.innerWidth(); // 브라우저 해상도에 따라 유동적으로 변하는 $visualInner 영역에 크기를 얻어내서 visualImgWidth 변수로 지정 		
+      
+      $visualLi.css({"width":visualImgWidth, "left":visualImgWidth}) 
+      // 리사이즈할때 마다 유동적으로 변하는 $visualInner 영역에 맞추어 비주얼 Li 들의 크기와 좌표를 조절 
+      $visualLi.eq(currentIndex).css({"left":0})
+      //현제 순번의 비주얼 Li의 좌표를 유동적으로 조절 
+      $visualImg.css({"width":visualImgWidth}); // 이미지 리스트에 있는 이미지의 가로크기를 영역의 크기 visualImgWidth 값으로 맞춰서 이미지를 영역에 꽉채워줌  (이미지 세로크기는 자동 조절 )
+      $visualWrap.css({"height": $visualImg.outerHeight()}); // $visualWrap 세로크기를 이미지 크기에 맞춰 채워줌
+      $btnImg.css({"width":visualImgWidth/20})  //좌우버튼 이미지 자체의 크기를 visualImgWidth 값에 비교해서 조절 해줌	 
+            
+    }
+		
+
+    function inEvent(){
+
+      $(window).on("resize",visualReset)
+
+      $("#next_btn").on("click", onSlideNext);	// 다음보기버튼 (오른쪽버튼 ) 클릭하면 왼쪽으로 움직이는 onSlideNext 슬라이드 함수 실행 
+		  $("#prev_btn").on("click", onSlidePrev);// 이전보기버튼 (오른쪽버튼 ) 클릭하면 왼쪽으로 움직이는 onSlidePrev 슬라이드 함수 실행       
+
+      $visualWrap.on("mouseenter", onStop); // $visualWrap 전체영역에 마우스를 올리면 setInterval 멈추게 ( 버튼 클릭하고 충돌방지 ) 
+	    $visualWrap.on("mouseleave", onPlay); // $visualWrap 전체영역에서 마우스가 나가면 다시 setInterval 실행 
+
+    }
+
+
+    function onSlideNext(){ 
+      
+      nextIndex=currentIndex+1 // 다음순번을 현제순번에 +1 
+
+      if(nextIndex>=visualImgNum){ // 보여질 순번이없으면 다시 초기값 0 
+        nextIndex=0;
+      }
+
+      $visualLi.eq(currentIndex).stop() // 기존에 하던 에니메이션 멈춤 
+      $visualLi.eq(currentIndex).animate({"left":-visualImgWidth,"opacity":0},500,"easeOutCubic");
+      // 현제순번의 비주얼 Li (박스안에 있는 비주얼 )을 왼쪽으로 이동시키면서 사라지게함 
+      
+      $visualLi.eq(nextIndex).css({"left":visualImgWidth,"opacity":0});
+      // 다음 순번의 비주얼을 오른쪽 끝에 오게해서 다음 슬라이드를 준비함 
+
+      $visualLi.eq(nextIndex).stop() // 기존에 하던 에니메이션 멈춤 
+      $visualLi.eq(nextIndex).animate({"left":0,"opacity":1},500,"easeOutCubic")
+      // 다음 순번의 비주얼을 박스안으로 들어오게 에니메이션 함 
+
+      currentIndex=nextIndex; 
+      // 중요) 현제순번을 지금 에니메이션이 끝난 순번으로 바꿔줌 ( 비주얼순번을 바꿔서 다음 슬라이드를 진행 )
+      
+    }
+    
+    function onSlidePrev(){ 
+      
+      nextIndex=currentIndex-1 // 다음순번을 현제순번에 -1 
+
+      if(nextIndex<0){ // 보여질 순번이없으면 마지막 순번으로 돌림  
+        nextIndex=visualImgNum-1;
+      }
+
+      $visualLi.eq(currentIndex).stop() // 기존에 하던 에니메이션 멈춤 
+      $visualLi.eq(currentIndex).animate({"left":visualImgWidth,"opacity":0},500,"easeOutCubic")
+      // 현제순번의 비주얼 Li (박스안에 있는 비주얼 )을 오른쪽으로 이동시키면서 사라지게함 
+      
+
+      $visualLi.eq(nextIndex).css({"left":-visualImgWidth,"opacity":0});
+      // 다음 순번의 비주얼을 왼쪽 끝에 오게해서 다음 슬라이드를 준비함 
+
+      $visualLi.eq(nextIndex).stop() //기존에 하던 에니메이션 멈춤 
+      $visualLi.eq(nextIndex).animate({"left":0,"opacity":1},500,"easeOutCubic");
+      // 다음 순번의 비주얼을 박스안으로 들어오게 에니메이션 함 
+
+      currentIndex=nextIndex; 
+      // 중요) 현제순번을 지금 에니메이션이 끝난 순번으로 바꿔줌 ( 비주얼순번을 바꿔서 다음 슬라이드를 진행 )
+    }
+    
+    
+    function onStop(){		      
+      
+      clearInterval(timer) // setInterval 멈춤
+      
+    }
+    
+    function onPlay(){		
+      
+      timer=setInterval(onSlideNext, 2000); // setInterval 다시실행 
+      
+    }
+
+
+
+	})
+	
+	
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">   
+    
+      <div id="visual_inner">
+
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <span id="prev_btn"><img src="images/prev_btn.png" alt="" /></span>
+        <span id="next_btn"><img src="images/next_btn.png" alt="" /></span> 
+    
+      </div>
+
+  </div>
+
+
+
+
+
+  
+</body>
+</html>

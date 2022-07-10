@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>accordion_menu</title>
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+		
+    body{
+	    background:url("images/index_back.gif");
+    }
+
+    .accordion_menu{
+      position:absolute;
+      left:500px;
+      top:200px;	
+      width:300px;
+      padding:20px 0;
+      
+      border-radius:10px;
+      box-shadow:2px 2px 2px #333;	
+      background-color:#eeeeee;
+    }
+
+    .menu_item{
+      position:relative;
+      height:30px;	
+      overflow:hidden;
+      cursor:pointer;
+    }
+
+    .menu_item_content{
+      position:absolute;
+    }
+
+
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>  
+    
+    
+    $(document).ready(function(){
+
+      var openHeight=113; // 메뉴가 열렸을때 높이 
+      var closeHeight=30; // 닫혔을때 높이 
+      
+      var $menu=$("div.menu_item").find("a"); // 각 메인메뉴 a테그 (Tab키접근 - 웹접근성 )      
+      
+      $menu.on("mouseenter focus", onMenuOver); // focus 이벤트와 같이 적용 ( 웹접근성 )
+      $menu.on("mouseleave focusout", onMenuOut); // focusout 이벤트와 같이 적용 ( 웹접근성 )
+
+      function onMenuOver(){
+        
+        // 중요) 선택된 a테그를 기준으로 .menu_item 찾기 주의) parents("해당요소") - 직계부모가 아닌 조상요소 
+        $(this).parents(".menu_item").stop(); // 기존 하던에니메이션 멈춤 (반응빨리)
+        $(this).parents(".menu_item").animate({"height":openHeight},300, "easeOutCubic"); // 선택된 메뉴의 높이를 늘려서 서브이미지도 보여지게함 
+        
+        // 중요) 선택된 a테그를 기준으로 직계부모요소 ( 이미지들을 감싸고 있는 .menu_item_content)
+        $(this).parent().stop();
+        $(this).parent().animate({"top":-closeHeight},300,"easeOutCubic"); // .menu_item_content 영역을 위로 올려서 타이틀메뉴가 안보이게함 				
+
+      }
+      function onMenuOut(){
+
+        $(this).parents(".menu_item").stop();
+        $(this).parents(".menu_item").animate({"height":closeHeight},300, "easeOutCubic"); // 선택된 메뉴의 높이를 다시줄여서 서브이미지가 안보여지게함 
+        $(this).parent().stop();
+        $(this).parent().animate({"top":0},300,"easeOutCubic");	// .menu_item_content 영역을 다시내려서 타이틀메뉴가 보이게함 	
+        
+      }	
+
+        
+    });	
+	
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+    <div class="accordion_menu">
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_1.png">
+              <img src="images/a_menu_1_over.png" >
+            </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">	
+              <a href="#">
+                <img src="images/a_menu_2.png">
+                <img src="images/a_menu_2_over.png" >
+              </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_3.png">
+              <img src="images/a_menu_3_over.png" >
+           </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_4.png">
+              <img src="images/a_menu_4_over.png" >
+            </a>
+          </div>
+        </div>
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_5.png">
+              <img src="images/a_menu_5_over.png" >
+            </a>
+          </div>
+        </div>
+        
+      </div>   
+  
+</body>
+</html>

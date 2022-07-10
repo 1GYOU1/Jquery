@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>visual_slide_index_rwd</title>
+
+  <style> 
+
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;       
+    }
+
+    div#visual_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+      border:solid 1px white; box-sizing:border-box;
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    
+    span#prev_btn{
+      display:block; position:absolute; left:0px; top:45%; 
+    }
+
+    
+
+    span#next_btn{
+      display:block; position:absolute; right:0px; top:45%; 
+    }
+
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner{
+        width:100%; 
+      }
+
+   }
+   
+ 
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+	
+    $(window).load(function(){
+      var $visualWrap=$('#visual_wrap')
+      var $visualInner=$('#visual_inner')
+      var $visualList=$('#visual_list')
+      var $visualLi=$('#visual_list>li')
+      var $visualImg=$('#visual_list>li>img')
+      var $btnImg=$('#visual_inner span img')
+      var visualLength=$visualLi.size()
+      var visualWidth=$visualInner.innerWidth()
+        // alert(visualWidth)
+      var timer=null;
+	
+      var currentIndex=0;
+      var nextIndex=1;
+
+      // $visualLi.css({left:visualWidth, opacity:0.2})
+      // $visualLi.eq(0).css({left:0, opacity:1})           //initEvent에 넣어놔서 지워도 된다!@
+
+      visualSetting()
+      autoPlay()
+      initEvent()
+
+      function initEvent(){
+      $(window).on('resize', visualSetting)
+      $('#next_btn').on('click', slideVisualNext)
+      $('#prev_btn').on('click', slideVisualPrev)
+      $visualWrap.on('mouseenter', stopAutoPlay)
+      $visualWrap.on('mouseleave', autoPlay)
+      }
+
+      function visualSetting(){
+        visualWidth=$visualInner.innerWidth()
+        $visualLi.css({width:visualWidth})
+        $visualImg.css({width:visualWidth})
+        $visualWrap.css({height:$visualImg.outerHeight()})
+        $btnImg.css({width:visualWidth/20})
+        $visualLi.css({left:visualWidth, opacity:0.2})//모든 visualLi 다시
+        $visualLi.eq(currentIndex).css({left:0, opacity:1})
+      }
+
+      function autoPlay(){
+        timer=setInterval(slideVisualNext, 2000)//animation 속도보다는 커야함.
+      }
+
+      function stopAutoPlay(){
+        clearInterval(timer)
+      }
+
+      function slideVisualNext(){
+
+          nextIndex=currentIndex+1;//다음순번=현재순번+1
+          if(nextIndex>=visualLength){
+            nextIndex=0
+          }
+
+          $visualLi.eq(currentIndex).stop().animate({left:-visualWidth, opacity:0},800, 'easeOutCubic')
+          //click하면 현재순번 visualLi를 left -visualWidth만큼 움직인다.
+          $visualLi.eq(nextIndex).css({left:visualWidth})//오른쪽 옆으로 와서 대기하라는 코드. 이게 없으면 한바퀴돌고 앞에서 왼쪽으로 옴.
+          $visualLi.eq(nextIndex).stop().animate({left:0, opacity:1},800, 'easeOutCubic')
+          //다음순번을 left 0, opacity 1로 바꾼다.
+          currentIndex=nextIndex;
+      }
+
+      function slideVisualPrev(){
+
+          nextIndex=currentIndex-1;//다음순번=현재순번-1
+          if(nextIndex<0){
+            nextIndex=visualLength-1 //마지막순번의 -1
+          }
+
+          $visualLi.eq(currentIndex).stop().animate({left:visualWidth, opacity:0},800, 'easeOutCubic')
+          //click하면 현재순번 visualLi를 left visualWidth만큼 움직인다.
+          $visualLi.eq(nextIndex).css({left:-visualWidth})//왼쪽 옆으로 와서 대기하라는 코드.
+          $visualLi.eq(nextIndex).stop().animate({left:0, opacity:1},800, 'easeOutCubic')
+          //다음순번을 left 0, opacity 1로 바꾼다.
+          currentIndex=nextIndex;
+          }
+
+    })
+	
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">   
+    
+      <div id="visual_inner">
+
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <span id="prev_btn"><img src="images/prev_btn.png" alt="" /></span>
+        <span id="next_btn"><img src="images/next_btn.png" alt="" /></span> 
+    
+      </div>
+
+</div>
+
+
+
+
+
+  
+</body>
+</html>

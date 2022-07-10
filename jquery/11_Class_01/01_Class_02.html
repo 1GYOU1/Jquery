@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> 클래스 </title>
+  <script>
+  
+     /* 클래스와 인스턴스 생성방법 	 
+     
+    
+     2. 생성자 함수와 프로토타입 메서드방식 (prototype)   
+
+     - 여러가지 매개변수룰 활용한 생성자 함수를 만들고 그 생성자 함수를 활용하여 다양한 인스턴스를 생성할 수 있다.    
+    
+      
+      function 생성자함수명 (매개변수1, 매개변수2, 매개변수3 ...){      
+        
+        this.속성1="매개변수1";  // this 구문를 사용하여 속성과 매서드를 만듬
+        this.속성2="매개변수2";
+        this.속성3="매개변수3";         
+        
+      }
+
+      주의) ()=>{} 화살표 함수는 생성자 함수로 사용할 수 없다. 
+      
+
+     - 클래스의 프로토타입속성을 활용하여 다양한 메서드 (실행명령)들을 생성하고 인스턴스에 그 메서드들을 사용할 수 있다. 
+
+     클래스명.prototype.메서드1=function(){ 실행명령 }
+     클래스명.prototype.메서드2=function(){ 실행명령 }
+
+
+     
+     인스턴스(instance) 생성 
+     
+     let 생성할 인스턴스 명 = new 생성자함수(클래스)명("속성값1","속성값2","속성값3"....)   
+     
+     // 생성자 함수 (클래스) 매개변수에 새로운 속성값을 지정하고 new 연산자를 사용하여 새로운 객체(인스턴스)를 생성    
+ 
+               
+     인스턴스 속성 과 메서드 사용방법      
+    
+     인스턴스명 .속성 .메서드()   // . 을 사용하여 해댱 객체의 속성과 메서드를 실행시킨다.   
+
+     장점) 객체 리터럴 방식과 같이 인스턴스를 생성할때 마다 속성과 메서드를 정의하는 방식이 아니라 매개변수를 활용한 생성자 함수와 프로토타입 속성을 
+     활용하여 한번 정의해 놓고 반복해서 여러개의 인스턴스생성이 가능하다. ( 코드효율성 - 재사용 )
+
+     */
+
+     // 예)  Burger 라는 생성자 함수와 프로토타입 속성을 활용하여 속성값과 메서드들이 다양한 새로운 인스턴스를 만들어 낼수 있다. 
+    
+    
+     function Burger(name,patty,drink,side){ // 생성자 함수 ( 클래스에서 생성자함수 이름은 대문자로 시작 - 일반함수와 구분)
+      
+      this.name=name    // this 구문를 사용하여 속성과 매서드를 만듬
+      this.patty=patty;
+      this.drink=drink;
+      this.side=side;        
+      
+    }
+
+    Burger.prototype.order=function(){ // 실행할 메서드를 해당클래스의 프로토타입을 이용해서 만든디.
+
+      document.write("세트이름: "+this.name+"<br>");
+      document.write("패티종류: "+this.patty+"<br>");
+      document.write("음료: "+this.drink+"<br>");
+      document.write("사이드메뉴: "+this.side+"<br><br>");       
+
+
+    }             
+      
+    let shrimpBurger = new Burger("새우버거세트","새우", "콜라","치즈스틱") // 생성자 함수 매개변수에 새로운 속성값을 지정하고 new 연산자를 사용하여 새로운 인스턴스를 생성
+       
+        
+    shrimpBurger.order()  // 인스턴스 메서드 실행    
+
+
+
+    let chickenBurger= new Burger("치킨버거세트","치킨", "쉐이크", "어니언") 
+    
+    // 사용자에 따라 속성값을 바꿔가면서 다양한 인스턴스를 생성할수 있다. 
+    // 생성된 인스턴스에 대한 속성값과 메서드를 바꿔가면서 활용이 가능     
+    
+    chickenBurger.order() 	     
+     
+     
+
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>modalWindow</title>
+
+  <style>    
+    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    ul#img_list{
+      width:700px;
+    }
+    ul#img_list li{
+      float:left; margin:10px;       
+    }
+    
+    div#grayLayer{          
+      height:100%; width:100%; position:absolute; left:0; top:0;      
+      background:black; opacity:0;
+    }   
+
+    div#overLayer{      
+      background-color:pink;width:650px; height:443px; position:absolute; top:50%; left:50%;  margin-top:-221px; margin-left:-325px;     
+    }
+    
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>    
+
+    $(document).ready(function(){
+      var $imgList=$('#img_list>li')
+      var $grayLayer=$("<div id='grayLayer'></div>")
+      var $overLayer=$("<div id='overLayer'></div>")
+
+      $imgList.on('click', showPop)
+      $grayLayer.on('click', hidePop)
+
+      function showPop(){
+        $grayLayer.appendTo('body')
+        $overLayer.appendTo('body')
+
+        $grayLayer.show().stop().animate({opacity:0.6},500,'easeOutCubic')
+
+        var clickIndex=$imgList.index($(this))
+        // alert(clickIndex)
+        $imgNum=$("<img src=./images/photo"+(clickIndex+1)+".jpg>")
+
+        $overLayer.html($imgNum).show()
+        
+      }
+      function hidePop(){
+        $grayLayer.stop().animate({opacity:0},500,'easeOutCubic').hide() //광클가능
+        $overLayer.hide()
+      }
+    })
+    
+  </script>
+
+
+</head>
+<body>
+
+  <ul id="img_list">
+    <li><a href="#"><img src="images/photo1_thum.jpg" alt=""  /></a></li>
+    <li><a href="#"><img src="images/photo2_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo3_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo4_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo5_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo6_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo7_thum.jpg" alt="" /></a></li>
+    <li><a href="#"><img src="images/photo8_thum.jpg" alt="" /></a></li>
+  </ul>
+  
+  
+</body>
+</html>

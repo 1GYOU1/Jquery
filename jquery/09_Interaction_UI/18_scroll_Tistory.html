@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scroll_Tistory</title>
+  
+
+  <style> 
+
+      body {
+				margin:0px; padding:0px; 
+				min-width:960px;
+				min-height:10000px;
+			}
+			#start_bg {
+				width:100%;
+				height:962px;
+				background:url("images/start_bg.jpg") no-repeat;
+				background-size:cover;
+				position: fixed;
+				top:0;
+				z-index:2;
+				
+			}
+			
+			#copy_1 {
+				width:355px;
+				height:46px;
+				position:absolute; left:50%;
+				margin-left:-177px ;
+				top:60px;
+				background:url("images/copyright_01.png") no-repeat;
+			}
+			
+			#copy_2 {
+				width:566px;
+				height:66px;
+				position:absolute; left:50%;
+				margin-left:-283px ;
+				top:120px;
+				background:url("images/copyright_02.png") no-repeat;
+				
+			}			
+			#camera_bottom {
+				width:527px;
+				height:74px;
+				background:url("images/camara_bottom.png") no-repeat;
+				position:fixed; left:50%;
+				margin-left:-256px; 
+				top:686px;
+				z-index:5;
+				
+			}
+			#camera_top {
+				width:527px;
+				height:432px;
+				background:url("images/camera_top.png") no-repeat;
+				position: fixed; left:50%; margin-left:-255px;
+				top:254px;
+				z-index:7;
+				
+			}
+			
+			#main_photo {
+				width:411px;
+				height:361px;
+				background:url("images/bg_paper.png") no-repeat;
+				position: fixed; left:50%; 
+				margin-left:-200px;
+				top:430px;
+        z-index: 6;
+        -webkit-transition:0.3s ease;		
+			}
+			
+			#main_photo.rotate {					
+				-webkit-transform:rotate(20deg);
+			}
+			
+			#cover_left {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px; left: 0;  overflow: hidden; position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}
+			#cover_right {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px;
+        right: 0;
+        overflow: hidden;
+        position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}			
+			#copy_tistory {
+        width:100%;
+        background: url("images/txt_tistory.png") no-repeat 50% 0;
+        height: 149px;
+        position: fixed;
+        top: 1500px;
+        z-index: 1;
+			  
+			}
+    
+
+   
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+		
+			$(document).ready(function(){			
+        
+				
+				$(window).on("scroll", onScroll);	// window를 스크롤 할때마다 onScroll 함수 실행 			
+       
+			
+        function onScroll(){
+          
+          var scrollHeight=$(document).scrollTop(); // 스크롤될때 스크롤 되어있는 scrollTop() 값을 구해  scrollHeight 변수에 대입				
+                  
+          $("#start_bg").css({"top": 0-scrollHeight/2}); 
+          // #start_bg 를 현제위치 0 에서  스크롤 되어있는 높이의 절반값만큼 올려준다. (속도조절 )
+
+
+          // 각 카메라 상단 하단을  각 초기 상단좌표에서 scrollHeight 값을 3으로 나눈값 ( 속도조절 )만큼 빼준값으로 지정 
+          $("#camera_bottom").css({"top": 686 - scrollHeight/3 });
+          $("#camera_top").css({"top": 254 - scrollHeight/3});			
+          
+          
+          // $("#cover_left"), $("#cover_right") 가 올라가야될 상단 좌표를 초기위치 962	에서  scrollHeight 값을 1.5 로 나눈값으로 빼준값 만큼 topPosition 으로 지정                    
+          $("#cover_left").css({"top": 962-scrollHeight/1.5}); 
+          $("#cover_right").css({"top": 962-scrollHeight/1.5}); 	
+          
+          
+          if(scrollHeight>=800){ // scrollHeight 값이 800 이상일때 $("#main_photo") 에 "rotate" 클래스를 지정하여 돌려준다.
+            
+            $("#main_photo").addClass("rotate"); // 초기 css 스타일에서 transform 과 transition 효과를 미리지정해둠            
+          
+          }else{
+
+            $("#main_photo").removeClass("rotate"); // "rotate" 클래스를 삭제하여 다시 원위치 
+           
+            
+          }	   
+          
+          
+          var leftPosition; //  $("#cover_left"), $("#cover_right") 가 각 좌우로 움직여될 좌표 leftPosition 변수지정 
+          
+          if(scrollHeight>=2000 && scrollHeight<=3600){ 
+            
+            leftPosition=(2000-scrollHeight)/1.5;
+            // scrollHeight 값이 2000 이상 3600 이하일때는  leftPosition 값을  2000 부터  scrollHeight 값을  뺀값을  다시 1.5 로 나눈값으로 지정   
+
+          }else if(scrollHeight>3600){ // scrollHeight 값이 3600 이상일때는 -2000  값으로 고정 ( 너무 좌우로 빠지는것을 방지 ) 
+            
+            leftPosition = -2000;
+          
+          }else{
+
+            leftPosition=0; // 아니면 초기위치 0 유지 
+            
+          }						
+
+          $("#cover_left").css({"left": leftPosition}); //  $("#cover_left") 의 좌측좌표를  앞에서 구한 leftPosition 값으로 지정 
+          $("#cover_right").css({"right": leftPosition}); //  $("#cover_right") 의 우측좌표를  앞에서 구한 leftPosition 값으로 지정 		         
+          
+          
+          if(scrollHeight>=3000){ // scrollHeight 값이 3000 이상일때는 $("#copy_tistory") 상단 150  좌표까지 위로 에니메이션             
+              
+              $("#copy_tistory").stop();
+              $("#copy_tistory").animate({"top":150}, 800, "easeOutCubic");		
+
+            }else{ // 그게 아니면 $("#copy_tistory") 를 초기위치 아래로 에니메이션   
+              
+              $("#copy_tistory").stop();
+              $("#copy_tistory").animate({"top":1500}, 800, "easeInCubic")
+
+            }		
+                
+          }		
+
+
+      });
+
+
+
+
+      
+        
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <div id="start_bg">
+    <div id="copy_1"></div>
+    <div id="copy_2"></div>
+  </div>
+  
+  <div id="camera_bottom"></div>        
+  <div id="main_photo"></div>
+  <div id="camera_top"></div>
+      
+  <div id="cover_left"> </div>
+  <div id="cover_right"> </div>
+  
+  <div id="copy_tistory"></div>
+  
+  
+  
+</body>
+</html>

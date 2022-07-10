@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>animation_menu</title>
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+		body{
+			background:url(images/index_back.gif);
+		}
+		ul#menu_list{			
+			background:url(images/bg.jpg) repeat-x;
+			width:700px;
+			height:50px;
+			position:absolute;
+			left:300px;
+			top:200px;
+			overflow:hidden;
+			padding-left:80px;
+			border:solid 1px #999;
+			border-radius:10px;
+			box-shadow:2px 2px 2px #333;
+		}
+		
+		ul#menu_list li{
+			margin-top:10px;			
+			overflow:hidden;
+			width:120px;
+			height:30px;	
+			float:left;
+			cursor:pointer;
+      position:relative; left:0px; top:0px; 
+		}
+		
+		ul#menu_list li a{		
+			position:absolute; left:0px; top:0px; 
+		}
+
+
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>        
+    
+   
+	
+	$(document).ready(function(){
+		
+		var $menu=$("#menu_list li a") // 메뉴 지정 ( a 테그적용 접근성 )
+		
+		$menu.on("mouseenter focus", onMenuOver); // 이벤트 적용 ( focus 이벤트 동시적용 - Tab키 접근성)
+		$menu.on("mouseleave focusout", onMenuOut);	
+
+
+    function onMenuOver(){
+      $(this).stop(); // 기존에 진행되고  에니메이션은 멈춤 ( 없으면 충돌남 ) 
+      $(this).animate({"top":-30},300,"easeOutCubic"); 
+      // 각 메뉴안에 있는 텍스트이미지를 감싸고 있는 a 를 올려줌 (활성화) 
+	  }
+    function onMenuOut(){
+      $(this).stop();
+      $(this).animate({"top":0},300,"easeOutCubic");		
+      // 각 메뉴안에 있는 텍스트이미지를 감싸고 있는 a 를 다시내려줌 (비활성화)
+    }
+
+	
+  });	
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+
+    <ul id="menu_list">
+      <li> <a href="#"><img src="images/menu_1.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_2.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_3.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_4.png"></a> </li>
+      <li> <a href="#"><img src="images/menu_5.png"></a> </li>        
+    </ul>
+  
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 함수선언방식 연습3 </title>
+  <script>
+ 
+    //홀수 짝수 구분 함수 ver., 아닌 ver.
+
+    //함수 사용하지 않은 버전-------------
+
+    // let num=prompt("숫자를 입력하세요.")
+
+    // num=parseInt(num)
+
+    // if(num%2==0){
+    //     document.write("입력한 숫자는 짝수입니다.")
+    // }else{
+    //     document.write("입력한 숫자는 홀수입니다.")
+    // }
+
+    //--------------------------------
+
+
+
+    let num=prompt("숫자를 입력하세요.")
+
+    num=parseInt(num)
+
+    checkEvenOdd(num)
+
+    function checkEvenOdd(value){
+        if(value%2==0){
+            document.write("입력한 숫자는 짝수입니다.")
+        }else{
+            document.write("입력한 숫자는 홀수입니다.")
+        }
+    }
+    
+
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

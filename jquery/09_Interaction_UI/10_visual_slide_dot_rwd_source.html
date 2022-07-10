@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>visual_slide_dot_rwd</title>
+
+  <style> 
+
+    html,body{
+	    height:100%; overflow:hidden; 
+    }    
+
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;       
+    }
+
+    div#visual_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; overflow:hidden;
+      border:solid 1px white; box-sizing:border-box;
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  float:left; 
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    
+    ul#dot_list{
+      width:130px; position:absolute; left:50%; margin-left:-65px; bottom:20px; 
+    }
+
+    ul#dot_list li{
+      width:16px; height:16px; float:left; margin-right:10px; border-radius:8px; background:#FFF;
+      -webkit-transition:0.2s ease;
+    }
+
+    ul#dot_list li.selected{
+      background:orange;  
+    }
+
+
+
+    @media screen and (max-width:1200px) {
+
+      div#visual_inner{
+        width:100%; 
+      }
+
+    }
+
+   
+ 
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+	
+$(window).load(function(){
+
+  var $visualWrap=$('#visual_wrap')
+  var $visualInner=$('#visual_inner')
+  var $visualList=$('#visual_list')
+  var $visualLi=$('#visual_list>li')
+  var $visualImg=$('#visual_list>li>img')
+  var $dot=$('#dot_list>li')
+
+  var visualLength=$visualLi.size()
+  var visualWidth=$visualInner.innerWidth()
+  var overIndex=0
+  var timer=null;
+
+  visualSetting()
+  dotActivate(0)
+  autoPlay()
+
+  $(window).on('resize', visualSetting)//반응형으로 만들면 visualSetting을 다시 셋팅한다는 뜻.
+  $dot.on('mouseenter',overDot)
+  $visualWrap.on('mouseenter', stopAutoPlay)
+  $visualWrap.on('mouseleave', autoPlay)
+
+  function overDot(){
+    overIndex=$dot.index($(this)) //앞에 var 선언 지워주기 중복 방지
+    dotActivate(overIndex)
+    slideVisual(overIndex)
+  }
+
+  function visualSetting(){
+    visualWidth=$visualInner.innerWidth() //앞에 var XXX 위에서 선언한 전역변수를 가지고 값만 다시셋팅. 중요★★★. window resize할때마다 새로운 값으로 다시 잡아줘야하기때문에 넣어줘야함.
+    $visualLi.css({width:visualWidth})
+    $visualImg.css({width:visualWidth})
+    $visualList.css({width:visualWidth*visualLength})
+    $visualWrap.css({height:$visualImg.innerHeight()})
+    $visualList.css({left:-visualWidth*overIndex},500,'swing')
+  }
+
+  function dotActivate(index){
+    $dot.removeClass('selected')
+    $dot.eq(index).addClass('selected')
+  }
+
+  function slideVisual(index){
+    $visualList.stop().animate({left:-visualWidth*index},500,'swing')
+  }
+
+  function autoPlay(){
+    timer=setInterval(addOverIndex, 2000)
+  }
+
+  function addOverIndex(){
+    overIndex++;
+    if(overIndex>=visualLength){
+      overIndex=0
+    }
+    dotActivate(overIndex)
+    slideVisual(overIndex)
+  }
+  
+  function stopAutoPlay(){
+    clearInterval(timer)
+  }
+})
+	
+
+
+
+  
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">   
+    
+      <div id="visual_inner">
+
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>           
+        </ul>       
+            
+        <ul id="dot_list">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>           
+        </ul>       
+    
+      </div>
+
+</div>
+
+
+
+
+
+  
+</body>
+</html>

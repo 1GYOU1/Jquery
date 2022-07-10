@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 형변환과 +문자연산자 </title>
+  <script>
+
+  // 묵시적 형변환 ( 숫자형태의 문자 또는 true, flase 값을 +연산자를 제외한  -, *, /, %  연산하게 되면 숫자형태 문자를 숫자로 묵시적 형변환 하여 연산 )
+
+
+    let a="1", b=2;
+
+    let result=a-b;
+
+    console.log(result) // 결과 -1 (숫자형태의 문자 1을 숫자 1로 묵시적 형변환 )
+
+
+    a="2020";
+    b=10; 
+
+    result=a*b;
+
+    console.log(result) // 결과 20200 (숫자형태의 문자 2020을 숫자 2020으로 묵시적 형변환 )
+
+
+    a=true;
+    b=1; 
+
+    result=a-b;
+
+    console.log(result) // 결과 0 (true 값을 숫자 1로 묵시적 형변환 - false 는 0으로 묵시적 형변환 )
+
+
+       
+    
+    
+    // + 문자 연산자  ( 문자 + 숫자  또는 문자 + 문자   연산하게 되면  + 연산자가 서로 이어주는 역할 ( 결과는 문자 ) ) 
+    
+    a="1";
+    b=2;
+       
+    result=a+b;
+
+    console.log(result) // 결과  문자 12 
+
+    
+    a="2020";
+    b=10;
+
+    result=a+b 
+
+    console.log(result) // 결과  문자 202010    
+
+
+    a="2020년"    
+    b="10년"; 
+
+    
+    result=a+b;
+
+    console.log(result)  // 결과 : 2020년10년  (문자 )
+    
+    
+
+
+    // 명시적 형변환 (Number(), parseInt(), String() 함수등을 써서 강제적으로 형변환 )
+
+
+    a="1";
+    b=2;
+
+    a=Number(a) // 문자 a를 숫자로 명시적 형변환 
+
+    result=a+b 
+
+    console.log(result)  // 결과 숫자 3
+
+    
+    a="2020";
+    b=10;
+
+    a=Number(a);
+
+    result=a+b;
+
+    console.log(result) // 결과  숫자  2030   
+	
+	
+	/* 중요
+	 
+	+ 연산자는 숫자를 연산할때는 명시적으로 형변환하는 불편함이 있지만, 
+	중요한 의미는 숫자들을 별도 연산한다음 단위문자를 붙여주거나 또는 별도문자를 바꿔가면서 의미부여가 가능
+	
+	*/ 
+
+    a="2020년"    
+    b="10년";
+    
+    result=parseInt(a)+parseInt(b) ;  // parseInt() : 문자열, 또는 숫자(소숫점)에서 정수만 출력  ( 결과는 숫자  )
+
+    console.log(result+"년")   // 결과 : 2030년  ( + 연산자를 사용하여 단위를 문자로 붙여줌 )      
+   
+    
+
+    a="Visual Studo Code "
+    b=1.39 
+
+    result=a+b;
+    console.log(result); // 결과 : "Visual Studio Code 1.39"  ( 버전을 바꿔가면서 나타내는 문자로 표현가능 )
+    
+    
+    a="홍길동"
+    b="님 반갑습니다."
+
+    result=a+b
+
+    console.log(result)  // 결과 : "홍길동님 반갑습니다." ( 이름을 바꿔가면서 문장을 표현  ) 
+    
+    // 참고) 문자와 숫자 또는 문자와 문자를 + 제외한 - , *, /, %  연산할 수 없다. (결과 NaN )
+    
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

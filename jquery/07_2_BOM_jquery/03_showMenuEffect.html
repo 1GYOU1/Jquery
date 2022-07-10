@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>css() 메뉴이벤트효과</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"> 
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+  <script>
+  
+   /*
+    css() : 해당요소의 CSS 스타일 속성을 얻어내거나 지정하는 함수 
+
+    - css("속성") : 매개변수가 속성만 지정될 경우는 속성값을 얻어내는 기능 
+
+    - css("속성","값") : 매개변수가 속성과 값이 적용될경우는 속성값을 지정하는 기능 
+
+    - css({"속성1":"값1", "속성2":"값2", ....}) 여러개의 속성과 값을 동시에 지정 가능 ( {} , 사용 )
+
+   */
+
+   
+   $(document).ready(function(){
+
+    var $subBg=$("#sub_bg"); // 서브배경 지정 
+    var $subMenuList=$(".submenu_list"); //서브메뉴전체 지정 
+    var $mainMenu=$("#mainmenu_list").children() // 메인메뉴 지정
+    var $headerWrap=$("#header_wrap"); // header_wrap 지정 
+
+    //alert($subBg.css("opacity")) // 속성값만 적용되었을때는 속성값을 얻어오는 일 
+
+    $subBg.css({"display":"none"}); // 서브배경 스타일 변경 ( 초기값 안보이게 )
+    $subMenuList.css({"display":"none"}) // 서브메뉴전체 스타일 변경 ( 초기값 안보이게 )   
+
+    $mainMenu.on("mouseenter",onMenuOver); // 메인메뉴에 이벤트 적용 
+    $("#header_wrap").on("mouseleave",onMenuOut); 
+    // 주의) 전체 header_wrap에 마우스아웃 이벤트 적용 (메인메뉴에서 아웃시 실행명령을 주변 다른 서브메뉴로 갈때 없어짐 )
+    
+    
+    function onMenuOver(){ // 메인메뉴 마우스 오버시 서브배경과 마우스를 올린 메인메뉴의 서브메뉴만 보이게 설정 
+
+        $subBg.css({"display":"block"});
+        $subMenuList.css({"display":"none"}) // 모든 서브메뉴 안보이게 설정 
+        $(this).children('.submenu_list').css({'display':"block"}) // 마우스를 올린 메인메뉴의 서브메뉴만 보이게 설정 
+
+    }
+
+    
+    function onMenuOut(){ // 상단영역에서 마우스 아웃시 서브배경과 모든 서브메뉴 다시 안보이게 
+
+      $subBg.css({"display":"none"});
+      $subMenuList.css({"display":"none"})
+
+
+    }
+    
+  })
+
+  
+  
+  </script>
+
+
+</head>
+<body>
+  <!--바로가기메뉴시작-->
+  <ul class="skipmenu_list">
+    <li><a class="hidden" href="#header_inner">메뉴바로가기</a></li>
+    <li><a class="hidden" href="#contents_inner">본문바로가기</a></li>
+    <li><a class="hidden" href="#footer_inner">하단바로가기</a></li>
+  </ul>
+  <!--바로가기메뉴끝-->
+  
+  <!--상단영역시작-->
+  
+  <div id="header_wrap">
+    <div id="header_inner">
+      <h1 id="logo">
+        <a href="index.php"><img src="images/logo.gif" alt="글렘쉘"></a>
+      </h1>
+     
+      <h2 class="hidden">메인메뉴</h2>
+      <ul id="mainmenu_list">
+        <li><a href="brand.php"><img src="images/mainmenu_01.gif" alt="브랜드소개"></a>
+          <ul class="submenu_list">
+            <li><a href="#">BRAND</a></li>
+            <li><a href="#">DESIGN</a></li>
+            <li><a href="#">BI</a></li>
+          </ul>
+        
+        </li>
+        <li><a href="#"><img src="images/mainmenu_02.gif" alt="컬렉션"></a>
+          <ul class="submenu_list">
+            <li><a href="#">CRYSTAL</a></li>
+            <li><a href="#">NANO</a></li>
+            <li><a href="#">MAGIC</a></li>
+            <li><a href="#">PUZZLE</a></li>
+          </ul>        
+        </li>
+        <li><a href="#"><img src="images/mainmenu_03.gif" alt="매장안내"></a>
+          <ul class="submenu_list">
+            <li><a href="#">ON-LINE</a></li>
+            <li><a href="#">OFF-LINE</a></li>
+            <li><a href="#">B2B</a></li>            
+          </ul>   
+        
+        </li>
+        <li><a href="#"><img src="images/mainmenu_04.gif" alt="리뷰"></a>
+          <ul class="submenu_list">
+            <li><a href="#">EVENT</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">NEWS</a></li>
+            <li><a href="#">INTERVIEW</a></li>             
+          </ul>       
+        </li>
+        <li><a href="#"><img src="images/mainmenu_05.gif" alt="고객센터"></a>
+          <ul class="submenu_list">
+            <li><a href="#">INSTALL</a></li>
+            <li><a href="#">POWER REVIEW</a></li>
+            <li><a href="#">Q&A</a></li>
+            <li><a href="#">FAQ</a></li>             
+          </ul>       
+        </li>
+      </ul>
+      <h2 id="bestmenu"><a href="#"><img src="images/best_btn.gif" alt="주간베스트상품"></a></h2>
+    </div> 
+
+   <div id="sub_bg"></div> <!--서브메뉴배경-->
+
+  </div>
+  
+
+  <!--상단영역끝-->
+  <!--비쥬얼영역시작-->
+  <div id="visual_wrap">
+    <h2 class="hidden">메인비쥬얼</h2>
+    <ul id="visual_list">
+      <li><a href="#"><img src="images/visual_00.jpg" alt="이미지설명"></a></li>
+      <li><a href="#"><img src="images/visual_01.jpg" alt="이미지설명"></a></li>
+      <li><a href="#"><img src="images/visual_02.jpg" alt="이미지설명"></a></li>
+    </ul>
+    <div id="visual_inner">
+      <a id="prev_btn" href="#"><img src="images/prev_btn.png" alt="이전보기"></a>
+      <a id="next_btn" href="#"><img src="images/next_btn.png" alt="다음보기"></a>
+      
+      <!-- 시작버튼 멈춤버튼 -->
+      <a id="play_btn" href="#"><img src="images/play_btn.png" alt="시작"></a>
+      <a id="stop_btn" href="#"><img src="images/stop_btn.png" alt="멈춤"></a>
+      
+    </div>       
+  </div>  
+  <!--비쥬얼영역끝-->
+  <!--컨텐츠영역시작-->
+  <div id="contents_wrap">
+    <div id="contents_inner">
+      <h2 class="hidden">컨텐츠</h2>
+      <ul id="contents_list">
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_01.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_01.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_01.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>
+        </li>
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_02.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_02.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_02.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_03.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_03.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_03.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_04.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_04.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_04.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>       
+      </ul>      
+    </div>    
+  </div>
+  <!--컨텐츠영역끝-->
+  <!--하단영역시작-->
+  
+  <div id="footer_wrap">
+    <div id="footer_inner">
+      <h2 class="hidden">하단정보영역</h2>
+    
+    </div>
+  </div>
+ 
+  
+  
+  <!--하단영역끝-->
+</body>
+</html>

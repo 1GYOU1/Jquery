@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 연산자연습6 </title>
+  <script>
+
+    // 비교연산자 ( >, <, >=, <=, ==, ===)
+
+    // a=b a변수에 b값을 대입
+    // a==b a값과 b값이 서로 같다.
+    // a===b a값과 b값이 서로같고 데이터형식도 같다.
+    // a!=b a값과 b값이 같지 않다.
+    // !a a값의 반대값
+
+//     let a=1;
+//     let b=2;
+//    document.write(a==b) //false 값이 같지 않아서.
+
+    // let a="1";
+    // let b=1;
+    // document.write(a==b) //true 값이 같아서.
+
+    // let a=true;
+    // document.write(!a) //false !a는 a의 반대값.
+
+
+
+    //논리 연산자 && -> 둘 다 || -> 둘 중 하나만 해당되어도
+
+    // let a=10;
+    // let b=20;
+
+    // document.write(a>=5 && b>=30)//false 둘 다 true여야지만 true가 나옴.
+    // document.write(a>=5 && b<=30)//true 둘 다 true여야지만 true가 나옴.
+    // document.write(a>=5 || b>=30)//true 둘 중에 하나만 true여도 true.
+
+
+
+    //조건연산자(3항연산자) 조건 ? 참일때 값 : 거짓일때 값
+
+    // let a=10;
+    // let b=20;
+
+    // console.log(a>=10 ? "맞아요" : "틀려요")//console 창에 맞아요 출력
+    // console.log(a<10 ? "맞아요" : "틀려요")//console 창에 틀려요 출력
+
+    let value=prompt("숫자를 입력하세요.")
+
+    value=parseInt(value)//소수점 버리고 정수만 출력.
+
+    value%2==0 ? document.write("짝수입니다.") : document.write("홀수입니다.") //2로 나눈 나머지가 홀수인지 짝수인지 출력.
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

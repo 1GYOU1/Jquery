@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 이벤트 대상 찾기 this, e.currentTarget, e.target </title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <style>
+  
+  div#red{
+    width:300px; height:300px; position:absolute; left:200px; top:200px; background:red; 
+  }
+
+  div#yellow{
+    width:150px; height:150px; position:absolute; left:75px; top:75px; background:yellow; 
+  }  
+  
+  </style>    
+
+  <script>  
+    
+   /* 이벤트 대상 찾기 
+
+    this : this가 포함된 함수를 실행시키기 위해서 이벤트를 발생시킨 대상 
+    
+    e.currentTarget : 매개변수로 받은 이벤트를 발생 시킨대상 ( 자식요소 무시 )
+
+    e.target : 매개변수로 받은 이벤트를 발생 시킨대상 ( 자식요소 포함 )
+
+  */    
+
+
+
+  // $(this) : $(this) 가 포함된 함수를 실행시키기 위해서 이벤트를 발생시킨 대상
+  //★★★★★
+
+
+  // $(document).ready(function(){
+
+  //   var $red=$('#red')
+    
+  //   $red.on('click', redClick)
+
+  //   function redClick(){//this 는 redClick -> $red.on('click') -> $red를 가르킴. //event -> e로 줄여서 사용가능.
+  //     $(this).css('background', 'green')
+  //   }
+
+  // })
+
+
+
+
+  // $(document).ready(function(){
+
+  //   var $red=$('#red')
+
+  //   $red.on('click', redClick)
+
+  //   function redClick(e){//event -> e로 줄여서 사용가능.
+  //     $(e.currentTarget).css('background', 'green')//event를 발생시킨 대상을 타켓으로.(주의 : event를 매개변수로 받아와야함.)
+  //   }
+
+  //   })
+
+
+
+
+    $(document).ready(function(){
+
+      var $red=$('#red')
+
+      $red.on('click', redClick)
+
+      function redClick(e){
+        $(e.target).css('background', 'green')
+      }//내가 클릭한 자식요소도 구문해서 잡아줌. 자식요소 클릭했을때도 자식요소에만 background green 적용
+
+      })
+
+  
+  </script>
+
+</head>
+<body>  
+
+  <div id="red">
+    parent 
+
+    <div id="yellow">
+      child
+    </div>
+
+  </div>
+
+</body>
+</html>

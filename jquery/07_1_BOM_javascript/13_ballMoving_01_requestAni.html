@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+
+  <style>
+  
+  body{
+			font-size:9pt;		
+		}
+
+    #wrap{
+      width:600px; height:400px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }		
+		
+		#panel{
+			width:600px;
+			height:300px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		#bar{
+			position:absolute;
+			left:50px;
+			top:190px;
+			width:500px;
+			height:20px;
+			z-index:10;
+			
+			border-top:dotted 1px #999;
+		}
+		
+		#ball{
+			position:absolute;
+			left:50px;
+			top:105px;
+			width:80px;
+			height:80px;
+			
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+  
+  
+  </style>
+
+
+  <title> ballMoving1 - requestAnimationFrame() </title>
+
+  <script>
+
+	document.addEventListener('DOMContentLoaded',()=>{
+
+		const ball=document.querySelector('#ball'); // 움직이는 대상 공을 찾음 
+		const line=document.querySelector('#bar'); // 공의 움직임 위치를 제어할수있는 #bar를 찾음 		
+
+		let startX=line.offsetLeft; // 공의 시작좌표를 line의 offsetLeft 좌표로 지정 ;
+		let currentX=startX; // 공의 현제위치 ( 공이 움직일 좌표 ) 의 초기값을 startX 로 지정;
+		let stepX=2; // 공이 한번에 움직이는 거리지정 ( 사용자 지정 - 움직임 속도와 관련);
+		let endX=startX+line.offsetWidth-ball.offsetWidth; // 공의 움직임이 다시돌아오는 마직막 좌표 지정 
+		//중요) ( startX + line의 가로크기 - 공의 가로크기 )	- 그림으로 이해 
+
+		let isMoving=false; // 공의 움직임 여부를 체크하는 상태변수 ( 초기값 false 지정 )
+		let timer; // setInterval() 함수를 제어하기 위해 대입할 변수 
+
+		document.querySelector('#start_btn').addEventListener('click',startBallMoving); // 시작버튼 클릭하면 공움직임 시작함수 실행 
+		document.querySelector('#stop_btn').addEventListener('click',stopBallMoving) // 멈춤버튼 클릭하면 공움직임 멈춤함수 실행 
+
+		function startBallMoving(){
+		  	if(isMoving==false){ // 공이 움직이고 있지 않을때만 공을 움직이게하는 함수실행 
+				
+        		//timer=setInterval(ballMoving,20);       
+        
+          		ballMoving()  // setInterval() 함수대신 실행함수 내부에서 requestAnimationFrame() 함수사용 ( 부드러운 에니메이션 )
+				
+				// 실행함수는 한번만 실행 
+
+				isMoving=true; // 공이 움직이고 있다고 상태변수를 true로 변경 (다시 시작버튼을 클릭할때 setInterval()충돌 방지 )
+			}
+		}
+
+		function stopBallMoving(){ // 공의 움직임을 멈추게 하는 함수 
+			
+			if(isMoving==true){ // 공이 움직이고 있을 때만 공을 멈추게 하는 함수실행 			
+
+        		cancelAnimationFrame(timer) // timer 에서 진행되고 있는 requestAnimationFrame() 함수를 멈춤  
+
+				isMoving=false; // 공의 움직임이 멈췄다고 상태변수를 false로 변경 
+			}
+		}
+
+		function ballMoving(){
+			currentX+=stepX; // 공이 움직일 좌표를 현제 좌표에 stepX를 더함 
+      
+			if(currentX>=endX || currentX<=startX){ 
+				// 공이 마지막 좌표에 도착하거나 다시 시작좌표에 도착하면 stepX 값을 변경하여 방향을 바꿈 
+				stepX*=-1
+			}
+		
+			ball.style.left=currentX+"px" // 공의 left 좌표를 currentX 로 바꿔줌  ( 주의) 반드시 "px" 단위도 지정 ) 
+
+			timer=requestAnimationFrame(ballMoving)
+
+			 /* 
+				requestAnimationFrame()
+
+				- window 객체 브라우저의 기본 frame 로딩속도 (64FPS)를 기준으로 끊김없이 부드러운 에니메이션 제공 
+				- setInterval()을 사용하는 것보다 끊김 없이 부드럽다.
+				- cancelAnimationFrame(변수) : 진행되고 있는 requestAnimationFrame() 함수를 멈춤 
+				
+				주의) setInterval() 함수는 밖에서 실행함수를 호출하지만, requestAnimationFrame() 함수는 실행할 함수안에서 호출한다. 
+
+        	*/
+		}	
+
+	})  		
+  
+  </script>
+
+
+</head>
+<body>
+  
+  <div id="wrap"> 	
+		<div id="panel">
+			<div id="bar"> </div>
+			<div id="ball">
+				<img src="images/ball.png">
+			</div>
+		</div>
+		<div id="nav">
+			<button id="start_btn">시작</button>
+			<button id="stop_btn">멈춤</button>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

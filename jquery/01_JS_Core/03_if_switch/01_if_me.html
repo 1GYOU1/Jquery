@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_01 </title>
+  <script>
+  
+ /* 조건문 if구문
+      
+      - 조건에 따라 실행할 명령을 구분해서 실행시켜주는 구문
+      
+      형식
+
+      if(조건1){
+         조건1에 해당될때 실행할 명령
+      }else if(조건2){
+         조건2에 해당될때 실행할 명령
+      }else{
+         아무조건에 해당되지 않을때 실행할 명령
+      }
+
+ */
+
+//  let result=confirm("식사는 하셨나요?")//확인, 취소 메세지 창
+
+//  console.log(result)//확인을 누르면 true, 취소를 누르면 false
+
+let result=confirm("스크립트 많이 어려우신가요?")
+
+if(result==true){
+   document.write("ㅠㅠ 저도 처음배울때 정말 많이 어려웠어요. 같이 힘내서 열심히 해봅시다.")
+}else if(result==false){//else 만 적어도 됨. true랑 false밖에 없어서.
+   document.write("그럼 다음 예제도 열심히 해봅시다.")
+}
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

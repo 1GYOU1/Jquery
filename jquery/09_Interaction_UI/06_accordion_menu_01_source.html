@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>accordion_menu</title>
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+		
+    body{
+	    background:url("images/index_back.gif");
+    }
+
+    .accordion_menu{
+      position:absolute;
+      left:500px;
+      top:200px;	
+      width:300px;
+      padding:20px 0;
+      
+      border-radius:10px;
+      box-shadow:2px 2px 2px #333;	
+      background-color:#eeeeee;
+    }
+
+    .menu_item{
+      position:relative;
+      height:30px;	
+      overflow:hidden;
+      cursor:pointer;
+    }
+
+    .menu_item_content{
+      position:absolute;
+    }
+
+
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>  
+    
+    $(document).ready(function(){
+      var $mainMenu=$('.menu_item a')//접근성 탭으로도 가능하게 하기위해 a태그로 잡기
+      
+      $mainMenu.on('mouseenter', openMainMenu)
+      $mainMenu.on('mouseleave', closeMainMenu)
+
+      function openMainMenu(){
+        $(this).parents('.menu_item').stop().animate({height:114},500,'easeOutCubic') //혹은 parent().parent()
+        $(this).parent().stop().animate({top:-40},500,'easeOutCubic')
+      }
+    
+      function closeMainMenu(){
+        $(this).parents('.menu_item').stop().animate({height:30},500,'easeOutCubic') //혹은 parent().parent()
+        $(this).parent().stop().animate({top:0},500,'easeOutCubic')
+      }
+
+    })
+    
+    
+  </script>
+
+
+</head>
+<body>
+    <div class="accordion_menu">
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_1.png">
+              <img src="images/a_menu_1_over.png" >
+            </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">	
+              <a href="#">
+                <img src="images/a_menu_2.png">
+                <img src="images/a_menu_2_over.png" >
+              </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_3.png">
+              <img src="images/a_menu_3_over.png" >
+           </a>
+          </div>
+        </div>
+        
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_4.png">
+              <img src="images/a_menu_4_over.png" >
+            </a>
+          </div>
+        </div>
+        <div class="menu_item">
+          <div class="menu_item_content">
+            <a href="#">
+              <img src="images/a_menu_5.png">
+              <img src="images/a_menu_5_over.png" >
+            </a>
+          </div>
+        </div>
+        
+      </div>   
+  
+</body>
+</html>

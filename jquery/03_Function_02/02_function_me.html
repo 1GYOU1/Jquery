@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> return 함수응용연습 2 </title>
+  <script>
+    
+    let num1=prompt("첫번째 숫자를 입력하세요.")
+    let op=prompt("사칙연산자중 하나를 입력하세요.")
+    let num2=prompt("두번째 숫자를 입력하세요.")
+
+    let result=null;
+
+    num1=parseInt(num1)
+    num2=parseInt(num2)
+
+    function calculator(){
+
+        switch(op){
+            case "+" :
+            result=num1+num2
+            break;
+
+            case "-" :
+            result=num1-num2
+            break;
+
+            case "*" :
+            result=num1*num2
+            break;
+
+            case "/" :
+            result=num1/num2
+            break;
+
+            default : //이것도 아니고 저것도 아닌 것.
+            result="지원하지 않는 연산자입니다."
+        }
+
+        return result; //함수를 실행시키고 꼭 돌려줘야 결과값이 나옴.
+
+    }
+
+    console.log(calculator())
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

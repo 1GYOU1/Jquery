@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> while구문 연습_04 </title>
+  <script>
+
+    /*
+
+    //무한 더하기 누적값 구하기
+
+    */
+
+    let sum=0;
+    let count=0;
+    
+    while(true){//무한반복
+        let value=prompt("더할 숫자를 입력하세요.", 1) // ,1 초기값 설정
+        value=parseInt(value)
+        if(value==0){//0을 누르지 않으면 무한대로 재생.
+            document.write("종료합니다.<br>");
+            break;
+        }else{
+            //sum=sum+value;    //줄여쓰기.
+            sum+=value;
+            document.write("합계:"+sum+"<br>")
+            count++;
+
+        }
+    }
+
+    document.write("총"+count+"번 실행했습니다.") //맨끝에 한번만 출력
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

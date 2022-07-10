@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>index()</title>
+
+  <style>
+  
+    ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    ul#menu_list{
+      width:200px; position:absolute; left:500px; top:200px; 
+    }
+
+    ul#menu_list li{
+      width:200px; height:40px; margin-bottom:20px; line-height:40px; background:#eeeeee;  text-align:center;
+      -webkit-transition:0.2s ease; 
+    }
+
+    ul#menu_list li.selected{
+      background:orange; color:white; 
+    }  
+  
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>    
+
+   /* 
+       index() 함수(메서드) : 해당요소의 순번을 구함   a.index(b)  : a들 중에 b의 순번을 구함 
+      
+       addClass() : 해당요소에 class 를 추가         
+       - CSS 함수를 이용해서 스타일적용해도 되지만 기존 CSS 에서 class로 속성지정후 addClass() 로 적용 - 많은양의 CSS 적용편리 
+
+       removeClass() : 해당요소에 class 를 제거
+          
+    */
+	
+		
+    $(document).ready(function() {
+        
+        var $menu=$("#menu_list").children() // 메뉴지정 
+
+        $menu.on("click", onMenuClick)
+
+        function onMenuClick(){
+
+          var indexNum=$menu.index($(this))  // index()를 활용하여 클릭한 요소의 순번을 구함 ( 0부터 시작 )
+
+          alert(indexNum)
+
+          $menu.removeClass("selected") 
+          // 모든 요소의 "selected" class 제거 ( 기존 CSS 스타일 selected 클래스에 적용되어 있는 속성 제거 )
+          $(this).addClass("selected") 
+          // 클락한 요소의 "selected" class 추가 ( 기존 CSS 스타일 selected 클래스에 적용되 있는 속성 적용 - transition 효과도 적용 )
+          
+        }
+
+         
+    })
+    
+    
+  </script>
+
+
+</head>
+<body>
+
+    <ul id="menu_list">
+      <li>첫번째메뉴</li>
+      <li>두번째메뉴</li>
+      <li>세번째메뉴</li>
+      <li>네번째메뉴</li>
+    </ul>
+  
+</body>
+</html>

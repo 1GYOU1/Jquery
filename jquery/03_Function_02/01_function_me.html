@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> return 함수응용연습 1 </title>
+  <script>
+    
+    let num1=prompt("첫번째 숫자를 입력하세요.")
+    let num2=prompt("두번째 숫자를 입력하세요.")
+  
+    let result=null;
+
+    num1=parseInt(num1)
+    num2=parseInt(num2)
+
+    function sum(){
+        result=num1+num2
+        return result   //꼭 있어야함. return 값이 없다면 더하기하고 끝남. 결과값 출력 X
+    }
+
+    console.log(sum())
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

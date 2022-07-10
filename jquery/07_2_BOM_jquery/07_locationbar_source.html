@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>locationbar</title>
+
+  <style>
+  
+    body,ul,li{
+      margin:0px; padding:0px; list-style:none; 
+    }
+
+    div#navi_info{
+      width:600px; height:50px; 
+      position:absolute; left:100px; top:50px;  
+    }
+
+    div#location_wrap{
+      width:100%; height:100px; position:fixed; left:0px; bottom:0px; z-index:999; background:rgb(31, 31, 31); 
+    }
+
+    section#location_inner{
+      width:1200px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+    }
+
+    ul#history_list{
+      width:220px; height:30px; position:absolute; left:0px; top:40px; 
+    }
+
+    ul#history_list li{
+      float:left; margin-right:40px; 
+    }
+
+    ul#history_list li:last-child{
+      margin-right:0px; 
+    }
+
+    ul#location_list{
+      width:450px; height:30px; position:absolute; left:300px; top:40px; 
+    }
+
+    ul#location_list li{
+      float:left; margin-right:10px; 
+    }
+
+    input#inputurl{
+      height:16px; text-indent:10px; 
+    }
+
+    ul#sns_list{
+      width:120px; height:30px; position:absolute; right:0px; top:40px; 
+    }
+
+    ul#sns_list li{
+      width:22px; height:22px; overflow:hidden; float:left; margin-right:20px; 
+    }
+
+    ul#sns_list li:last-child{
+      margin-right:0px; 
+    }
+
+    ul#sns_list li img{
+      width:100%; position:relative; top:-22px; 
+    }  
+  
+  </style>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+  
+  
+  <script>
+
+    /*    
+
+    window.history 객체 : 브라우저의 방문기록등을 기억해 두는 객체 
+
+      -window.history.back() : 이전 페이지 이동 
+      -window.history.forward() : 다음 페이지 이동
+      -window.history.go() : 특정위치로 가기 ( go(3) : 앞으로 3  go(-3) : 뒤로 3  )
+
+
+    window.location 객체  : 브라우저 주소표시줄에 해당되는 정보를 얻거나 변경 
+
+        속성
+
+      - window.location : 전체 url 정보 
+      - window.location.href: 전체 url 정보 (링크연결시 사용)
+      - window.location.host 또는 hostname: 호스팅(도메인주소)      
+      - window.location.pathname : 파일경로 표시 ( 페이지 구분시 필요 )
+      - window.location.hash : 파일내부 아이디명 ( #test )
+      - window.location.search : 물음표(?)뒤의 파라미터값 - 사용자 정의에 의한 페이지 정보를 얻을때 ( ?q=test )
+      - window.location.protocol : 통신 프로토콜 표시 ( http: 등 )
+
+        
+        메서드
+      
+      - window.location.replace(url) : 페이지 전환 (링크연결 - 세션히스토리가 남지 않음 back() 버튼 사용안됨 )      
+      참고) window.location.href="url주소" // href 속성값으로 링크가능 ( 세션히스토리가 남음 back()버튼 사용가능 )
+
+      - window.location.reload() : 현제페이지 새로고침 
+    
+    */
+
+  
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+  
+  </script>
+
+
+
+
+
+
+</head>
+<body>
+
+  
+
+
+  <div id="location_wrap">
+    <section id="location_inner">
+    <ul id="history_list">
+      <li><button id="back_btn">이전페이지</button></li>
+      <li><button id="forward_btn">다음페이지</button></li>
+    </ul>
+
+    <ul id="location_list">
+      <li><input type="text" name="inputurl" id="inputurl" size="50" value=""></li>
+      <li><button id="gotoUrl_btn"><label for="inputurl">이동</label></button></li>
+    </ul>  
+    
+
+    <ul id="sns_list">
+      <li><a href="#"><img src="images/sns-facebook.png" alt="페이스북"></a></li>
+      <li><a href="#"><img src="images/sns-insta.png" alt="인스타그램"></a></li>
+      <li><a href="#"><img src="images/sns-blog.png" alt="블로그"></a></li>
+    </ul>
+
+  </section>
+
+  </div>
+
+
+
+
+  
+</body>
+</html>

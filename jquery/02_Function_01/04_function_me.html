@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> 함수선언방식 연습4 </title>
+  <script>
+ 
+/*
+    전역변수 : 변수를 함수 밖에서 선언해서 어떤 함수에서도 사용 가능한 변수
+    지역변수 : 변수를 함수 안에서 선언해서 그 함수 안에서만 사용 가능한 변수
+*/
+
+// let name="한규원" //전역변수 함수 밖에서 선언
+
+// function hello(){
+//     document.write(name+"님 환영합니다.")
+// }
+// hello()
+
+
+
+
+// function hello(){
+//     let name="한규원" //지역변수 함수 안에서 선언
+//     document.write(name+"님 환영합니다.")
+// }
+// hello()
+
+
+
+
+// let name="한규원" //밖에다가 두면 출력 됌.
+
+function hello(){
+    let name="한규원"
+}
+document.write(name+"님 환영합니다.") //name 출력 안됌. let name를 안에다가 두고 document.write를 밖에다가 두면 안됌.
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

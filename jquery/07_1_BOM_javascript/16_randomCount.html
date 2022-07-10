@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+
+  <style>
+    
+    body{
+			font-size:9pt;	
+		}
+		
+		div#wrap{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}		
+		
+		#panel{
+
+      border: 1px dotted #CCC;
+			font-size:20px;	
+
+			width:600px;
+			overflow:visible;		
+		}
+ 
+  
+	</style>
+	
+	<title> randomCount </title>  
+
+  <script>
+  
+    // 랜덤칼라변경하는 구문 :  	(parseInt(Math.random()*0xffffff)).toString(16)	
+
+		document.addEventListener('DOMContentLoaded',()=>{
+
+			const panel=document.querySelector('#panel'); // 불규칙 숫자를 넣어줄 #panel 찾음 
+
+			let timer=setInterval(randomCount,20); // 불규칙 적으로 숫자를 출력하는 randomCount() 함수를 0.02 초에 한번씩 실행 
+
+
+			function randomCount(){
+
+				let count=parseInt(Math.random()*90)+10; // 두자리 숫자 ( 10 ~ 99) 중에 불규칙으로 count 출력 
+				let span=document.createElement('span'); // count 를 넣어줄 span 요소생성 ( 각각 폰트사이즈와 폰트컬러를 제어 )
+				span.innerHTML=count // 생성된 span 요소에 count를 넣어줌 
+
+				let randomFontSize=parseInt(Math.random()*40)+10; // 폰트사이즈를 10 ~ 49 불규칙값으로 지정 
+				let randomColor=(parseInt(Math.random()*0xffffff)).toString(16) // 폰트 컬러를 불규칙 값으로 지정 
+
+				span.style.fontSize=randomFontSize+'px'; // span요소의 폰트사이즈 불규칙값으로 적용 (주의) px 단위 )
+				span.style.color='#'+randomColor; // span요소의 폰트컬러를 불규칙값으로 적용 ( 주의) '#' 기호 )
+				span.style.display='inline-block'; // span요소의 display 속성을 'inline-block' 으로 지정 ( 가로로 출력하다가 세로로 출력되게 )
+
+				panel.append(span); // span 요소를 panel안 맨뒤에 계속 추가해줌 
+
+				window.scrollTo(0,document.body.scrollHeight-window.innerHeight) 
+
+				// body의 전체 스크롤높이에서 - window의 안쪽 세로높이를 뺀만큼 (body가 window를 벗어난 만큼) window를 scroll 해줌 
+			}
+
+		})	
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 		
+        <div id="panel">
+          
+        </div>
+      </div>    
+
+
+
+</body>
+</html>

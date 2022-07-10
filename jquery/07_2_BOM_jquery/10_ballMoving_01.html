@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ballMoving1</title>
+
+  <style>
+  
+  body{
+			font-size:9pt;		
+		}
+
+    #wrap{
+      width:600px; height:400px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }		
+		
+		#panel{
+			width:600px;
+			height:300px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		#bar{
+			position:absolute;
+			left:50px;
+			top:190px;
+			width:500px;
+			height:20px;
+			z-index:10;
+			
+			border-top:dotted 1px #999;
+		}
+		
+		#ball{
+			position:absolute;
+			left:50px;
+			top:105px;
+			width:80px;
+			height:80px;
+			
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+  
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>  	
+		
+		
+		$(document).ready(function(){	
+		
+			var $ball=$("#ball"); // 공이미지
+			var $barLine= $("#bar"); // 공이움직이는 라인 				
+			var startX = $barLine.position().left; // 공의 시작위치는 $barLine 의 왼쪽좌표
+			var currentX = startX; // 공이 가야될 x좌표의 초기값을  startX 로 설정
+			var stepX=2; // 공이 한번에 움직이는 양 ( 공의속도와 관련 ) 			
+			
+			var endX = $barLine.outerWidth()+startX-$ball.outerWidth(); // 공의 움직임이 끝나야되는 X좌표 				
+			// 중요-그림으로이해) 마지막 위치(시작위치 + bar의 넓이 - 이미지 넓이)	
+
+			var isPlay=false; // 공이움직이고 있는지 안움직이고 있는지를 체크하는 상태변수 
+			var timer; // setInterval() 함수를 대입할 변수 ( 나중에 멈춰야 하므로 ) - 전역변수 		
+			
+			$("#start_btn").on("click",onStart);			
+			$("#stop_btn").on("click",onStop);	
+
+
+
+			function onStart(){
+				
+				if(isPlay==false){ // 공이 움직이지 않을때만 실행되게 ( 그렇지않으면 함수가 중복실행되어 공이 계속빨라진다.) 
+					timer = setInterval(ballMoving,20);
+					isPlay=true; // 공이움직이기 시작했으므로 움직이고 있다고 상태변수를 체크 
+				}			
+			}		
+			
+			function ballMoving(){
+				currentX += stepX; 
+				// 공이가야될 좌표값을 현제 currentX 값에 stpeX 만큼 계속더해줌  ( currentX=currentX+stepX 의 약식 ) 
+				$ball.css("left",currentX);	// ball 의 왼쪽자표값을 currentX 값으로 설정 ( 공을움직이게함  ) 	
+				// 어떤요소를 position 속성으로 움직이게 하려면 반드시 CSS 스타일 초기값에서 position 값이 있어야함 	
+							
+				if(currentX>=endX){ // 공이영역을 벗어나는것을 방지 	
+					stepX = -2 // 공의 x좌표가 endX 까지 오면 다시 뒤로가게 설정 
+				}else if(currentX<=startX){ 
+					stepX = 2; //  공이 뒤로 오다가 startX 까지 오게되면 다시 앞으로 가게 설정 
+				}
+			}
+
+			function onStop(){
+				if(isPlay==true){ // 공이 움직이고 있을대만 설정 
+					clearInterval(timer); // 공이 움직이고 있는 setInterval() 함수를 멈춤 
+					isPlay=false; // 공이 멈췄으므로 isPlay=false 로 설정해야만 시작버튼을 눌렀을때 다시 시작함 
+				}
+			} 
+
+
+			
+		});		
+				
+  
+  
+  </script>
+
+
+</head>
+<body>
+  
+  <div id="wrap"> 	
+		<div id="panel">
+			<div id="bar"> </div>
+			<div id="ball">
+				<img src="images/ball.png">
+			</div>
+		</div>
+		<div id="nav">
+			<button id="start_btn">시작</button>
+			<button id="stop_btn">멈춤</button>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스트립트 문법 연습</title>
+    <script>
+        /* 
+        
+            변수 (variable) : 특정한 변수에 임의의 데이터값을 대입하여 수시로 그 데이터값을 변경하면서 사용할 수 있는 저장장소
+
+            형식
+
+            var 변수명 = 데이터값 입력
+
+            사용
+
+            변수명만 호출
+
+            변수에  대입할 수 있는 데이터 형식
+            - 문자열, 숫자, 논리값 (true, false), 함수, 클래스, 인스턴스 ...
+
+         */
+
+        //  console.log("서울시 강남구 역삼동 그린컴퓨터학원")
+
+        //  console.log("서울시 강남구 역삼동 그린컴퓨터학원")
+
+        // var address="서울시 강남구 서초동 그린컴퓨터학원"
+
+        // console.log(address)
+
+        // console.log(address)
+
+
+
+        
+        // var a="임의의 문자열";
+
+        // var b=3.14;
+
+        // var c=false;
+
+        // var d=null; //아무것도 없는 값이 들어가있음(변수 값을 초기화할 때 사용). 변수를 찾을 수 없으면 undifined가 뜸.
+
+        // console.log(d)
+
+
+
+
+        // var a=1;
+
+        // var a=2;
+
+        // console.log(a)
+
+        //var 변수는 중복허용, 뒤에 있는 변수 기준으로 나타냄.
+
+
+
+        // let a=1;
+
+        // let a=2;
+
+        // console.log(a)
+
+        // let 변수는 중복 미허용, 에러뜸.
+
+
+
+        // const a=1;
+
+        // a=2;
+
+        // console.log(a)
+
+        //const 같은 변수명 사용 x, 똑같은 값도 사용 못함. 에러뜸.
+
+
+
+        // let a="임의의 \n문자열";
+
+        // let a="임의의 \"문자열\"";
+
+        // let a=`임의의 "문자열"`;
+
+        // let a=`임의의 
+        //         문자열`;
+
+        // 역따옴표 사용하면 일반 문자열로 인식.
+
+        // console.log(a)
+
+
+
+        //연산자
+
+        // let a=1;
+        // let b=2;
+
+        // let result=a+b; //더하기
+        // let result=a-b; //빼기
+        // let result=a*b; //곱하기
+        // let result=a/b; //나누기
+        // let result=a%b; //a를 b로 나눈 나머지(어떤수를 2로 나눈 나머지가 0이면 짝수, 0이 아니면 홀수)
+
+        // console.log(result)
+
+
+
+        // let a="1";//큰따옴표를 찍으면 문자열을 자동형 (묵시적) 변환
+        // let b=2;
+        // let result=a-b;
+        // console.log(result);
+
+
+
+        // a="2020";
+
+        // a=Number(a) //a를 숫자로 바꿔서 대입하겠다라는 뜻. 문자는 검정, 숫자는 파란색으로 출력. 강제적(명시적)형 변환.
+
+        // console.log(a)
+
+        // b=10;
+        // result=a-b
+        // console.log(result)
+
+
+
+        // a=true;//true 값을 1로 생각하고 연산함.
+        // b=1;
+        // result=a-b;
+        // console.log(result)
+
+        // a=false;//false 값을 0으로 생각하고 연산함.
+        // a=Number(false); //숫자로 명시해줘야 데이터 충돌을 막을 수 있음.★
+        // b=1;
+        // result=a-b;
+        // console.log(result)
+
+
+
+        // let a="1";
+        // let b=2;
+        // let result=a+b;
+        // console.log(result)//문자와 숫자를 + 하면 문자 1과 2가 됨.
+
+
+        // let a="1";
+        // a=Number(a);//숫자로 변환해주면 숫자로 계산.
+        // let b=2;
+        // let result=a+b;
+        // console.log(result)//문자와 숫자를 + 하면 문자 1과 2로 출력.(넘버로 변환 안해줄 경우.)
+
+
+
+        // a="2020"
+        // b=10
+        // result=a+b
+        // console.log(result)//문자와 숫자를 + 하면 문자 202010로 출력.(넘버로 변환 안해줄 경우.)
+
+
+
+        a="2021년"
+        a=parseInt(a)//parseInt ★★★★★ 문자와 숫자중에 숫자(정수)만 가져옴.
+        b="1년"
+        b=parseInt(b)
+        result=a+b+"년"
+        console.log(result) //결과 NaN은 무슨 말인지 모르겠다는 뜻.
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+   
+</body>
+</html>

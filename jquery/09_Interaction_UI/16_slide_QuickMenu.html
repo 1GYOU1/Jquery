@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>slideQuickMenu</title>
+
+  
+
+  <style> 
+
+    body{
+      height:3000px; 
+    }
+
+    div#quick_menu{
+      width:75px; height:235px; position:absolute; right:100px; top:-300px; 
+    }
+
+
+   
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>   	    
+	
+
+    $(document).ready(function(){ 
+
+      var $quickMenu = $('#quick_menu'); // 퀵매뉴의 id명   
+      var quickMenuTop = 300; // 위에서부터 떨어져야 되는 거리	          
+      
+      $quickMenu.css({"top":quickMenuTop}); // 퀵메뉴의 상단위치를 앞에서지정한 quickMenuTop 값으로 지정       
+      
+      $(window).on("scroll", onScroll);	      
+  
+      
+      function onScroll(){
+        
+        $quickMenu.stop(); // 하던 에니메이션을 멈추고 바로실행 ( 에니메이션 충돌방지 )
+
+        var scrollHeight=$(document).scrollTop() // 스크롤 할때 마다 문서가 스크롤된 높이를 구함       
+       
+        $quickMenu.animate( { "top": scrollHeight + quickMenuTop }, 1000, "easeOutCubic" );        
+        // 스크롤된 높이와 고정될 quickMenuTop 위치까지 더해서 에니메이션 진행 ( 스크롤이 되어도 일정한 위치에 고정 )     
+      }
+
+      
+    });	 
+        
+      
+        
+    
+  </script>
+
+
+</head>
+<body> 
+    
+  <div id="quick_menu">
+    <img src="images/quick.gif" alt="">
+  </div>
+  
+  
+</body>
+</html>

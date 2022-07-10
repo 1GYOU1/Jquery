@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> Array()클래스 </title>
+  <script>
+  
+    /*
+    ES6 버전의 배열관련 함수 
+    
+    map() - 배열에서 특정한 속성값으로 새로운 배열을 생성
+    
+    filter() - 배열에서 특정 조건에 해당되는 속성 값을 가진 요소만 검색하여 새로운 배열을 생성 
+    
+    reduce() - 배열에서 특정 속성에 대한 값을 연산
+
+    */
+
+    let userInfo=[
+      {'name':'권영찬','gender':'남','age':32,'address':'서울시 마포구'},
+      {'name':'김영희','gender':'여','age':22,'address':'경기도 김포시'},
+      {'name':'박철수','gender':'남','age':54,'address':'경기도 성남시'},
+      {'name':'이수진','gender':'여','age':36,'address':'서울시 구로구'}
+    ]
+
+
+
+
+    // let userName=userInfo.map((item)=>{ //다시 조합시켜서 만들어주는 map
+    //   return item.name
+    // })
+
+    // console.log(userName) //= 권영찬 김영희 박철수 이수진 나열.
+
+
+
+
+    let userAge=userInfo.map((item)=>{ //다시 조합시켜서 만들어주는 map
+      return item.age
+    })
+
+    // console.log(userAge) //= 32 22 54 36 나열
+
+
+
+
+    let age30=userInfo.filter((item)=>{  //나이가 30대인 사람만 필터링하여 배열하기.
+      if(item.age>=30 && item.age<40){
+        return item
+      }
+    }) 
+
+    // console.log(age30)
+    //0: {name: '권영찬', gender: '남', age: 32, address: '서울시 마포구'}
+    //1: {name: '이수진', gender: '여', age: 36, address: '서울시 구로구'} 출력
+
+
+
+    //reduce는 복잡한 연산 가능하게하는 코드. 
+    let ageSum=userInfo.reduce((sum,value)=>{ //sum은 매개변수 내가 정하는 부분. 더할 값. value는 더한 값
+      return sum+value.age  //age라는 속성값을 sum에다가 넣고 더하자는 내용.
+    },0)  //초기값인 0을 넣어주지 않으면 연산이 안됌.
+
+    console.log(ageSum) //= 144
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+      
+  
+  </script>
+</head>
+<body>
+  
+
+
+
+</body>
+</html>
+

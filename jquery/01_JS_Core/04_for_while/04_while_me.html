@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> while구문 연습_01 </title>
+  <script>
+  /*
+   for(i=0; i<=10; i++){
+       document.write(i+"<br>")
+   }                                //1부터 10까지 출력. while 구문으로 바꿔보기
+    */
+
+    /*
+    let i=0; //초기값
+
+    while(i<=10){ //조건식만 넣기
+        document.write(i+"<br>")
+        i++
+    }
+    */
+
+    /*
+    let i=0; //초기값
+
+    while(i<=10){ //조건식만 넣기
+        i++         //위치바뀌면 1부터 11까지 출력
+        document.write(i+"<br>")
+    }
+    */
+
+    /*
+    let i=0; //초기값
+
+    while(i<=10){ //조건식만 넣기
+
+        break;  //중간에 끝내버리기... 결과 0 나옴.
+        i++         //위치바뀌면 1부터 11까지 출력
+        document.write(i+"<br>")
+    }
+    document.write(i)
+    */
+
+
+    let i=0; //초기값
+
+    while(i<=10){ //조건식만 넣기
+
+        i++   
+        continue;      //continue 이전 구문을 조건에 해당될때까지 반복
+        document.write(i+"<br>")
+    }
+    document.write(i)
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

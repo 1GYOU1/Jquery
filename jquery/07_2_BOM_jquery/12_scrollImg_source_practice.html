@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrollImg</title>
+
+  <style>
+    
+    body{
+			font-size:9pt;		
+		}		
+
+    #wrap{
+      width:600px; height:500px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }
+
+		#panel{
+			width:600px;
+			height:400px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		
+		#img_wrap{			
+			width:220px;
+			height:220px;			
+			border:1px solid #999;
+			position:absolute; left:50%; margin-left:-110px; top:50%; margin-top:-110px;
+			overflow:hidden;
+		}
+		
+		#img_wrap img{
+			display:block;
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+ 
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>
+  
+    	// 스크롤 좌표를 이용 - 이미지들을 감싸고 있는 img_Wrap 에서 스크롤해주면 그안에 있는 이미지들이 올라감 
+		
+
+      // $(document).ready(function(){
+
+      //   var $imgWrap=$('#img_wrap')
+      //   var $startBtn=$('#start_btn')
+      //   var $stopBtn=$('#stop_btn')
+
+      //   var imgLength= $imgWrap.children().size() //이미지의 갯수 구하기 size->개수를 알아내는 함수
+      //   // alert(imgLength)
+      //   var startY=0;
+      //   var currentY=startY; //초기값
+      //   var stepY=1;
+      //   var endY=$imgWrap.innerHeight()*(imgLength-1)//endY는 이미지 하나 뺀 height값
+      //   // var endY=$imgWrap.innerHeight()*imgLength-($imgWrap.innerHeight())
+      //   // alert(endY)//1980
+
+      //   var timer=null;//전역변수
+      //   var scroll=false;
+
+      //   $startBtn.on('click', startScrollImg)
+      //   $stopBtn.on('click', stopScrollImg)
+
+      //   function startScrollImg(){
+      //     if(scroll==false){
+      //       timer=setInterval(scrollImg, 10)
+      //       scroll=true;
+      //     }
+      //   }
+
+      //   function scrollImg(){
+      //     currentY+=stepY;
+      //     $imgWrap.scrollTop(currentY) //currentY만큼 scroll해주기
+
+      //     if(currentY>=endY){ //if(currentY>=endY || currentY<=0) stepY=*-1
+      //       stepY=-1
+      //     }else if(currentY<=0){
+      //       stepY=1
+      //     }
+      //   }
+
+      //   function stopScrollImg(){
+      //     if(scroll==true){
+      //       clearInterval(timer)
+      //       scroll=false;
+      //     }
+      //   }
+      // })
+
+
+
+      //마무리하기
+      
+        $(document).ready(function(){
+          var panel=$('#panel')
+          var imgWrap=$('#img_wrap')
+          var imgWrapLength=imgWrap.find('img').size()
+          // alert(imgWrapLength)
+          var startBtn=$('#start_btn')
+          var stopBtn=$('#stop_btn')
+          var startY=0;
+          var currentY=startY
+          var stepY=1;
+          var endY=imgWrap.innerHeight()*(imgWrapLength-1)
+          // alert(endY)
+          var timer=null;
+          var scroll=false;
+
+          startBtn.on('click', scrollOn)
+          stopBtn.on('click', scrollOff)
+
+          function scrollOn(){
+            timer=setInterval(scrollImg, 10)
+          }
+
+          function scrollImg(){
+            currentY+=stepY
+            imgWrap.scrollTop(currentY)
+          }
+
+          function scrollOff(){
+
+          }
+        })
+
+
+
+
+
+  
+		
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 
+	
+        <div id="panel">
+          <div id="img_wrap">	
+            <img src="images/img1.jpg">
+            <img src="images/img2.jpg">
+            <img src="images/img3.jpg">
+            <img src="images/img4.jpg">
+            <img src="images/img5.jpg">
+            <img src="images/img6.jpg">
+            <img src="images/img7.jpg">
+            <img src="images/img8.jpg">
+            <img src="images/img9.jpg">
+            <img src="images/img10.jpg">
+          </div>
+        </div>
+        <div id="nav">
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+      </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>fade_menu</title>
+
+  <style>
+  
+    ul,li{
+      margin:0px; padding:0px; border:none; list-style:none;
+    }
+    body{
+      background:#000;
+    }
+    div#wrap{
+      width:1000px; height:200px; position:absolute; left:50%; margin-left:-500px; top:300px; 
+    }
+    ul#img_list li{
+      width:200px; float:left; margin-left:40px; 
+    }	
+  
+  
+  </style>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>   
+  
+    // $(document).ready(function(){
+    //   var $imgList=$('#img_list>li')
+
+    //   fadeAni=false;
+
+    //   $imgList.css({'opacity':0.3})
+
+    //   $imgList.on('mouseenter', activateImgNenu)
+    //   $imgList.on('mouseleave', inActivateImgMenu)
+
+    //   function activateImgNenu(){
+    //     $(this).stop()//하던 애니메이션 멈추고 하라는 뜻. ★★★★★
+    //     $(this).fadeTo(300, 0.9, 'easeOutCubic')
+    //   }
+
+    //   function inActivateImgMenu(){
+    //     $(this).stop()
+    //     $(this).fadeTo(300, 0.3, 'swing')
+    //   }
+    // })
+	
+//practice 0405
+
+    $(document).ready(function(){
+      var $imgList=$('#img_list>li')
+
+      $imgList.css({'opacity': 0.3})
+
+      $imgList.on('mouseenter', opacity01)
+      $imgList.on('mouseleave', opacity03)
+
+      function opacity01(){
+        $(this).stop().fadeTo(500, 1, 'easeOutCubic')
+      }
+
+      function opacity03(){
+        $(this).stop().fadeTo(500, 0.3, 'swing')
+      }
+    })
+
+
+  
+  
+  </script>
+
+
+</head>
+<body>
+
+    <div id="wrap"> 
+        <ul id="img_list">
+            <li> <a href="#"><img src="images/img3.jpg" alt="" /></a></li>
+            <li> <a href="#"><img src="images/img4.jpg" alt="" /></a></li>
+            <li> <a href="#"><img src="images/img5.jpg" alt="" /></a></li>
+            <li> <a href="#"><img src="images/img6.jpg" alt="" /></a></li>      
+          
+          </ul>		
+    </div>     
+  
+  
+</body>
+</html>

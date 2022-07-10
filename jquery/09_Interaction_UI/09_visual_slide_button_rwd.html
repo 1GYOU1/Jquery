@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>visual_slide_button_rwd</title>
+
+  <style>    
+    
+    html,body{
+	    height:100%; overflow:hidden; 
+    }
+
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif");
+    }
+
+    div#visual_wrap{
+      width:100%; height:469px; float:left; margin-top:100px; overflow:hidden;
+      border-top:solid 1px white; border-bottom:solid 1px white; box-sizing:border-box;
+    }
+
+    div#visual_inner{
+      width:980px; height:100%; margin:0px auto; position:relative; left:0px; top:0px; 
+    }
+
+    ul#visual_list{
+      width:100%; height:100%;  position:absolute; left:0px; top:0px; 
+    }
+
+    ul#visual_list li{
+      width:100%; height:100%;  float:left; 
+    }
+    ul#visual_list li img{
+      display:block; 
+    }
+
+    span#prev_btn{
+      display:block; position:absolute; left:0px; top:45%; 
+    }
+
+    
+
+    span#next_btn{
+      display:block; position:absolute; right:0px; top:45%; 
+    }
+
+   
+
+
+
+
+    @media screen and (max-width:980px) {
+      div#visual_inner{
+        width:100%; 
+      }
+    }
+        
+
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+	
+
+	$(window).load(function(){	 //$(document).ready의 경우 DOM 객체만 로드하면 실행되기 때문에 외부 리소스나 이미지를 불러오기전에 실행되므로 리사이즈할때 실제 크기를 구할 수 없다.
+		
+		var $visualWrap // 비주얼전체 영역 
+    var $visualInner// 비주얼 영역 
+    var $visualList// 슬라이드할 비주얼리스트 
+    var $visualLi // // 비주얼리스트의 각 li
+    var $visualImg// 비주얼리스트안의 각 이미지들 
+    var $btnImg// 좌우버튼 이미지 
+    var visualImgNum// 슬라이드할 비주얼이미지의 총갯수 
+    var visualImgWidth // 값이 유동적으로 변하는 비주얼가로크기를 대입할 변수 ( 가장중요한변수 )	
+    var timer // setInterval을 대입할 변수 
+    
+
+    
+    init() // 초기설정함수 실행
+		visualReset()	// 비주얼 사이즈 유동조절 함수 실행  	   
+	  onPlay() // setInterval 함수 실행 
+    inEvent()  // 이벤트 적용함수 실행 
+		
+    
+    function init(){
+
+      $visualWrap=$("#visual_wrap"); // 비주얼전체 영역 
+      $visualInner=$("#visual_inner"); // 비주얼 영역 
+      $visualList=$("#visual_list"); // 슬라이드할 비주얼리스트 
+      $visualLi=$visualList.children()// 비주얼리스트의 각 li
+      $visualImg=$("#visual_list img"); // 비주얼리스트안의 각 이미지들 
+      $btnImg=$("#visual_inner span img") // 좌우버튼 이미지 
+      visualImgNum=$visualList.children().size();	// 슬라이드할 비주얼이미지의 총갯수           
+      $visualList.children().last().prependTo($visualList); // 맨마지막 이미지를 왼쪽 처음으로 이동 ( 우측으로 슬라이드 할수있게 붙여줌 ) 
+
+    }
+
+
+    function visualReset(){
+
+      // 윈도우 사이즈가 조절될때 마다 (모바일 가로/세로 일때도 포함)  영역의 크기도 변화므로  영역의 가로 크기를 다시 구해서 visualImgWidth 값 다시구함 
+      visualImgWidth=$visualInner.innerWidth(); // 브라우저 해상도에 따라 유동적으로 변하는 $visualInner 영역에 크기를 얻어내서 visualImgWidth 변수로 지정 		
+      $visualLi.css({"width":visualImgWidth})
+      $visualImg.css({"width":visualImgWidth}); // 이미지 리스트에 있는 이미지의 가로크기를 영역의 크기 visualImgWidth 값으로 맞춰서 이미지를 영역에 꽉채워줌  (이미지 세로크기는 자동 조절 )
+      $visualWrap.css({"height": $visualImg.outerHeight()}); // $visualWrap 세로크기를 이미지 크기에 맞춰 채워줌
+      $btnImg.css({"width":visualImgWidth/20})  //좌우버튼 이미지 자체의 크기를 visualImgWidth 값에 비교해서 조절 해줌	 
+      $visualList.css({"width":visualImgWidth*visualImgNum}); // 지정된 가로크기를 기준으로 비주얼리스트 전체크기를 전체 이미지갯수에 맞게 지정 > 이미지들을 가로로 정렬
+      $visualList.css({"left": -visualImgWidth*2}); // 맨마지막 이미지가 맨앞으로 오면 이미지만 바뀌고 영역의 위치는 그대로  이므로 비주얼리스트 전체위치를 -visualImgWidth*2 만큼 왼쪽으로 이동(양쪽균형에 맞게)시켜 비주얼리스트 시작위치를 맞게함 
+
+
+    }
+		
+
+    function inEvent(){
+
+      $(window).on("resize",visualReset)
+
+      $("#next_btn").on("click", onSlideNext);	// 다음보기버튼 (오른쪽버튼 ) 클릭하면 왼쪽으로 움직이는 onSlideNext 슬라이드 함수 실행 
+		  $("#prev_btn").on("click", onSlidePrev);// 이전보기버튼 (오른쪽버튼 ) 클릭하면 왼쪽으로 움직이는 onSlidePrev 슬라이드 함수 실행       
+
+      $visualWrap.on("mouseenter", onStop); // $visualWrap 전체영역에 마우스를 올리면 setInterval 멈추게 ( 버튼 클릭하고 충돌방지 ) 
+	    $visualWrap.on("mouseleave", onPlay); // $visualWrap 전체영역에서 마우스가 나가면 다시 setInterval 실행 
+
+    }
+
+
+    function onSlideNext(){ // 현제 좌표값을 구해서 이미지 가로크기만큼 왼쪽으로 에니메이션 (슬라이드) 
+      
+      var currentPosition=parseInt($visualList.position().left); // 슬라이드할 비주얼리스트의 현제 좌표를 구함 
+      $("#visual_list:not(:animated)").animate({"left":currentPosition-visualImgWidth},500,"easeOutCubic", function(){
+        // 비주얼리스트의 현제좌표에서 visualImgWidth 를 빼준 좌표까지 에니메이트 슬라이드 적용 ( not(:animated) 이벤트 충돌방지 ) 
+        $visualList.children().first().appendTo($visualList); // 에니메이션이 끝나면 맨앞 이미지를 맨뒤로 붙여줌  ( 계속 이미지가 이어지게 ) 
+        $visualList.css({"left": -visualImgWidth*2}); // 맨앞이미지가 맨뒤로 붙여질때 영역안으로 끼어들므로 좌표가 왼쪽으로 밀림 > 원위치 그대로 유지시킴
+        
+      })	
+      
+    }
+    
+    function onSlidePrev(){ // 현제 좌표값을 구해서 이미지 가로크기만큼 오른쪽으로 에니메이션 (슬라이드) 
+      
+      var currentPosition=parseInt($visualList.position().left); // 슬라이드할 비주얼리스트의 현제 좌표를 구함 
+      $("#visual_list:not(:animated)").animate({"left":currentPosition+visualImgWidth},500,"easeOutCubic", function(){
+        // 비주얼리스트의 현제좌표에서 visualImgWidth 를 더한 좌표까지 에니메이트 슬라이드 적용 ( not(:animated) 이벤트 충돌방지 ) 
+        $visualList.children().last().prependTo($visualList); // 에니메이션이 끝나면 맨뒤 이미지를 맨앞으로 붙여줌  ( 계속 이미지가 이어지게 ) 
+        $visualList.css({"left": -visualImgWidth*2}); // 맨뒤이미지가 맨앞으로 붙여질때 영역안으로 끼어들므로 좌표가 오른쪽으로 밀림 > 원위치 그대로 유지시킴
+        
+      })	
+      
+    }
+    
+    
+    function onStop(){		      
+      
+      clearInterval(timer) // setInterval 멈춤
+      
+    }
+    
+    function onPlay(){		
+      
+      timer=setInterval(onSlideNext, 2000); // setInterval 다시실행 
+      
+    }
+
+
+
+	})
+	
+	
+    
+    
+  </script>
+
+
+</head>
+<body>
+   
+  <div id="visual_wrap">
+   
+    <div id="visual_inner">
+      
+        <ul id="visual_list">
+            <li><img src="images/img1.gif" alt="" /></li>
+            <li><img src="images/img2.gif" alt="" /></li>
+            <li><img src="images/img3.gif" alt="" /></li>
+            <li><img src="images/img4.gif" alt="" /></li> 
+            <li><img src="images/img5.gif" alt="" /></li>               
+        </ul>       
+            
+        <span id="prev_btn"><img src="images/prev_btn.png" alt="" /></span>
+        <span id="next_btn"><img src="images/next_btn.png" alt="" /></span>
+        
+        
+    </div>    
+      
+</div>
+
+
+
+
+
+  
+</body>
+</html>

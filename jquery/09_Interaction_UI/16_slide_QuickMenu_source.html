@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>slideQuickMenu</title>
+
+  
+
+  <style> 
+
+    body{
+      height:3000px; 
+    }
+
+    div#quick_menu{
+      width:75px; height:235px; position:absolute; right:100px; top:-300px; 
+    }
+
+
+   
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>   	    
+	
+
+    $(document).ready(function(){
+      var $quickMenu=$('#quick_menu')
+      var quickMenuTop=300;
+
+      $quickMenu.animate({top:quickMenuTop},1000,'easeOutCubic')
+
+      $(window).on('scroll', scrollWindow)
+
+      function scrollWindow(){
+        
+        var scrollHeight=$(document).scrollTop()
+        $quickMenu.stop().animate({top:scrollHeight+quickMenuTop},1000,'easeOutCubic')
+      }
+    })
+
+
+    
+        
+      
+        
+    
+  </script>
+
+
+</head>
+<body> 
+    
+  <div id="quick_menu">
+    <img src="images/quick.gif" alt="">
+  </div>
+  
+  
+</body>
+</html>

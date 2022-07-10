@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>randomCount</title>
+
+  <style>
+    
+    body{
+			font-size:9pt;	
+		}
+		
+		div#wrap{
+			border: 1px solid #999999;
+			margin:20px;
+			margin-bottom:20px;
+		}		
+		
+		#panel{
+
+      border: 1px dotted #CCC;
+			font-size:20px;	
+
+			width:600px;
+			overflow:visible;		
+		}
+ 
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>
+  
+    // 랜덤칼라변경하는 구문 :  	(parseInt(Math.random()*0xffffff)).toString(16)	
+	
+    //0329
+
+		$(document).ready(function(){
+      
+      var $panel=$('#panel')
+
+      setInterval(randomCount, 50)//1초에 한번씩 추가
+
+      function randomCount(){
+
+        var count=parseInt(Math.random()*90)+10//0부터 90까지의 정수에서 +10 = 99까지의 정수
+        var $span=$('<span></span>')
+        $span.html(count)
+        
+        var randomFontSize=parseInt(Math.random()*40)+10+"px"
+        var randomColor="#"+(parseInt(Math.random()*0xffffff)).toString(16)
+
+        // $span.css('font-size', parseInt(Math.random()*40)+10+"px");
+        // $span.css('color', "#"+(parseInt(Math.random()*0xffffff)).toString(16)) //위에 변수로 미리 만들어놓는 방법도 있음.
+
+        $span.css({'font-size':randomFontSize, 'color':randomColor, 'display':'inline-block'})
+
+        $span.appendTo($panel)
+
+        var scrollHeight=$(document).outerHeight()-$(window).innerHeight()
+
+        // $(document).scrollTop($(document).outerHeight()-$(window).innerHeight())
+        $(document).scrollTop(scrollHeight)
+
+      }
+    })
+
+
+
+
+    
+		
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 		
+        <div id="panel">
+          
+        </div>
+      </div>    
+
+
+
+</body>
+</html>

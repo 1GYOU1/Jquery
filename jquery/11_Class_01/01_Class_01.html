@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> 클래스 </title>
+  <script>
+  
+     /* 클래스와 인스턴스 생성방법 	 
+
+
+    클래스(Class)정의  : 함수들이 모여 특정하는 기능을 수행하는 함수단위 프로그래밍을 다시 반복적으로 재사용 하기위하여 객체속성과 메서드(함수)들이 포함되어있는 
+                        생성자 함수를 만들어 효율적으로 복사해서 재사용할수 있는 객체 지향 프로그래밍 (Object Oriented Programming) 
+                        예) 탭메뉴를 여러가개 사용, 슬라이드 기능을 여러개 사용   
+
+    생성자 함수 (constructor) 특정한 함수단위의 프로그래밍을 반복적으로 사용할 수 있도록 객체 속성과 메서드들로 이루어진 하나의 원본(틀)이 되는 함수 
+    
+    인스턴스(instance) : 클래스를 사용하여  생성한  자식객체 ( 클래스가 가지고 있는 속성 또는 메서드들을 인스턴스에서 반복해서 사용이 가능 - 코드재사용 ( 효율적코드관리 ) 
+      
+    속성(프로퍼티 property) : 클래스가 가지고 있는 여러가지 성질 
+      
+    실행함수 ( 메서드 method ) : 클래스가 가지고 있는 여러가지 실행명령   
+     
+    
+    
+    클래스생성  
+
+    1. 객체 리터럴 방식  - 생성자 함수를 사용하지 않고 인스턴스를 바로 생성하여 사용 
+     
+
+
+    let 인스턴스명 = {
+
+      속성1:값1, 
+      속성2:값2, 
+      속성3:값3, 
+      메서드명:function(){
+
+        실행할 명령 
+
+      }
+
+    }
+
+
+    인스턴스 속성 과 메서드 사용방법      
+    
+    인스턴스명 .속성 .메서드()   // . 을 사용하여 해댱 객체의 속성과 메서드를 실행시킨다.   
+
+    - 객체 리터럴 방식을 사용하여 인스턴스를 바로 생성한다.     -
+    - 별도의 생성자가 존재하지 않는다. 
+    - 인스턴스를 하나이상 만들수 없다. ( 코드를 중복복사해서 사용 -  1회성 클래스 )   
+    - 데이터 관리와 함께 함수에 매개변수 값으로 복잡한 데이터 구조를 전달할때 편리     
+ 
+    */
+   
+               
+    let shrimpBurger={
+
+      name:"새우버거세트",
+      patty:"새우",
+      drink:"콜라",
+      side:"치즈스틱",
+      order:function(){
+
+        document.write("세트이름: "+this.name+"<br>");
+        document.write("패티종류: "+this.patty+"<br>");
+        document.write("음료: "+this.drink+"<br>");
+        document.write("사이드메뉴: "+this.side+"<br><br>"); 
+
+      }
+
+    }
+
+    shrimpBurger.order()  // 인스턴스 메서드 실행           
+
+    
+    // 중요단점) 별도의 생성자가 존재하지 않으므로 또 다른 인스턴스를 생성할때는 코드가 중복된다.   
+   
+    let chickenBurger={
+
+      name:"치킨버거세트",
+      patty:"치킨",
+      drink:"쉐이크",
+      side:"어니언",
+      order:function(){
+
+        document.write("세트이름: "+this.name+"<br>");
+        document.write("패티종류: "+this.patty+"<br>");
+        document.write("음료: "+this.drink+"<br>");
+        document.write("사이드메뉴: "+this.side+"<br><br>"); 
+
+      }
+
+    }
+
+    chickenBurger.order()  // 인스턴스 메서드 실행    
+    
+    
+    
+    
+    // 중요) 객체리터럴 방식의 클래스 생성은 중복적인 인스턴스 생성보다는 단순한 데이터의 효율적인 관리와 데이터 전달목적으로 주로 사용     
+
+
+   /*
+
+    function showInfo(userName,id,nickName,age,address){ // 매개변수를 전달할때 순서가 틀릴수있다. 
+
+
+      document.write("이름:"+userName+"<br>")
+      document.write("아이디:"+id+"<br>")
+      document.write("별명:"+nickName+"<br>")
+      document.write("나이:"+age+"<br>")
+      document.write("주소:"+address+"<br>");
+
+
+    }
+
+    showInfo("홍길동","admin","관리자",22,"서울시 마포구...") // 매개변수를 전달할때 순서가 틀릴수있다. 
+
+    */
+    
+    let userInfo1={ // 객체속성값으로 클래스로 정의 
+      userName:"홍길동",
+      id:"admin",
+      nickName:"관리자",
+      age:22,
+      address:"서울시 마포구..."
+    }
+
+
+    showInfo(userInfo1) // 객체속성값 클래스를 매개변수로 전달 ( 매개변수 전달이 간편 )
+
+
+    function showInfo(userInfo){
+
+      document.write("이름:"+userInfo.userName+"<br>")
+      document.write("아이디:"+userInfo.id+"<br>")
+      document.write("별명:"+userInfo.nickName+"<br>")
+      document.write("나이:"+userInfo.age+"<br>")
+      document.write("주소:"+userInfo.address+"<br>");
+
+    }
+
+
+    // 중요) 객체리터럴 방식의 클래스 생성은 중복적인 인스턴스 생성보다는 단순한 데이터의 효율적인 관리와 데이터 전달목적으로 주로 사용 ( json 파일 활용 )
+
+     
+      
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
+

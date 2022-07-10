@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title> String()클래스 </title>
+  <script>
+  
+    /*
+    String() 클래스  
+
+    인스턴스 생성방법
+
+    let str1 = new String("Hello") // 클래스를 사용해서 인스턴스 생성 
+
+    let str2="Hello" // 객체리터럴 방식으로 인스턴스 생성 ( 많이 쓰임 )
+
+    
+    속성  str2.length  : 문자열 갯수 
+
+    
+    메서드 
+
+    charAt(순번) : 순번에 해당되는 문자열 찾기 
+
+    indexOf(문자열,시작위치) : 특정문자열의 순번찾기 ( 시작위치 : 찾기시작하는 문자열의 시작순번 - 기본 0번부터 )
+
+    중요) 해당문자열이 없으면 -1을 반환 
+
+    lastIndexOf(문자열, 시작위치) // 찾는 문자열이 여러개 일때 마지막 문자열의 순번을 찾음 
+
+    slice(시작순번,마지막순번) : 문자열을 특정구간으로 자르기 ( 마지막순번이 없으면 끝까지 자르기 )
+
+    중요) 시작순번의 문자열은 포함되고 마지막순번에 해당되는 문자열은 포함 안됨 ( 마지막순번 바로 이전 문자열까지 )
+
+    
+    substr(시작순번, 문자열갯수 ) : 문자열을 특정구간으로 자르기 ( 문자열 갯수 없으면 끝까지 자르기 )
+
+    중요) 시작순번의 문자열을 포함해서 자를 문자열의 갯수 
+
+    ... 기타 메서드 
+
+    */
+
+    let str1="Hello";
+
+    console.log(str1.length)  // 결과 5개 
+
+    console.log(str1.charAt(1)) // 결과 e
+
+    
+    let str2="tbt2007@naver.com";
+
+    let search=str2.indexOf("@");
+
+    console.log(search) // 결과 7
+    
+    if(search>=0){ // 찾는 문자열이 존재하면 
+      console.log("사용가능한 이메일 입니다.")
+    }else{ // 찾는 문자열이 존재하지 않으면 ( -1을 출력 )
+      console.log("잘못된 이메일 형식입니다. ")
+    }
+
+    console.log(str2.lastIndexOf("t")) // 결과 2  (찾고자 하는 문자 "t"의 마지막 문자열의 순번 )
+
+    let str3="abcdef";
+
+    console.log(str3.slice(2,4)) // 결과 cd 
+
+    console.log(str3.slice(2)) // 결과 cdef  (마지막 순번이 없으면 끝까지 자른다 )
+
+    console.log(str3.substr(2,4)) // 결과 cdef
+
+    console.log(str3.substr(2)) // 결과 cdef (문자열갯수가 없으면 끝까지 자른다)
+
+    
+  
+  </script>
+</head>
+<body>
+  
+
+
+
+</body>
+</html>
+

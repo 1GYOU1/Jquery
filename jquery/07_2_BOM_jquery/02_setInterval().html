@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>글렘쉘</title> 
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+  <script>
+
+    /*
+    window.setInterval(함수명,시간간격) : 일정한 시간간격으로 함수를 반복 실행시켜주는 함수 (메서드 - window구문생략 )  
+
+    시간단위 : 밀리언세컨즈  (1000밀리언세컨즈 1초)
+
+    clearInterval(변수) : 실행중인 setInterval()을 멈춤 
+
+   */  
+   
+   $(document).ready(function(){
+    
+    var count=0
+    
+    setInterval(addCount,1000)
+
+    
+    function addCount(){
+
+      count++;
+      document.write(count+"<br>")
+
+    }
+
+
+   })   
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+  
+</body>
+</html>

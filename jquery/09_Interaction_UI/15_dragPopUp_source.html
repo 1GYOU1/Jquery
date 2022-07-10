@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dragPopUp</title>
+
+  <style> 
+
+  body{
+    background:url("images/index_back.gif")
+  }    
+
+  #float_window{
+    
+    position:absolute;
+    width:500px;
+    height:400px;
+    top:100px;
+    left:100px;
+    opacity:1;
+    background:white;
+    border:solid 1px black; box-shadow:2px 2px 2px black; box-sizing:border-box; 
+  }
+  #float_window a.close{
+    position:absolute;
+    right:20px;
+    top:10px;
+  }
+
+  #float_window dl{
+    width:100%;
+    height:100%;    
+    margin:0;
+  }
+  #float_window dl dt{
+    height:40px;
+    line-height:40px;
+    text-indent:20px;
+    color:white;
+    font-weight:bold;
+    cursor:move; background:black; 
+  }
+  #float_window dl dd{
+    margin:0;
+    padding:20px;
+    line-height:20px; 
+
+  }
+
+   
+ 
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>       
+			
+	// 		$(document).ready(function(){
+
+  //     var $popUp=$('#float_window')
+  //     var $dragBar=$('#float_window dt')
+  //     var downX=null;
+  //     var downY=null;
+
+  //     $dragBar.on('mousedown', dragBarDown)//마우스 눌렀을때
+  //     $dragBar.on('mouseup', stopDragPopUp)//마우스를 눌렀다가 떼었을때
+  //     $('.close').on('click', hidePopUp)
+
+  //     function dragBarDown(e){
+  //       downX=e.pageX-$popUp.position().left;//popup의 X 좌표
+  //       downY=e.pageY-$popUp.position().top;//popup의 Y 좌표
+  //       $(document).on('mousemove', dragPopUp)//누른 다음에 움직였을때
+  //     }
+  //     function dragPopUp(e){
+  //       $popUp.css({left:e.pageX-downX, top:e.pageY-downY})//따옴표안해도됌 ㅎ___ㅎ
+  //     }
+
+  //     function stopDragPopUp(){
+  //       $(document).off('mousemove', dragPopUp)
+  //     }
+  //     function hidePopUp(){
+  //       $popUp.animate({opacity:0},300,'easeOutCubic', function(){
+  //         $popUp.hide()
+  //       })
+  //     }
+  // })
+			
+			
+    $(document).ready(function(){
+      var $popUp=$('#float_window')
+      var $dragBar=$('#float_window dt')
+      var downX=null;
+      var downY=null;
+
+      $('.close').on('click', closePop)
+      $dragBar.on('mousedown', dragDown)
+      $dragBar.on('mouseup', dragUp)
+
+      function closePop(){
+        $popUp.stop().animate({opacity:0},300,'swing', function(){
+          $popUp.hide()
+        })
+      }
+      function dragDown(e){
+        downX=e.pageX-$popUp.position().left;
+        downY=e.pageY-$popUp.position().top;
+        $(document).on('mousemove', dragPopUp)
+      }
+      function dragUp(){
+        $(document).off('mousemove', dragPopUp)
+      }
+      function dragPopUp(e){
+        $popUp.css({left:e.pageX-downX, top:e.pageY-downY})
+      }
+    })
+	
+	
+    
+    
+  </script>
+
+
+</head>
+<body> 
+    
+		<div id="float_window">
+			<a href="#" class="close"><img src="images/close.png" alt="닫힘" /></a>
+			<dl>
+				<dt>jQuery를 이용하여 플로우팅 윈도우 만들기</dt>
+				<dd>이번에는 jQuery를 이용하여 플로우팅 윈도우..(중략)...윈도우를 표시할 수 있습니다.</dd>
+			</dl>
+		</div>
+  
+  
+</body>
+</html>

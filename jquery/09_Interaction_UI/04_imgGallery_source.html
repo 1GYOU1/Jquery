@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>imgGallery</title>
+
+  <style>    
+    
+    ul,li{
+      margin:0px; padding:0px; list-style:none; 
+    }     
+    body{
+      background:black;
+    }
+    #container{
+      width:1000px; margin:100px auto;
+    }
+    #navi{
+      width:300px; height:500px; position:relative; left:0px; top:0px; 
+      float:left; overflow:hidden; margin-right:50px;
+    }
+    ul.img_list{
+      height:420px;
+    }
+    ul.img_list li{   
+      width:140px; height:95px; float:left; border:solid 3px white; opacity:0.5;
+      margin:2px; -webkit-transition:0.3s ease; 
+    }
+    ul.img_list li.selected{
+      opacity:1; border:solid 3px yellow;
+    }
+    div.page_wrap{
+      width:900px; position:absolute; left:0px; top:0px; 
+    }
+    div.page_wrap .page{
+      width:300px; float:left;
+    }
+    #navi p{
+      clear:both;  width:300px; text-align:center; height:30px; 
+    }
+    #navi p img{
+      cursor:pointer;
+    }
+    #main{
+      width:650px; float:left;
+    }
+    #main img{
+      position:absolute; border:3px solid white;
+    }    
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>        
+    
+    $(document).ready(function(){
+      
+      var $imgMenu=$('.img_list>li')
+      var $main=$('#main')
+
+      $imgMenu.on('click', clickImgMenu)
+
+      function clickImgMenu(){
+
+        var clickIndex=$imgMenu.index($(this))
+
+        activateImgMenu(clickIndex)
+        // alert(clickIndex)
+        changeImg(clickIndex)
+      }
+
+      function activateImgMenu(index){
+
+        $imgMenu.removeClass('selected')
+        $imgMenu.eq(index).addClass('selected')
+
+      }
+
+      function changeImg(index){
+
+        // $mainImg.children().attr('src','images/photo'+(index+1)+'.jpg') //한줄로 가능
+
+        var $selectImg=$("<img src='./images/photo"+(index+1)+".jpg'>")
+
+        $selectImg.prependTo($main)//main안에 selectimg넣기
+        $selectImg.next().stop().animate({opacity:0},500,'easeOutCubic', function(){
+          $(this).remove()
+        })
+      }
+
+    })
+    
+
+
+
+
+
+
+    
+    
+  </script>
+
+
+</head>
+<body>
+
+    <div id="container">
+        <div id="navi">
+          <div class="page_wrap">
+            <div  class="page">
+              <ul class="img_list">                
+                <li><a href="#"><img src="images/photo1_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo2_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo3_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo4_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo5_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo6_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo7_thum.jpg" alt="" /></a></li>
+                <li><a href="#"><img src="images/photo8_thum.jpg" alt="" /></a></li>
+              </ul>              
+            </div>           
+          </div>
+        </div>
+        <div id="main">                
+          <img src="images/photo1.jpg" alt="" />
+        </div>
+      </div>  
+  
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> switch구문_01 </title>
+  <script>
+
+    //조건문
+
+    let luckyNum=prompt("행운의 번호를 고르세요!!!")
+  
+    luckyNum=parseInt(luckyNum)
+
+    /*
+    if(luckyNum==3){
+        document.write('당첨!! 노트북')
+    }else if(luckyNum==8){
+        document.write('당첨!! TV')
+    }else if(luckyNum==12){
+        document.write('당첨!! 냉장고')
+    }else{
+        document.write('꽝!! 다음에 도전해보세요.')
+    }
+    */
+
+    switch(luckyNum){
+        case 3:
+            document.write("당첨!! 노트북");
+            break;
+        case 8:
+            document.write("당첨!! TV");
+            break;
+        case 12:
+            document.write("당첨!! 냉장고");
+            break;
+        default :                                   //나머지 기본. else랑 같은 뜻.
+            document.write("꽝!! 다음에 도전해보세요.") //마지막에는 break; 안써도 됨.
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scroll_Tistory</title>
+  
+
+  <style> 
+
+      body {
+				margin:0px; padding:0px; 
+				min-width:960px;
+				min-height:10000px;
+			}
+			#start_bg {
+				width:100%;
+				height:962px;
+				background:url("images/start_bg.jpg") no-repeat;
+				background-size:cover;
+				position: fixed;
+				top:0;
+				z-index:2;
+				
+			}
+			
+			#copy_1 {
+				width:355px;
+				height:46px;
+				position:absolute; left:50%;
+				margin-left:-177px ;
+				top:60px;
+				background:url("images/copyright_01.png") no-repeat;
+			}
+			
+			#copy_2 {
+				width:566px;
+				height:66px;
+				position:absolute; left:50%;
+				margin-left:-283px ;
+				top:120px;
+				background:url("images/copyright_02.png") no-repeat;
+				
+			}			
+			#camera_bottom {
+				width:527px;
+				height:74px;
+				background:url("images/camara_bottom.png") no-repeat;
+				position:fixed; left:50%;
+				margin-left:-256px; 
+				top:686px;
+				z-index:5;
+				
+			}
+			#camera_top {
+				width:527px;
+				height:432px;
+				background:url("images/camera_top.png") no-repeat;
+				position: fixed; left:50%; margin-left:-255px;
+				top:254px;
+				z-index:7;
+				
+			}
+			
+			#main_photo {
+				width:411px;
+				height:361px;
+				background:url("images/bg_paper.png") no-repeat;
+				position: fixed; left:50%; 
+				margin-left:-200px;
+				top:430px;
+        z-index: 6;
+        -webkit-transition:0.3s ease;		
+			}
+			
+			#main_photo.rotate {					
+				-webkit-transform:rotate(20deg);
+			}
+			
+			#cover_left {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px; left: 0;  overflow: hidden; position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}
+			#cover_right {
+        background: url("images/bg_pattern_copy.jpg") repeat 0 0;
+        height: 3000px;
+        right: 0;
+        overflow: hidden;
+        position: fixed;
+        width: 50%;
+        top:962px;
+        z-index: 4;
+			}			
+			#copy_tistory {
+        width:100%;
+        background: url("images/txt_tistory.png") no-repeat 50% 0;
+        height: 149px;
+        position: fixed;
+        top: 1500px;
+        z-index: 1;
+			  
+			}
+    
+
+   
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>      
+		
+		$(document).ready(function(){
+
+			$(window).on('scroll', scrollWindow)
+
+			function scrollWindow(){
+
+				var scrollHeight=$(document).scrollTop()	//스크롤한 값구하기
+				// if(scrollHeight>=500){
+				// 	alert("스크롤 500")
+				// }	잘 구해지는지 알럿창 띄어보기
+
+				$('#start_bg').css({top:0-scrollHeight/3})	//top값에서 scrollHeight/2만큼 빼주면서 움직임. 나누는 수가 많아질수록 스크롤이 느리게 내려감
+				
+				$('#camera_top').css({top:254-scrollHeight/4}) //원래 css top값에서 빼주기
+				$('#camera_bottom').css({top:686-scrollHeight/4}) //위랑 같이 움직여야하기때문에 나누기 값 같아야함.
+				
+				if(scrollHeight>=800){
+					$('#main_photo').addClass('rotate') //css 클래스에 추가되어있음.
+				}else{
+					$('#main_photo').removeClass('rotate') //위로 다시 올라가면 모양 되돌아가기
+				}
+
+				$('#cover_left').css({top:962-scrollHeight/2})
+				$('#cover_right').css({top:962-scrollHeight/2})
+
+				var openWidth=0;
+
+				if(scrollHeight>=2000 && scrollHeight<4000){
+					openWidth=(2000-scrollHeight)/2
+				}else if(scrollHeight>=4000){
+					openWidth=-2000	//스크롤이 4000을 넘어섰을때는 -2000에 고정시키기.
+				}else{
+					openWidth=0 //-2000보다 작을때 0으로
+				}
+
+				$('#cover_left').css({left:openWidth})
+				$('#cover_right').css({right:openWidth})
+
+				if(scrollHeight>=3600){
+					$('#copy_tistory').stop().animate({top:150}, 800, 'easeOutCubic')
+				}else{
+					$('#copy_tistory').stop().animate({top:1500}, 800, 'easeOutCubic') //css 기본값이 1500
+				}
+
+			}
+		})		
+
+
+
+      
+
+
+
+      
+        
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <div id="start_bg">
+    <div id="copy_1"></div>
+    <div id="copy_2"></div>
+  </div>
+  
+  <div id="camera_bottom"></div>        
+  <div id="main_photo"></div>
+  <div id="camera_top"></div>
+      
+  <div id="cover_left"> </div>
+  <div id="cover_right"> </div>
+  
+  <div id="copy_tistory"></div>
+  
+  
+  
+</body>
+</html>

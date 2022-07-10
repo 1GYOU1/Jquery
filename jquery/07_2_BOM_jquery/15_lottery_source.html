@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lottery</title>
+
+  <style>
+    
+    body{
+			font-size:9pt;
+		}
+
+    #wrap{
+      width:400px; height:500px; position:absolute; left:50%; margin-left:-200px; top:200px; 
+    }
+
+		#panel{
+			border:1px #000000 solid;
+			line-height:400px;
+			font-size:100px;
+			width:400px;
+			height:400px;
+			text-align:center;
+			vertical-align:middle;		
+      margin-bottom:30px; 
+		}
+
+    #nav{
+      text-align:center; 
+    }
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>  
+
+		$(document).ready(function(){
+
+      var $panel=$('#panel')
+      var $totalWrap=$('#total_wrap')
+      var $startBtn=$('#start_btn')
+      var $stopBtn=$('#stop_btn')
+
+      var totalMenber=null;//body input value에 10입력되어있어 초기값 10이라고 넣어도 상관없음.
+      var timer=null;
+      var isCount=false;
+
+      $startBtn.on('click', startRandomCount)
+      $stopBtn.on('click', StopRandomCount)
+
+      function startRandomCount(){
+
+        if(isCount==false){ //카운팅을 안할때만 실행
+          totalMember=$totalWrap.val()
+        // alert(totalMember)
+        $panel.css('color','black') //start 할때 한번만 불러오면 돼서 여기다가 넣어줌.
+        timer=setInterval(randomCount, 20)
+        isCount=true;
+        }
+      }
+
+      function randomCount(){
+        var count=parseInt(Math.random()*totalMember)+1 //Math.random()까지가 0~1사이의 값, 1보다는 커야하기 때문에 +1 해줌.
+        $panel.html(count)    //여기까지가 한정범위 내에서 숫자 바뀌는 함수.
+        $panel.css('font-size', parseInt(Math.random()*100)+100 + 'px')  //폰트사이즈 100~200사이 // +100이 최소값
+      }
+
+      function StopRandomCount(){
+        if(isCount==true){
+          clearInterval(timer)
+          $panel.css({'color':'red','font-size':200+'px'})
+          isCount=false;
+        }
+      }
+
+    })
+		
+  </script>
+
+
+</head>
+<body>
+  
+  	<div id="wrap"> 
+	
+        <div id="panel" > 
+              
+        </div>
+    
+        <div id="nav">
+          참여인원 : <input type="text" id="total_wrap" value="10"></input>
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+       </div>
+
+
+
+</body>
+</html>

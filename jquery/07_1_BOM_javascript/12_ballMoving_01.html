@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+
+  <style>
+  
+  body{
+			font-size:9pt;		
+		}
+
+    #wrap{
+      width:600px; height:400px; position:absolute; left:50%; margin-left:-300px; top:200px; 
+    }		
+		
+		#panel{
+			width:600px;
+			height:300px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		#bar{
+			position:absolute;
+			left:50px;
+			top:190px;
+			width:500px;
+			height:20px;
+			z-index:10;
+			
+			border-top:dotted 1px #999;
+		}
+		
+		#ball{
+			position:absolute;
+			left:50px;
+			top:105px;
+			width:80px;
+			height:80px;
+			
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+  
+  
+  </style>
+
+
+  <title> ballMoving1 </title>
+
+  <script>
+
+	document.addEventListener('DOMContentLoaded',()=>{
+
+		const ball=document.querySelector('#ball'); // 움직이는 대상 공을 찾음 
+		const line=document.querySelector('#bar'); // 공의 움직임 위치를 제어할수있는 #bar를 찾음 		
+
+		let startX=line.offsetLeft; // 공의 시작좌표를 line의 offsetLeft 좌표로 지정 ;
+		let currentX=startX; // 공의 현제위치 ( 공이 움직일 좌표 ) 의 초기값을 startX 로 지정;
+		let stepX=2; // 공이 한번에 움직이는 거리지정 ( 사용자 지정 - 움직임 속도와 관련);
+		let endX=startX+line.offsetWidth-ball.offsetWidth; // 공의 움직임이 다시돌아오는 마직막 좌표 지정 
+		//중요) ( startX + line의 가로크기 - 공의 가로크기 )	- 그림으로 이해 
+
+		let isMoving=false; // 공의 움직임 여부를 체크하는 상태변수 ( 초기값 false 지정 )
+		let timer; // setInterval() 함수를 제어하기 위해 대입할 변수 
+
+		document.querySelector('#start_btn').addEventListener('click',startBallMoving); // 시작버튼 클릭하면 공움직임 시작함수 실행 
+		document.querySelector('#stop_btn').addEventListener('click',stopBallMoving) // 멈춤버튼 클릭하면 공움직임 멈춤함수 실행 
+
+		function startBallMoving(){
+			if(isMoving==false){ // 공이 움직이고 있지 않을때만 공을 움직이게하는 setIntervall() 함수실행 
+				timer=setInterval(ballMoving,20);
+				isMoving=true; // 공이 움직이고 있다고 상태변수를 true로 변경 (다시 시작버튼을 클릭할때 setInterval()충돌 방지 )
+			}
+		}
+
+		function stopBallMoving(){ // 공의 움직임을 멈추게 하는 함수 
+			if(isMoving==true){ // 공이 움직이고 있을 때만 공을 멈추게 하는 clearInterval() 함수실행 
+				clearInterval(timer);
+				isMoving=false; // 공의 움직임이 멈췄다고 상태변수를 false로 변경 
+			}
+		}
+
+		function ballMoving(){
+			
+
+		}
+
+	})  
+			
+  
+  </script>
+
+
+</head>
+<body>
+  
+  <div id="wrap"> 	
+		<div id="panel">
+			<div id="bar"> </div>
+			<div id="ball">
+				<img src="images/ball.png">
+			</div>
+		</div>
+		<div id="nav">
+			<button id="start_btn">시작</button>
+			<button id="stop_btn">멈춤</button>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>

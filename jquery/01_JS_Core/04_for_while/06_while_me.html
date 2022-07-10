@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> while구문 연습_03 </title>
+  <script>
+
+    /*
+
+    //비밀번호 맞을때 까지 창이 반복해서 뜨고, 맞으면 안뜸.
+
+    for(i=0; i<=1000; i++){
+        let userPw=prompt("비밀번호를 입력하세요.")//반복해서 prompt를 띄워야해서 for문 안에 넣어야함.
+            if(userPw=="1234"){
+                document.write("환영합니다. 로그인 성공");
+                break; //for문을 끝내고 바깥으로 나감.
+            }else{
+                alert("잘못입력하셨습니다. 다시 입력해주세요.") //확인 취소 버튼 없이 메시지만 띄우는 알럿창.
+            }
+    }
+
+    */
+
+    //아무일도 일어나지 않으면 (무한반복)
+    while(true){//true==무한반복
+        let userPw=prompt("비밀번호를 입력하세요.")
+        if(userPw=="1234"){
+        document.write("환영합니다.")
+        break;
+        }else{
+            alert("잘못입력하셨습니다. 다시 입력해주세요")
+        }
+    }
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrollSlide</title>
+  
+
+  <style> 
+
+    body,html{
+      height:100%; 
+    }
+
+    body,ul,li,p{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    header{
+      width:100%; height:120px; float:left; position:fixed; left:0px; top:0px;  z-index:1000; 
+      background:#FFFFFF; box-shadow:2px 2px 2px gray; 
+    }
+   
+    nav#menu{
+      width:500px; height:65px; position:absolute; right:200px; top:65px; 
+    }
+    ul#menu_list li{
+      width:120px; height:50px; float:left; margin-right:30px;
+    }
+    ul#menu_list li a{
+      display:block; width:100px; height:50px; 
+      font:bold 18px Arial; color:#333333; text-align:center; text-decoration:none;
+      -webkit-transition:0.3s ease; border-bottom:solid 5px white; 
+    }   
+    ul#menu_list li a.selected{
+      color:green; border-bottom:solid 5px green; 
+    }
+
+    div#contents_wrap{
+      width:100%; position:absolute; left:0px; top:0px; 
+    }
+    
+    .contents {  
+      
+      width: 100%; height:100%; float:left;    
+      position: relative; left:0px; top:0px;       
+      background-repeat: repeat; 
+      color:#FFF; 
+      
+    }
+
+    #par1 {
+      background:url("images/bg1.jpg");
+    } 
+    
+    #par3 { 
+      background:url("images/bg3.jpg");
+    }
+
+
+    .contents article { 
+      width: 70%; height:50%;
+      text-align: center; 
+      margin:200px auto;       
+      padding:20px 40px 40px;
+      background: rgba(1, 54, 54, 0.8);
+      border-radius:20px;
+    }   
+
+    article h1 {
+      font-size:40px;
+    } 
+    article p {
+      line-height:24px; 
+      font-size:18px; 
+      margin-top:15px;
+      text-align:left;
+    } 
+    article p a {
+      color:#FFF; 
+      text-decoration:none; 
+      font-size:30px;
+    }
+
+   
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>   	    
+	
+  // $(window).on('scroll',scrollTopNum)
+
+  //   function scrollTopNum(){
+  //   var scrolltop=$(document).scrollTop()
+  //   console.log(scrolltop)
+
+  // }★★★★★★ 스크롤 top 값 구하기 콘솔창에 띄워짐 !@
+
+  
+
+
+    $(document).ready(function(){
+
+      var $menu=$('#menu_list>li>a')
+      var $contents=$('.contents')
+      var clickIndex=0;
+      var windowHeight=$(window).innerHeight()
+      var isWheel=false
+
+      $contents.css({height:windowHeight})
+
+      menuActivate(0)//0번 먼저 실행
+
+      $menu.on('click', clickMenu)
+      $(window).on('mousewheel', wheelWindow)
+
+      function clickMenu(){
+        clickIndex=$menu.index($(this))//순번 구하기
+        // alert(clickIndex)
+        menuActivate(clickIndex)
+        scrollSlide(clickIndex)
+      }
+
+      function menuActivate(index){
+        $menu.removeClass('selected')//모든 a태그에 selected 클래스를 없애주고
+        $menu.eq(index).addClass('selected')
+      }
+
+      function scrollSlide(index){//스크롤할때는 항상 부모가 스크롤 됌.
+        $('body, html').stop().animate({scrollTop:windowHeight*index},800,'easeOutCubic', function(){
+          isWheel=false;//휠 끝났다 !@
+        })
+      }
+      
+      window.addEventListener('mousewheel', wheelWindow)//jquery 호환 안됨. 순수 자바스크립트 addEventListener = on
+
+      function wheelWindow(e){
+        if(e.wheelDelta<=-120 && isWheel==false && clickIndex<$menu.size()-1){ //마지막 순번보다 작을때만 해주기.
+          // alert('휠 아래로')
+          isWheel=true
+          clickIndex++;
+          menuActivate(clickIndex)
+          scrollSlide(clickIndex)//isWheel false 넣어주기
+
+
+        }else if(e.wheelDelta>-120 && isWheel==false && clickIndex>0){ //마이너스면 안됌
+          // alert('휠 위로')
+          isWheel=true; //훨을 하고있따 !@
+          clickIndex--; //하나씩 줄이기 0보다 작아지면 안돼서 조건을 줌.
+          menuActivate(clickIndex)
+          scrollSlide(clickIndex)
+        }
+      }
+    })
+
+
+
+
+
+
+
+      
+        
+    
+  </script>
+
+
+</head>
+<body> 
+
+  <header>   
+    
+    <nav id="menu">
+        <ul id="menu_list">
+            <li><a href="#;">contents1</a></li>
+            <li><a href="#;">contents2</a></li>
+            <li><a href="#;">contents3</a></li>
+          </ul>  	
+    </nav>     
+  
+</header>
+
+<div id="contents_wrap">
+  <div id="par1" class="contents"> 
+    <article> 
+      <h1>contents1</h1> 
+      <p>Parallax scrolling is a concept that when the user scrolls or moves about the page, the background object seems to move with them. This can be done by repositioning the background through javascript. Objects that seem to be further away are actually only moving slower or in an opposite direction than the objects in front of them.</p> 
+    </article> 
+  </div> 
+  <div id="par2" class="contents"> 
+    <article> 
+      <h1>contents2</h1> 
+      <p>Scrolling is actually disabled on this page, however it uses scrolling events in order for it to decide whether the page is to go up or down. Reducing the height of the browser will cause problems with visibility of elements on the page - and will overlap the info. - TOFIX</p> 
+    </article> 
+  </div> 
+  <div id="par3" class="contents"> 
+    <article> 
+      <h1>contents3</h1> 
+      <p>You know this next slide has class, it has style and it doesn't judge the person reading it. Did you ever think that a page could be judgemental? Well I think you may have some trouble with self esteem in that case. If not: you should protrude any thought that the author of this article is making no sense, and that you should disregard any prior information read.</p> 
+    </article> 
+  </div> 
+</div>
+  
+  
+  
+</body>
+</html>

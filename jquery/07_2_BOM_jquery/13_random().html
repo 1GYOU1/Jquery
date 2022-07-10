@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>random()</title>
+
+  <style>
+    
+    
+ 
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+  <script>
+
+    /*
+    Math객체 : 수학적인 메서드들이 모여있는 객체 
+
+    Math.abs() : 절대값
+
+    Math.ceil() : 올림값
+
+    Math.floor() : 내림값
+
+    Math.round() : 반올림 
+    ...
+
+    Math.random()  함수 :  0~1 사이의 실수(소수점포함) 를 불규칙적으로 출력 
+
+    */ 
+	
+		
+		$(document).ready(function(){
+			
+			setInterval(randomCount, 1000); // 1초에 한번씩 randomCount() 함수 실행  
+			
+      
+      function randomCount(){
+        
+        var count=parseInt(Math.random()*10)+10; // 10~20 사이의 정수를 불규척으로 출력 
+        document.write(count+"<br>");
+        
+      }		
+    
+    
+    });
+		
+
+  
+  </script>
+
+
+</head>
+<body>
+  
+    
+
+
+
+</body>
+</html>

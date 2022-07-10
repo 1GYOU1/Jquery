@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Attribute 속성제어 </title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css"> 
+
+  <script>
+  
+  /* Attribute 속성제어 
+
+  attribute 속성 얻기  :   요소.getAttribute('속성이름')  
+  
+  attribute 속성 변경 :  요소.setAttribute('속성이름','값') 
+
+  attribute 속성 제거 :  요소.removeAttribute('속성이름')   
+
+
+  attribute() 생략 ( 줄임표현 )
+
+  속성 얻기  :  요소.속성이름 
+  속성 변경  :  요소.속성이름='값'
+  속성 제거  :  요소.속성이름=null 
+
+
+  해당요소에 클래스명 추가  : 요소.className='클래스이름'  (주의: class 아니라 className )
+  해댱요소에 아이디명 추가  : 요소.id='아이디이름'
+
+  중요) 기존의 클래스명이나 아이디명은 없어지고 새로운 클래스나 아이디명으로 지정
+  
+  */
+  
+  document.addEventListener('DOMContentLoaded',()=>{
+
+    const subMenuList=document.querySelectorAll('.submenu_list'); // 클래스 .submenu_list 모두 찾음 
+    const subMenuBg=document.querySelector('#sub_bg'); // 아이디 #sub_bg 찾음 
+
+    for(const item of subMenuList){ // 모든 서브메뉴리스트 안보이게함 
+      item.style.display='none';
+    }    
+    subMenuBg.style.display='none' // 서브메뉴배경 안보이게 함 
+
+
+    const visualList=document.querySelector('#visual_list'); // 아이디 visual_list 찾음
+    const visualImg1=visualList.children[1].children[0].children[0] // 1번째 비쥬얼 이미지 요소를 찾음 
+   
+    //let imgUrl=visualImg1.getAttribute('src'); // 1번째 비쥬얼 이미지 요소의 이미지 경로 (src속성값) 를 얻어냄 
+    let imgUrl=visualImg1.src; // getAttribute() 생략코드 
+    //alert(imgUrl)
+
+    //visualImg1.setAttribute('src','images/visual_04.jpg'); // 이미지 경로 (src속성값)를 변경하여 이미지를 바꿈 
+    visualImg1.src='images/visual_04.jpg'; // setAttribute() 생략코드 
+    
+    //visualImg1.removeAttribute('src') // 이미지 경로 (src속성)를 삭제하여 이미지를 지움 
+    //visualImg1.src=null // removeAttribute() 생략코드 
+    
+    
+    // 해당요소에 클래스 또는 아이디이름 지정하기 (F12 개발자 도구에서 소스확인 )
+
+    //visualImg1.setAttribute('class','testClass');
+    //visualImg1.setAttribute('id','testId')
+    visualImg1.className='testClass';     
+    visualImg1.id='testId'; 
+    
+  }) 
+  
+  </script>
+
+
+</head>
+<body>
+  <!--바로가기메뉴시작-->
+  <ul class="skipmenu_list">
+    <li><a class="hidden" href="#header_inner">메뉴바로가기</a></li>
+    <li><a class="hidden" href="#contents_inner">본문바로가기</a></li>
+    <li><a class="hidden" href="#footer_inner">하단바로가기</a></li>
+  </ul>
+  <!--바로가기메뉴끝-->
+  
+  <!--상단영역시작-->
+  
+  <div id="header_wrap">
+    <div id="header_inner">
+      <h1 id="logo">
+        <a href="index.php"><img src="images/logo.gif" alt="글렘쉘"></a>
+      </h1>
+
+      <h2 class="hidden">메인메뉴</h2>
+      <ul id="mainmenu_list">
+        <li><a href="brand.php"><img src="images/mainmenu_01.gif" alt="브랜드소개"></a>
+          <ul class="submenu_list">
+            <li><a href="#">BRAND</a></li>
+            <li><a href="#">DESIGN</a></li>
+            <li><a href="#">BI</a></li>
+          </ul>
+        
+        </li>
+        <li><a href="#"><img src="images/mainmenu_02.gif" alt="컬렉션"></a>
+          <ul class="submenu_list">
+            <li><a href="#">CRYSTAL</a></li>
+            <li><a href="#">NANO</a></li>
+            <li><a href="#">MAGIC</a></li>
+            <li><a href="#">PUZZLE</a></li>
+          </ul>        
+        </li>
+        <li><a href="#"><img src="images/mainmenu_03.gif" alt="매장안내"></a>
+          <ul class="submenu_list">
+            <li><a href="#">ON-LINE</a></li>
+            <li><a href="#">OFF-LINE</a></li>
+            <li><a href="#">B2B</a></li>            
+          </ul>   
+        
+        </li>
+        <li><a href="#"><img src="images/mainmenu_04.gif" alt="리뷰"></a>
+          <ul class="submenu_list">
+            <li><a href="#">EVENT</a></li>
+            <li><a href="#">NOTICE</a></li>
+            <li><a href="#">NEWS</a></li>
+            <li><a href="#">INTERVIEW</a></li>             
+          </ul>       
+        </li>
+        <li><a href="#"><img src="images/mainmenu_05.gif" alt="고객센터"></a>
+          <ul class="submenu_list">
+            <li><a href="#">INSTALL</a></li>
+            <li><a href="#">POWER REVIEW</a></li>
+            <li><a href="#">Q&A</a></li>
+            <li><a href="#">FAQ</a></li>             
+          </ul>       
+        </li>
+      </ul>
+      <h2 id="bestmenu"><a href="#"><img src="images/best_btn.gif" alt="주간베스트상품"></a></h2>
+    </div> 
+
+   <div id="sub_bg"></div> <!--서브메뉴배경-->
+
+  </div>
+  
+
+  <!--상단영역끝-->
+  <!--비쥬얼영역시작-->
+  <div id="visual_wrap">
+    <h2 class="hidden">메인비쥬얼</h2>
+    <ul id="visual_list">
+      <li><a href="#"><img src="images/visual_00.jpg" alt="이미지설명"></a></li>
+      <li><a href="#"><img src="images/visual_01.jpg" alt="이미지설명"></a></li>
+      <li><a href="#"><img src="images/visual_02.jpg" alt="이미지설명"></a></li>
+    </ul>
+    <div id="visual_inner">
+      <a id="prev_btn" href="#"><img src="images/prev_btn.png" alt="이전보기"></a>
+      <a id="next_btn" href="#"><img src="images/next_btn.png" alt="다음보기"></a>
+      <!--시작버튼 멈춤버튼 -->
+      <a id="play_btn" href="#"><img src="images/play_btn.png" alt="시작"></a>
+      <a id="stop_btn" href="#"><img src="images/stop_btn.png" alt="멈춤"></a>
+      
+      
+    </div>       
+  </div>  
+  <!--비쥬얼영역끝-->
+  <!--컨텐츠영역시작-->
+  <div id="contents_wrap">
+    <div id="contents_inner">
+      <h2 class="hidden">컨텐츠</h2>
+      <ul id="contents_list">
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_01.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_01.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_01.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_02.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_02.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_02.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_03.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_03.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_03.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>
+        <li>
+          <p class="contents_title">
+            <a href="#"><img src="images/contents_title_04.gif" alt="설치방법"></a>
+          </p>
+          <p class="contents_img">
+            <a href="#"><img src="images/contents_img_04.gif" alt="이미지설명"></a>
+          </p>
+          <p class="contents_text">
+            <a href="#"><img src="images/contents_text_04.gif" alt="제품설치방법을자세히안내해드립니다."></a>
+          </p>         
+        </li>       
+      </ul>      
+    </div>    
+  </div>
+  <!--컨텐츠영역끝-->
+  <!--하단영역시작-->
+  
+  <div id="footer_wrap">
+    <div id="footer_inner">
+      <h2 class="hidden">하단정보영역</h2>
+      
+
+
+      
+    </div>
+  </div>
+ 
+  
+  
+  <!--하단영역끝-->
+</body>
+</html>

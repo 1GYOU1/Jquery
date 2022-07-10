@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> if구문_03 </title>
+  <script>
+  
+    /* 
+
+        영어점수와 국어점수 모두 90점 이상이면 A학점 출력
+        영어점수와 국어점수의 합이 170점 이상이면 B학점 출력
+        영어점수와 또는 국어점수가 90점 이상이면 C학점 출력
+        나머지 점수 모두는 D학점 출력
+    
+    */
+
+    let eng=prompt("영어점수를 입력하세요")
+    let kor=prompt("국어점수를 입력하세요.")
+
+    eng=parseInt(eng)
+    kor=parseInt(kor)
+
+    if(eng>=90 && kor>=90){
+        document.write("A학점")
+    }else if(eng+kor>=170){
+        document.write("B학점")
+    }else if(eng>=90 || kor>=90){
+        document.write("C학점")
+    }else{
+        document.write("D학점")
+    };
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

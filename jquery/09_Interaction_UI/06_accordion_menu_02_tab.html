@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>accordion_menu</title>
+
+  <style>    
+    
+    body,p,ul,li{
+      margin:0px; padding:0px; list-style:none;
+    }
+
+    body{
+      background:url("images/index_back.gif")
+    }
+
+    nav#mainmenu{
+      width:300px; position:absolute; left:300px; top:200px; background:#eeeeee; border-radius:10px; overflow:hidden;
+      box-shadow:3px 3px 3px black; 
+    }
+    ul#mainmenu_list{
+      width:300px; 
+    }
+    ul#mainmenu_list>li{
+      width:300px; height:45px; border-bottom:solid 1px rgb(204, 204, 204); position:relative; left:0px; top:0px; 
+      overflow:hidden;
+    }
+
+    ul#mainmenu_list>li>a{
+      display:block; width:300px; height:45px; font:bold 16px/45px "Arial"; color:#5a5a5a; text-indent:20px; text-decoration:none; 
+      background:#eeeeee; -webkit-transition:0.2s ease; 
+    }
+
+    ul#mainmenu_list>li>a>span{
+      display:block; width:45px; height:45px; background:url("images/arrow.png") no-repeat; 
+      position:absolute; right:0px; top:0px; -webkit-transition:0.2s ease; 
+    }
+
+    ul#mainmenu_list>li>a>span.selected{
+      -webkit-transform:rotate(90deg)
+    }
+
+    ul#mainmenu_list>li>a.selected{
+      background-color:orange; color:black; background-position:right -40px; 
+    }
+
+
+    ul.sumenu_list{
+      margin-top:40px;
+    }
+
+    ul.submenu_list li{
+      width:300px; height:45px; text-indent:30px; line-height:45px; background:#eeeeee; border-bottom:dotted 1px rgb(204, 204, 204);     
+    }
+
+    ul.submenu_list li:first-child{
+      border-top:solid 1px rgb(204, 204, 204)
+    }
+
+    ul.submenu_list li a{
+      font:normal 14px "Arial"; text-decoration:none; color:black; 
+    }
+
+
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+  <!--jQuery-ui 소스삽입 (aniamtion 기능, 다양한 ui component)  cdnjs 플러그인 사용 -->
+
+  <script>  
+    
+    $(document).ready(function(){    
+
+      var openHeight; // 열리는 높이는 서브메뉴 갯수에 따라 다르게 지정 
+      var closeHeight=45; // 닫히는 높이는 고정 
+
+      var $mainMenu=$("#mainmenu_list>li>a") // 각 메인메뉴의 주의) 직계 a 테그 지정 ( Tab키 접근 - 웹접근성 )
+      
+      $mainMenu.on("click focus", onMenuClick); // 메뉴를 클릭했을때 메뉴작동 시키는 함수 실행 (focus 이벤트 동시적용 - 웹접근성 )
+      $("#mainmenu").on("mouseleave", onMenuOut); // 아코디언메뉴 전체에서 마우스가 아웃될때 모두 닫혀지는 함수 실행 
+      $(".submenu_list").find("a").last().on("focusout",onMenuOut); // 서브메뉴 마지막 a 테그에서 focusout 되면 모두 닫혀지는 함수실행 
+
+
+      function onMenuClick(){// 메뉴작동하는 함수 
+
+        $mainMenu.parent().stop();
+        $mainMenu.parent().animate({"height":45},300, "easeOutCubic"); // 선택된 a 테그를 기준으로 직계부모 (메인메뉴li) 닫히는 에니메이션
+        $mainMenu.removeClass("selected"); // 모든 a 테그에 배경색 스타일 해제 
+        $mainMenu.children("span").removeClass("selected"); // 모둔 a 안에 span(화살표아이콘) 비활성화 ( 회전모션 )
+
+        openHeight=closeHeight+$(".submenu_list").children().innerHeight()*$(this).next().children().size()
+        // 열릴높이를 구함 ( 기존의 닫혔을때의 높이 + 서브메뉴li 한개의 높이에 선택한 메뉴의 서브메뉴li 갯수만큼 곱한값 )
+
+
+        $(this).parent().stop(); // 기존 하던에니메이션 멈춤 (반응빨리)
+        $(this).parent().animate({"height":openHeight},300, "easeOutCubic"); // 선택된 a 테그를 기준으로 직계부모(메인메뉴li) 열리는 에니메이션
+        $(this).addClass("selected"); // 선택된 a테그의 배경색 스타일 적용 
+        $(this).children("span").addClass("selected") // 선택된 a 안에 span(화살표아이콘) 활성화 ( 회전모션 )
+        
+                  
+      }
+
+      function onMenuOut(){ // 모든 메뉴를 닫히게 하고 모든 스타일 해제하는 함수 
+        
+        $mainMenu.parent().stop();
+        $mainMenu.parent().animate({"height":45},300, "easeOutCubic");
+        $mainMenu.removeClass("selected");
+        $mainMenu.children("span").removeClass("selected");
+
+      }
+      
+
+// 중요) 단점 - 열린메뉴를 다시 클릭하면 닫혀지지 않는다 - 다음예제 each()함수를 사용해서 해결 
+
+
+  
+});	    
+    
+  </script>
+
+
+</head>
+<body>
+  
+  <nav id="mainmenu">
+    <ul id="mainmenu_list">
+      <li><a href="#">Menu1<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+      <li><a href="#">Menu2<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>          
+        </ul>     
+      </li>
+      <li><a href="#">Menu3<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+      <li><a href="#">Menu4<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>         
+        </ul>     
+      </li>
+      <li><a href="#">Menu5<span></span></a>
+        <ul class="submenu_list">
+          <li><a href="#">submenu1</a></li>
+          <li><a href="#">submenu2</a></li>
+          <li><a href="#">submenu3</a></li>
+          <li><a href="#">submenu4</a></li>
+        </ul>     
+      </li>
+
+    </ul>
+
+  </nav>
+
+
+
+
+
+  
+</body>
+</html>

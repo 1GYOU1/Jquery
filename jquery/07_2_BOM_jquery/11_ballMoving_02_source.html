@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ballMoving2</title>
+
+  <style>
+    
+    body{
+			font-size:9pt;	
+		}
+
+    #wrap{
+      width:600px; height:500px; position:absolute; left:50%; margin-left:-300px; top:200px;
+    }
+			
+		#panel{
+			width:600px;
+			height:400px;
+			border:1px solid #999;
+			position:relative;
+      margin-bottom:30px; 
+		}
+		
+		#ball{
+      position:absolute;
+      left:252px;
+      top:150px;
+      width:80px;
+      height:80px;
+		}
+		
+		#nav{
+			text-align:center;
+			width:600px;
+		}
+ 
+  
+  </style>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js'></script>
+  <!--jQuery 소스삽입  cdnjs 플러그인 사용 -->
+
+
+
+  <script>
+  
+  	// 앞서진행한 ballMoving1 예제에서 x좌표, y좌표 동시에 진행 		
+		
+		$(document).ready(function(){
+    
+      var $panel=$('#panel')
+      var $ball=$('#ball')
+
+      var $startBtn=$('#start_btn')
+      var $stopBtn=$('#stop_btn')
+      
+      var startX=$ball.position().left;
+      var startY=$ball.position().top;
+      var currentX=startX;
+      var currentY=startY;
+      var stepX=1;
+      var stepY=1;
+      var endX=$panel.innerWidth()-$ball.outerWidth() //border 가 없어서 innerWidth, outerWidth 상관없음.
+      var endY=$panel.innerHeight()-$ball.outerHeight()
+
+      var timer=null;//전역변수 아무것도 없다가 start버튼을 누르면 setIntervall을 실행.
+
+      var isMoving=false; //상태변수
+
+      $startBtn.on('click', ballMovingStart)
+      $stopBtn.on('click', ballMovingStop)
+
+      function ballMovingStart(){
+        if(isMoving==false){//== 같을떄
+          timer=setInterval(ballMoving, 10)
+          isMoving=true;
+        }
+      }
+      
+      function ballMoving(){//killer function 실제적으로 움직이게 하는 함수.
+        currentX+=stepX; //좌표를 바꿔줌.
+        currentY+=stepY;
+        
+        // $ball.css('left', currentX) //실제적으로 움직이게 해주는 함수
+        // $ball.css('top', currentY)
+
+        $ball.css({'left':currentX, 'top':currentY})//동시에 여러개({'': , '':})
+        if(currentX>=endX){ //currentX>=endX || currentX<=0 으로 바꾸고 stepX*=-1 else if 안쓰고 축약가능
+          stepX=-1
+        }else if(currentX<=0){
+          stepX=1
+        }
+
+        if(currentY>=endY || currentY<=0){
+          stepY*=-1
+        }
+      }
+
+      function ballMovingStop(){
+        if(isMoving==true){
+          clearInterval(timer)
+          isMoving=false;
+        }
+      }
+
+  })
+
+
+
+
+
+
+
+    
+    
+  
+  </script>
+
+
+</head>
+<body>
+  
+    <div id="wrap"> 
+		
+        <div id="panel"> 	
+          <div id="ball">
+            <img src="images/ball.png">
+          </div>
+        </div>
+        <div id="nav">
+          <button id="start_btn">시작</button>
+          <button id="stop_btn">멈춤</button>
+        </div>
+      
+      </div>
+
+
+
+
+</body>
+</html>
