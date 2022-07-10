@@ -181,3 +181,20 @@ const age = parseInt(prompt('나이를 입력하세요.'));
 (age>7) && console.log('성인 O')
 (age>7) || console.log('성인 X')
 ```
+<br>
+
+## __while 반복문__
+
+<br>
+
+```js
+//화면에 'test' 문자열을 10번 출력하기.
+console.log('test');
+
+let i = 1;
+
+while(i < 10){
+    i++;
+    console.log((i)+'test');
+}
+```
