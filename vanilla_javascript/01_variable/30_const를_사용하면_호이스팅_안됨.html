@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>30_const를_사용하면_호이스팅_안됨</title>
+</head>
+<body>
+    <h1>let const로 선언한 변수는 호이스팅 불가</h1>
+    
+    <script>
+        //let은 호이스팅이 안되므로 에러발생
+        // console.log(name);
+        // console.log(dog);
+
+        let dog = '푸들';
+        const name= '구름이';//상수
+
+        //상수는 선언과 할당을 무조건 동시에 해야 함.
+        // name='구름이';//상수에는 재할당이 안됨. 
+        
+        console.log(name);
+    </script>
+</body>
+</html>
