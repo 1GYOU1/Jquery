@@ -1,4 +1,6 @@
-## 산술연산자와 대입연산자
+## __산술연산자와 대입연산자__
+
+<br>
 
 ```js
 let result = true;
@@ -41,7 +43,9 @@ console.log(`x%y = ${x%y}`);//% : 나머지를 구하는 연산자
 ```
 <br>
 
-## 논리연산자의 결과는 true, false이고 타입은 boolean
+## __논리연산자의 결과는 true, false이고 타입은 boolean__
+
+<br>
 
 ```js
 let result = true;
@@ -63,7 +67,9 @@ console.log(typeof result);//변수의 타입확인
 ```
 <br>
 
-## 누적의개념과_복합대입연산자
+## __누적의개념과 복합대입연산자__
+
+<br>
 
 ```js
 let busCard = 1000;
@@ -87,3 +93,135 @@ busCard -= 3000;//25000
 console.log(`busCard = ${busCard}`)
 ```
 <br>
+
+## __증감연산자와 복합대입연산자__
+
+<br>
+
+```js
+let x = 200;
+let y = 100;
+
+x = x+1;//201
+x += 1;//202
+x++;//203
+
+y = y-1;//99
+y -= 1;//98
+y--;//97
+
+x = x+y;//300
+x +=y;//397
+
+// x = x-y 
+x -= y;//300
+
+// x = x*y
+x *= y//29100
+
+// x = x/y
+x /= y;//300
+
+// x = x%y
+x %= y;//9
+
+
+console.log(`현재 x = ${x}`);
+console.log(`현재 x = ${y}`);
+```
+<br>
+
+## __동등연산자 일치연산자 비교연산자__
+
+<br>
+
+```js
+ const score1 = 100;
+        const score2 = '100';
+
+        console.log(`typeof score1 : ${typeof score1}`);//number 숫자
+        console.log(`typeof score1 : ${typeof score2}`);//string 문자열
+
+        //동등연산자 == 로 값 비교할 경우 값만 비교하므로 true
+        console.log(`score1 == score2 결과는 : ${score1 == score2}`);//true
+
+        //일치연산자  === 로 비교할 경우 값, type 비교하므로 false
+        //조금 더 엄격한 검사방법인 일치연산자 사용을 권장
+        console.log(`score1 === score2 결과는 : ${score1 === score2}`);//false
+        
+        console.log('-------');
+        
+        let dulyAge = 7;
+        let micol = 7;
+
+        console.log(dulyAge > micol);//false
+        console.log(dulyAge >= micol);//true or의 개념이기 때문
+        console.log(dulyAge < micol);//false
+        console.log(dulyAge <= micol);//true or의 개념이기 때문
+
+        console.log(dulyAge == micol);//true
+        console.log(dulyAge != micol);//false 동등연산자의 부정 //앞에 =하나 지우고 !
+
+        console.log(dulyAge === micol);//true
+        console.log(dulyAge !== micol);//false
+```
+<br>
+
+## __type변환__
+
+<br>
+
+```js
+//string을 number 타입으로 변환1
+const score1 = '100';
+const score2 = Number('100세');
+
+console.log(`score 변수의 타입은 ${typeof score1}`);//string
+console.log(`score 변수의 타입은 ${typeof score2} - ${score2}`);//number - NaN(Not a Number) 한글이 껴있어서 NaN 출력
+
+//string을 number 타입으로 변환2
+const age = parseInt('40세');//parseInt 정수로 변환
+
+console.log(`age 변수의 타입은 : ${typeof age} - ${age}`);//number - 40
+
+//string을 number 타입으로 변환3
+const weight = parseFloat('75.9');//parseFloat 소수점 포함 정수로 변환
+
+console.log(`weight : ${typeof weight} - ${weight}`);//number - 75.9
+```
+<br>
+
+## __Null병합연산자__
+
+<br>
+
+__자바스크립트의 기본데이터 타입 - 6가지__
+
+1. number
+2. string
+3. boolean
+4. null - '비어있다 or 지금 현재 값을 알 수 없다'라는 의미의 아주 특별한 값
+5. undefined - 변수를 선언만 하면 값도 type도 모두 undefined이다.
+6. symbol
+
+<br>
+
+__?? (Null 병합 연산자)__
+
+왼쪽 피연산자의 값이 null 또는 undefined 이면 오른쪽 피연산자를 반환(return)하고, 그렇지 않으면 왼쪽 피연산자의 값을 반환하는 논리 연산자이다.
+
+```js
+//인터넷으로 데이터를 받아와서 저장
+let dnldData = null;//다운로드 받은 데이터
+dnldData = 'Download File 01'
+
+let result = dnldData ?? '다운로드 받은 데이터가 없습니다.';
+
+console.log(`result = ${result}`);
+
+
+//0은 null 또는 undefined에 해당하지 않음.
+const lucky = 0 ?? 42;
+
+console.log(`lucky = ${lucky}`);//0
+```

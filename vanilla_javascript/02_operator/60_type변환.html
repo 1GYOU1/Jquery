@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>60_type변환</title>
+</head>
+<body>
+    <h1>type변환</h1>
+    <script>
+        //string을 number 타입으로 변환1
+        const score1 = '100';
+        const score2 = Number('100세');
+        
+        console.log(`score 변수의 타입은 ${typeof score1}`);//string
+        console.log(`score 변수의 타입은 ${typeof score2} - ${score2}`);//number - NaN(Not a Number) 한글이 껴있어서 NaN 출력
+
+        //string을 number 타입으로 변환2
+        const age = parseInt('40세');//parseInt 정수로 변환
+
+        console.log(`age 변수의 타입은 : ${typeof age} - ${age}`);//number - 40
+
+        //string을 number 타입으로 변환3
+        const weight = parseFloat('75.9');//parseFloat 소수점 포함 정수로 변환
+
+        console.log(`weight : ${typeof weight} - ${weight}`);//number - 75.9
+
+    </script>
+</body>
+</html>
