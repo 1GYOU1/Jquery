@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>120_메소드를_가진_객체</title>
+</head>
+<body>
+    <h1>객체의 프로퍼티에 할당된 함수를 메소드라 부른다.</h1>
+    
+    <script>
+        const gyou1 = {
+            name : '규원',
+            age : 27,
+            address : '서울',
+
+            info : function(){
+                console.log('나는 '+this.address+'에 사는 '+this.age+'살 '+this.name+' 입니다.')
+                //나는 서울에 사는 27살 규원 입니다.
+            }
+        };
+
+        //앞에 .(점)찍고 호출하면 메소드
+        //.(점)없이 호출하면 함수
+
+        gyou1.info();//나는 서울에 사는 27살 규원입니다.
+    </script>
+</body>
+</html>

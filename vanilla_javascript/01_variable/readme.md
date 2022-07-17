@@ -336,3 +336,25 @@ delete iAm['foot-size'];
 console.log(`iAm = `, iAm);
 //iAm =  {}
 ```
+<br>
+
+## __메소드를 가진 객체__
+
+```js
+const gyou1 = {
+    name : '규원',
+    age : 27,
+    address : '서울',
+
+    info : function(){
+        console.log('나는 '+this.address+'에 사는 '+this.age+'살 '+this.name+' 입니다.')
+    }
+};
+```
+앞에 .(점)찍고 호출하면 메소드
+
+.(점)없이 호출하면 함수
+```js
+gyou1.info();
+//나는 서울에 사는 27살 규원입니다.
+```
