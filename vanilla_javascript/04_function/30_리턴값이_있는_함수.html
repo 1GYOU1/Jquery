@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>return 값이 있는 함수</h1>
+    <script>
+        //문제1)두개의 값을 전달받아 곱을 리턴하는 함수 kobFn(a,b)를 선언하세요
+        function kobFn(a,b) {
+            return a*b;
+
+            console.log('굿모닝~!');//출력 안됨.
+        }
+
+        const result = kobFn(7,111);
+        console.log(`result = ${result}`);
+
+        /*
+            return : 함수의 종료를 의미하며, 그 이후에 나온 코드는 실행 X
+            return 값 : 호출한 곳에 '반환값'을 돌려준다.
+            return : 실행 순서의 관점에서 보면 호출한 곳으로 돌아간다.
+        */
+
+        //문제2) 두개의 수를 one, two에 전달받아 그 합을 return 하는 화살표함수 habFn를 선언하시오. 리턴받은 값을 sum 변수에 할당후 콘솔창에 "sum = 100" 과 같은 형식으로 출력하시오.
+
+        function habFn(one, two){
+            return one+two;
+        }
+
+        const sum = habFn(70,30);
+        console.log(`sum = ${sum}`);
+    </script>
+</body>
+</html>

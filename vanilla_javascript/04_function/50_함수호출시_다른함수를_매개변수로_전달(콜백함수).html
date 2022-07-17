@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>50_함수호출시_다른함수를_매개변수로_전달(콜백함수)</title>
+</head>
+<body>
+    <h1>콜백함수</h1>
+    <script>
+        /*
+            콜백(Callback) 함수란 무엇인가?
+            
+            콜백 함수는 어떤 함수를 실행시키고 난 이후에 결과를 받을 함수 혹은, 그 다음에 실행될 함수를 의미합니다.
+
+            어떤 함수의 매개변수로 또 다른 함수를 전달할 수 있는데
+            주로 콜백함수는 매개변수 형태로 전달받아 실행시키게 된다.
+
+        */
+
+        //콜백으로 사용할 myFn 함수
+        //표현식함수 //상관없
+        const myFn = function(nickname){
+            console.log(`${nickname}님이 myFn 콜백함수를 호출함`);
+        }
+
+        //콜백함수를 전달받아 실행할 historyFn 함수
+        const historyFn = function(callback){
+            callback('규워니');
+        }
+
+        historyFn(myFn);
+
+        console.log('----')
+
+        //콜백으로 사용할 myFn2 함수
+        const myFn2 = function(msg){
+            console.log(`${msg}라고 메세지 도착`);
+        };
+
+        //콜백함수를 전달받아 실행할 historyFn2 함수
+        const historyFn2 = function(callback){//매개변수 callback은 myFn2의 주소값을 전달받음
+            const msg = '이순신 장군님 감사합니다.';
+            callback(msg);
+        };
+
+        historyFn2(myFn2);//myFn2함수의 주소값이 전달
+
+    </script>
+</body>
+</html>

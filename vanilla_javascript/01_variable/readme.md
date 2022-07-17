@@ -246,3 +246,87 @@ console.log(`arrSome은 배열일까? ${typeof arrSome}`);//object
 console.log(`arrSome은 배열일까? ${Array.isArray(arrSome)}`);//true
 console.log(`i는 배열일까? ${Array.isArray(i)}`);//false
 ```
+<br>
+
+## __객체변수 - object__
+리터럴(literal)은 사람이 이해할 수 있는 문자나 약속된 기호를 사용해서 값을 생성하는 표기법
+
+리터럴(literal)방식으로 객체를 생성
+
+객체의 형태 - {key : value}, {property : value}
+
+객체변수 hong에 저장되는 값은 객체의 본체를 가리키는 주소값이다.
+
+```js
+const gyou1 = {
+    nation : 'korea',
+    name : '규워니',
+    age : 27
+};
+```
+객체변수에 저장된 데이터 출력방법은 = 객체변수명.프로퍼티명
+```js
+console.log(gyou1.nation, gyou1.name, gyou1.age);//korea 규워니 27
+console.log(gyou1.nation);//korea
+console.log(gyou1.name);//규워니
+console.log(gyou1.age);//27
+```
+who와 gyou1은 같은 주소값을 가지게 된다.
+```js
+const who = gyou1;
+console.log(who.nation, who.name, who.age);//korea 규워니 27
+console.log(who.nation);//korea
+console.log(who.name);//규워니
+console.log(who.age);//27
+```
+값 바꾸기
+```js
+who.nation = '미국';
+who.name = '규빵이'
+```
+```js
+console.log(who.nation);//미국
+console.log(who.name);//규빵이
+console.log(who.age);//27
+```
+```js
+console.log(gyou1.nation);//미국
+console.log(gyou1.name);//규빵이
+console.log(gyou1.age);//27
+```
+객체의 프로퍼티 추가
+```js
+who.address = '서울시 강남구';
+
+console.log('gyou1 = ',gyou1);
+console.log('who = ',who);//같은 결과
+```
+
+<br>
+
+## __객체와 프로퍼티__
+property에 하이픈(-)이 포함되어 있으면 따옴표로 감싸야 한다.
+```js
+const iAm = {
+    name : '1gyou1',
+    nation : 'korea',
+    'foot-size' : '230'
+};
+```
+property에 하이픈(-)이 포함되어 있으면 대괄호[ ]표기법으로 해야함
+
+객체의 프로퍼티에 접근
+```js
+console.log(iAm.name);//1gyou1
+console.log(iAm.nation);//korea
+console.log(iAm['foot-size']);//230
+```
+객체의 property 삭제
+```js
+delete iAm.name;
+delete iAm.nation;
+delete iAm['foot-size'];
+
+console.log(`iAm = `, iAm);
+//iAm =  {}
+```

@@ -94,5 +94,94 @@ console.log(someMoney);//출력가능
 ```
 
 ![1gyou1](https://user-images.githubusercontent.com/90018379/179385761-e9147c95-51dc-45bc-aa29-8dccf9a9c381.PNG)
+<br>
+
+## __return 값이 있는 함수__
+
+return : 함수의 종료를 의미하며, 그 이후에 나온 코드는 실행 X
+
+return 값 : 호출한 곳에 '반환값'을 돌려준다.
+
+return : 실행 순서의 관점에서 보면 호출한 곳으로 돌아간다.
 
 
+문제1)두개의 값을 전달받아 곱을 리턴하는 함수 kobFn(a,b)를 선언하세요.
+```js
+function kobFn(a,b) {
+    return a*b;
+}
+
+const result = kobFn(7,111);
+console.log(`result = ${result}`);
+//result = 777
+```
+문제2) 두개의 수를 one, two에 전달받아 그 합을 return 하는 화살표함수 habFn를 선언하시오. 리턴받은 값을 sum 변수에 할당후 콘솔창에 "sum = 100" 과 같은 형식으로 출력하시오.
+```js
+function habFn(one, two){
+    return one+two;
+}
+
+const sum = habFn(70,30);
+console.log(`sum = ${sum}`);
+//sum = 100
+```
+<br>
+
+## __선언식 함수(기명함수)__
+
+```js
+function sumFn(a,b){
+    console.log(a+b);
+}        
+sumFn(100,200);//300
+```
+
+<br>
+
+## __표현식함수(익명함수)__
+표현식 함수는 변수의 익명함수를 할당하는 방식
+
+익명함수는 이름이 없는 함수를 의미한다. -> function(){}
+
+```js
+const subFn = function(a,b){
+    console.log(a-b);
+}
+subFn(300,200);100
+```
+
+<br>
+
+## __화살표함수__
+함수 선언 방식을 간소화한 함수이다.
+
+문제) 전달받은 두 값의 곱를 출력하는 화살표함수 mulFn을 선언하시오.
+```js
+const mulFn = (a,b) =>{
+    console.log(a*b)
+}
+mulFn(10,7);//70
+```
+
+<br>
+
+## __콜백함수__
+
+콜백 함수는 어떤 함수를 실행시키고 난 이후에 결과를 받을 함수 혹은, 그 다음에 실행될 함수를 의미합니다.
+
+어떤 함수의 매개변수로 또 다른 함수를 전달할 수 있는데, 주로 콜백함수는 매개변수 형태로 전달받아 실행시키게 된다.
+
+```js
+//콜백으로 사용할 myFn 함수
+const myFn = function(nickname){
+console.log(`${nickname}님이 myFn 콜백함수를 호출함`);
+}
+
+//콜백함수를 전달받아 실행할 historyFn 함수
+const historyFn = function(callback){
+callback('1gyou1');
+}
+
+historyFn(myFn);
+//1gyou1님이 myFn 콜백함수를 호출함
+```
