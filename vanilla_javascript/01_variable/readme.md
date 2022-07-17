@@ -188,12 +188,14 @@ arrSome.push('푸쉬맨');
 console.log(arrSome[7]);//푸쉬맨
 ```
 ![1gyou1](https://user-images.githubusercontent.com/90018379/179382898-a6f53e84-d3ce-496e-9eeb-f97b4e0cf4eb.PNG)
+
 방법3)
 ```js
 arrSome[arrSome.length] = '도시락';
 console.log(arrSome[arrSome.length-1]);//도시락
 ```
 ![1gyou1](https://user-images.githubusercontent.com/90018379/179382918-d8bc6b28-9b50-4f02-8c1c-048a9686eb93.PNG)
+
 배열의 길이 측정 - 배열명.length
 
 배열의 맨 마지막 인덱스 번호는 항상(배열명.length-1)
@@ -357,4 +359,40 @@ const gyou1 = {
 ```js
 gyou1.info();
 //나는 서울에 사는 27살 규원입니다.
+```
+<br>
+
+## __객체의 축약표현__
+
+```js
+const name = 'gyou1';
+const age = 27;
+```
+위 데이터를 객체변수로 생성
+
+key와 value의 이름이 동일하면 key를 생략할 수 있다.
+
+이때 key는 value의 이름으로 자동 생성됨.
+
+```js
+const gyou1 = {
+    name,//name : name 축약
+    age//age : age 축약
+};
+console.log(gyou1);
+//{name: 'gyou1', age: 27}
+```
+객체에서 메소드를 정의할 때 function 키워드를 생략한 축약표현 가능
+```js
+const coin = {
+    name : '500원',
+    go : function(){
+        console.log(this.name+' 앞')
+    },
+    back(){
+        console.log(this.name+' 뒤')
+    }
+}
+coin.go();//500원 앞
+coin.back();//500원 뒤
 ```
