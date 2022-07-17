@@ -257,3 +257,42 @@ while(n <= 10){
 console.log(`홀수의 합 = ${oddSum}`);//1+3+5+7+9 = 25
 console.log(`짝수의 합 = ${evenSum}`);//2+4+6+8+10 = 30
 ```
+<br>
+
+## __for문__
+
+for반복문은 while문을 축약해서 표현
+<br>
+
+```js
+//while
+let n=0;
+while(n<10){
+    n++;
+    console.log(n);
+}
+
+//for
+for(변수 초기화;조건식;증감식){}
+
+for(let n=0;n<10;n++;){
+    console.log(n);
+}
+```
+문제1) 0~9까지 콘솔창에 출력
+```js
+for(let i=0;i<10;i++){
+            console.log(`i = ${i}`);
+        }
+```
+
+문제2) for문을 이용하여 1~100까지의 합을 구하시오
+```js
+let sum=0;
+
+        for(let i=1;i<=100;i++){
+            sum += i;
+        }
+        console.log(`1~100까지의 합은 ${sum}`);
+        //1~100까지의 합은 5050
+```
