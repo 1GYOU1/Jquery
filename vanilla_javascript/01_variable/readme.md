@@ -145,3 +145,104 @@ console.log(account);
         console.log('username 데이터타입 : %s 입니다.',typeof(username));
         //username 데이터타입 : string 입니다.
 ```
+<br>
+
+## __배열변수 - Array__
+
+배열은 여러타입의 데이터를 혼합해서 저장 가능. 
+
+but 권하진 않음.
+```js
+//배열에 저장된 값을 원소(item)라고한다
+const arrSome = ['계란','구슬',100,true,undefined,null];
+```
+```js
+console.log(arrSome);
+```
+![캡처1](https://user-images.githubusercontent.com/90018379/179382822-bc30e1a9-14d8-4754-8751-9c910205dc93.PNG)
+
+```js
+//출력 - 배열변수명[자리값(index)]
+console.log(arrSome[0]);//계란
+console.log(arrSome[1]);//구슬
+console.log(arrSome[2]);//100
+console.log(arrSome[3]);//true
+console.log(arrSome[4]);//undefined
+console.log(arrSome[5]);//null
+```
+![캡처2](https://user-images.githubusercontent.com/90018379/179382851-6e1199a6-9b7d-493b-9a98-e93ba5614fe3.PNG)
+
+배열의 끝에 데이터를 추가
+
+방법1)
+```js
+arrSome[6] = '햄버거';
+console.log(arrSome[6]);//햄버거
+```
+
+![캡처3](https://user-images.githubusercontent.com/90018379/179382882-e74717c7-189e-4a5e-9622-398d093d83f7.PNG)
+
+방법2)
+```js
+arrSome.push('푸쉬맨');
+console.log(arrSome[7]);//푸쉬맨
+```
+![1gyou1](https://user-images.githubusercontent.com/90018379/179382898-a6f53e84-d3ce-496e-9eeb-f97b4e0cf4eb.PNG)
+방법3)
+```js
+arrSome[arrSome.length] = '도시락';
+console.log(arrSome[arrSome.length-1]);//도시락
+```
+![1gyou1](https://user-images.githubusercontent.com/90018379/179382918-d8bc6b28-9b50-4f02-8c1c-048a9686eb93.PNG)
+배열의 길이 측정 - 배열명.length
+
+배열의 맨 마지막 인덱스 번호는 항상(배열명.length-1)
+```js
+arrSome.push('규오니');
+console.log(arrSome[arrSome.length-1]);
+console.log('arrSome 배열의 길이는 '+arrSome.length+' 이다.');
+```
+![1gyou1](https://user-images.githubusercontent.com/90018379/179382934-24bf9a87-da51-424f-8ff4-cb58d519fe17.PNG)
+
+만약 없는 인덱스로 출력을 시도하면 undefined
+```js
+console.log(arrSome[100]);//undefined
+```
+배열변수의 값 변경
+```js
+arrSome[0] = '과자';
+arrSome[1] = '사탕';
+```
+for 반복문을 이용하여 배열 출력
+```js
+for(let i = 0; i < arrSome.length; i++){
+    console.log(arrSome[i]);
+}
+```
+![1gyou1](https://user-images.githubusercontent.com/90018379/179382959-5eafda1a-65ea-4f88-a1b3-57c66a8fa484.PNG)
+
+빈 배열 선언후 출력
+```js
+const city = [];
+
+city[0] = '서울';
+city[1] = '인천';
+city[2] = '대전';
+```
+while 반복문으로 배열을 출력하시오.
+```js
+let i=0;
+
+while(i<city.length){
+    console.log(city[i]);
+    i++;
+}
+```
+![1gyou1](https://user-images.githubusercontent.com/90018379/179383193-60ad0224-05a1-4ffb-8bf9-6d9ee604aa03.PNG)
+
+배열인지 아닌지 확인하는 방법
+```js
+console.log(`arrSome은 배열일까? ${typeof arrSome}`);//object
+console.log(`arrSome은 배열일까? ${Array.isArray(arrSome)}`);//true
+console.log(`i는 배열일까? ${Array.isArray(i)}`);//false
+```

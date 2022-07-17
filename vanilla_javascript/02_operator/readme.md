@@ -171,6 +171,17 @@ console.log(`현재 x = ${y}`);
 
 <br>
 
+__자바스크립트의 기본데이터 타입 - 6가지__
+
+1. number
+2. string
+3. boolean
+4. null - '비어있다 or 지금 현재 값을 알 수 없다'라는 의미의 아주 특별한 값
+5. undefined - 변수를 선언만 하면 값도 type도 모두 undefined이다.
+6. symbol
+
+<br>
+
 ```js
 //string을 number 타입으로 변환1
 const score1 = '100';
@@ -192,17 +203,6 @@ console.log(`weight : ${typeof weight} - ${weight}`);//number - 75.9
 <br>
 
 ## __Null병합연산자__
-
-<br>
-
-__자바스크립트의 기본데이터 타입 - 6가지__
-
-1. number
-2. string
-3. boolean
-4. null - '비어있다 or 지금 현재 값을 알 수 없다'라는 의미의 아주 특별한 값
-5. undefined - 변수를 선언만 하면 값도 type도 모두 undefined이다.
-6. symbol
 
 <br>
 

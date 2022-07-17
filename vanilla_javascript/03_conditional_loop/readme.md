@@ -54,6 +54,8 @@ console.log(`num = ${typeof num}`);//number
 ## __다중if(시험등급)__
 
 <br>
+문제)
+
 수학점수 score 를 입력받고,<br>
 90<=score<=100  이면 "1등급",<br>
 80<=score<90  이면 "2등급",<br>
@@ -61,7 +63,6 @@ console.log(`num = ${typeof num}`);//number
 60<=score<70  이면 "4등급",<br>
 60점 이하이면 "재평가 대상입니다." 으로 알림창 출력하는 코드를 작성하세요.
 
-<br>
 <br>
 
 ```js
@@ -295,4 +296,57 @@ let sum=0;
         }
         console.log(`1~100까지의 합은 ${sum}`);
         //1~100까지의 합은 5050
+```
+방법1)
+```js
+let oddSum=0;
+
+for(i=1;i<100;i++){
+    if(i%2==1){
+        oddSum += i;
+        oddSum = oddSum + i
+    }
+}
+```
+방법2)
+```js
+let oddSum=0;
+
+for(let i=1;i<100;i+=2){
+        oddSum += i;
+    }
+```
+짝수의 합 구하기
+```js
+let evenSum=0;
+
+for(let i=2;i<100;i+=2){
+        evenSum += i;
+    }
+```
+__continue__
+
+continue를 만나는 순간 이후의 코드를 실행하지 않고 건너뛴다.
+
+for문에서 사용할 경우 i++ 증감식 부분으로 이동시킨다.
+```js
+for(let i = 1; i < 10; i++){
+    if(i===5){
+        continue;
+    }
+    //i = 5 생략하고 진행.
+}
+```
+한줄이면 중괄호 생략하고 쓸 수 있음.
+```js
+if(i===5) continue;
+```
+__break__
+
+break는 for문을 아예 끝냄.
+```js
+for(let i = 1; i < 10; i++){
+    if(i===8) break;
+    //i = 7까지만 출력됨.
+        }
 ```
