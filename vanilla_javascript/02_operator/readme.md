@@ -43,6 +43,9 @@ console.log(`x%y = ${x%y}`);//% : 나머지를 구하는 연산자
 ```
 <br>
 
+----
+<br>
+
 ## __논리연산자의 결과는 true, false이고 타입은 boolean__
 
 <br>
@@ -65,6 +68,9 @@ result = !result;//false
 console.log(`result = ${result}`);
 console.log(typeof result);//변수의 타입확인
 ```
+<br>
+
+----
 <br>
 
 ## __누적의개념과 복합대입연산자__
@@ -92,6 +98,9 @@ busCard -= 3000;//25000
 
 console.log(`busCard = ${busCard}`)
 ```
+<br>
+
+----
 <br>
 
 ## __증감연산자와 복합대입연산자__
@@ -131,6 +140,9 @@ console.log(`현재 x = ${y}`);
 ```
 <br>
 
+----
+<br>
+
 ## __동등연산자 일치연산자 비교연산자__
 
 <br>
@@ -167,6 +179,9 @@ console.log(`현재 x = ${y}`);
 ```
 <br>
 
+----
+<br>
+
 ## __type변환__
 
 <br>
@@ -200,6 +215,9 @@ const weight = parseFloat('75.9');//parseFloat 소수점 포함 정수로 변환
 
 console.log(`weight : ${typeof weight} - ${weight}`);//number - 75.9
 ```
+<br>
+
+----
 <br>
 
 ## __Null병합연산자__

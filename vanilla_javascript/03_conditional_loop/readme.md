@@ -23,6 +23,9 @@ console.log(!NaN);//true
 ```
 <br>
 
+----
+<br>
+
 ## __단순_if문__
 
 <br>
@@ -85,6 +88,9 @@ if(100 >= score && score >= 90 ){
 
 <br>
 
+----
+<br>
+
 ## __switch문__
 
 <br>
@@ -134,6 +140,9 @@ switch(score){
 
 <br>
 
+----
+<br>
+
 ## __삼항연산자__
 
 <br>
@@ -166,6 +175,9 @@ console.log(student);
 
 <br>
 
+----
+<br>
+
 ## __조건부 렌더링 &&, ||__
 
 <br>
@@ -182,6 +194,9 @@ const age = parseInt(prompt('나이를 입력하세요.'));
 (age>7) && console.log('성인 O')
 (age>7) || console.log('성인 X')
 ```
+<br>
+
+----
 <br>
 
 ## __while 반복문__
@@ -258,6 +273,9 @@ while(n <= 10){
 console.log(`홀수의 합 = ${oddSum}`);//1+3+5+7+9 = 25
 console.log(`짝수의 합 = ${evenSum}`);//2+4+6+8+10 = 30
 ```
+<br>
+
+----
 <br>
 
 ## __for문__

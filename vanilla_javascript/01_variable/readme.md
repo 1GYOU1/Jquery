@@ -54,6 +54,9 @@ console.log(name);
 ```
 <br>
 
+----
+<br>
+
 ## __var로 선언한 변수의 유효범위__
 
 일반적으로 변수는 중괄호 단위로 유효하다. 
@@ -103,6 +106,9 @@ let nickname = '구름이';
 ```
 <br>
 
+----
+<br>
+
 ## __let & const로 선언한 변수의 특징__
 
 let, const로 선언한 변수는 중괄호 단위로 유효하다.
@@ -132,6 +138,9 @@ console.log(account);
 ```
 <br>
 
+----
+<br>
+
 ## __string 복합 문법 작성__
 
 ```js
@@ -145,6 +154,9 @@ console.log(account);
         console.log('username 데이터타입 : %s 입니다.',typeof(username));
         //username 데이터타입 : string 입니다.
 ```
+<br>
+
+----
 <br>
 
 ## __배열변수 - Array__
@@ -250,6 +262,9 @@ console.log(`i는 배열일까? ${Array.isArray(i)}`);//false
 ```
 <br>
 
+----
+<br>
+
 ## __객체변수 - object__
 리터럴(literal)은 사람이 이해할 수 있는 문자나 약속된 기호를 사용해서 값을 생성하는 표기법
 
@@ -306,6 +321,9 @@ console.log('who = ',who);//같은 결과
 
 <br>
 
+----
+<br>
+
 ## __객체와 프로퍼티__
 
 객체변수는 데이터 저장구조가 효율적이면서, 동시에 데이터 각각의 직관적 의미파악이 가능하다.
@@ -340,6 +358,9 @@ console.log(`iAm = `, iAm);
 ```
 <br>
 
+----
+<br>
+
 ## __메소드를 가진 객체__
 
 ```js
@@ -360,6 +381,9 @@ const gyou1 = {
 gyou1.info();
 //나는 서울에 사는 27살 규원입니다.
 ```
+<br>
+
+----
 <br>
 
 ## __객체의 축약표현__
