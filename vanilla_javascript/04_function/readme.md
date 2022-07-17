@@ -162,6 +162,63 @@ const mulFn = (a,b) =>{
 }
 mulFn(10,7);//70
 ```
+<br>
+
+## __화살표함수 특징__
+
+1. 익명함수를 변수에 대입해서 사용
+```js
+const breakfast = () => {
+    return '아침식사는 수박주스';
+};
+
+console.log(breakfast());
+//아침식사는 수박주스
+```
+2. 리턴이 바로 표현이 가능하면 { return } 생략가능
+```js
+const lunch = () => '점심은 오렌지 주스' 
+console.log(lunch());
+//점심은 오렌지 주스
+```
+3. 매개변수가 1개이면 ( ) 생략가능
+```js
+const dinner = props => '저녁은 '+ props;        
+console.log(dinner('스테이크'));
+//저녁은 스테이크
+```
+
+## __화살표함수로 변환하기__
+
+문제1
+```js
+function addFn(x, y){
+    console.log(x+y);
+}
+```
+```js
+const addFn = (x, y) => console.log(x+y);
+addFn(10, 20);
+//30
+```
+문제2
+```js
+function saveFn(money){
+    let totMoney = 30000;
+    totMoney += money;
+
+    console.log(`현재 통장잔액은 ${totMoney}원 입니다. <br />`);
+}
+```
+```js
+const saveFn = money => {
+    let totMoney = 30000;
+    totMoney += money;
+    console.log(`현재 통장잔액은 ${totMoney}원 입니다. <br />`);
+}
+saveFn(3000);
+//현재 통장잔액은 33000원 입니다.
+```
 
 <br>
 
