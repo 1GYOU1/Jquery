@@ -37,5 +37,5 @@ function myFn(x, y){
     console.log(x + y);
 }
 
-myFn(1, 2);
+myFn(10, 20);//30
 ```
