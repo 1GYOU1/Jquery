@@ -39,3 +39,60 @@ function myFn(x, y){
 
 myFn(10, 20);//30
 ```
+<br>
+
+## __매개변수, 지역변수, 전역변수, scope__
+
+문제) 현재 나의 통장잔액은 3만원이다.
+
+저금할 금액을 전달받아 합산해서 총액을 알려주는 함수를 선언하고 호출하고 싶다.
+
+
+콘솔창에 출력 => "현재 통장잔액은 35000원 입니다."
+=> 코딩시 필요한 변수는?
+
+1. 함수변수명 : saveFn
+2. 총액 : totMoney
+3. 입금액 : money 
+
+
+console.log(totMoney);
+
+에러 totMoney is not defined
+지역변수 - 함수 안에서 선언한 변수는 함수 바깥에서 사용할 수 없다.
+
+console.log(money)
+에러 - 매개변수는 지역변수 개념이다.
+
+```js
+function saveFn(money){
+    let totMoney = 30000;
+    totMoney = totMoney + money;
+    console.log('현재 통장잔액은 '+ totMoney +'원 입니다.')
+}
+
+saveFn(5000);
+saveFn(5000);
+```
+![1gyou1](https://user-images.githubusercontent.com/90018379/179385737-21e3a3ea-7fcc-4993-a06f-2413a9a2555c.PNG)
+
+
+현재 Problen - 여러번 입금시 총액이 맞지 않음 => 업그레이드(Refactoring) 개선
+
+전역변수 - 함수바깥에서 선언한 전역변수는 함수 안에서 하용할 수 있다.
+
+```js
+let someMoney = 30000;
+
+function bankFn(money){
+    someMoney += money;
+    console.log('현재 통장잔액은 '+ someMoney +'원 입니다.')
+}
+bankFn(1000);
+bankFn(1000);
+console.log(someMoney);//출력가능
+```
+
+![1gyou1](https://user-images.githubusercontent.com/90018379/179385761-e9147c95-51dc-45bc-aa29-8dccf9a9c381.PNG)
+
+
