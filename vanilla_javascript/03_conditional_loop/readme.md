@@ -187,8 +187,8 @@ const age = parseInt(prompt('나이를 입력하세요.'));
 
 <br>
 
+문제1) 'test' 문자열을 10번 출력하기.
 ```js
-//화면에 'test' 문자열을 10번 출력하기.
 console.log('test');
 
 let i = 1;
@@ -197,4 +197,63 @@ while(i < 10){
     i++;
     console.log((i)+'test');
 }
+```
+
+문제2) j값이 현재 0인데 3보다 작을때까지 반복해서 콘솔창이 i값을 출력
+```js
+console.log('test');
+
+let j = 0;
+
+while(j < 3){
+    j++;
+    console.log(j);
+}
+```
+
+문제3) 1~100까지의 합
+```js
+let sum=0;
+let n=1;
+```
+방법1
+```js
+while(n<=100){
+    sum += n;//1+2+3+...+100
+    n++;
+}
+
+console.log(`sum = ${sum}`);//5050
+```
+방법2 - break 키워드는 제어문을 탈출
+```js
+ while(true){
+    sum += n;
+    n++;
+
+    if(n>100){
+        break;
+    }
+}
+
+console.log(`sum = ${sum}`);//5050
+```
+
+문제4) 10이하의 짝수, 홀수 합 구하기
+```js
+let oddSum = 0;//홀수합
+let evenSum = 0;//짝수합
+let n = 0;
+
+while(n <= 10){
+    if(n%2 === 0){
+        evenSum += n;
+    } else{
+        oddSum += n;
+    }
+    n++;
+}
+
+console.log(`홀수의 합 = ${oddSum}`);//1+3+5+7+9 = 25
+console.log(`짝수의 합 = ${evenSum}`);//2+4+6+8+10 = 30
 ```

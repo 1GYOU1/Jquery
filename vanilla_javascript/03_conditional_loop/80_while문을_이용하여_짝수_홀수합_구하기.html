@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>80_while문을_이용하여_짝수_홀수합_구하기</title>
+</head>
+<body>
+    <h1>80_while문을_이용하여_짝수_홀수합_구하기</h1>
+    <script>
+        let oddSum = 0;//홀수합
+        let evenSum = 0;//짝수합
+        let n = 0;
+
+        //while문을 이용해서 값 구하기
+
+        while(n <= 10){
+            if(n%2 === 0){
+                evenSum += n;
+            } else{
+                oddSum += n;
+            }
+            n++;
+        }
+
+        console.log(`홀수의 합 = ${oddSum}`);
+        console.log(`짝수의 합 = ${evenSum}`);
+    </script>
+</body>
+</html>
