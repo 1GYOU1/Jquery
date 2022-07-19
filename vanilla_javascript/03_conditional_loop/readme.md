@@ -80,7 +80,7 @@ if(100 >= score && score >= 90 ){
 }else if(70 > score && score >= 60){
     alert('4등급');
 }else if(60 > score){
-    alert('60점 이하이면 "재평가 대상입니다."');
+    alert('재평가 대상입니다.');
 }else{
     alert('다시 입력해주세요.')
 }
