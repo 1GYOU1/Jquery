@@ -255,8 +255,6 @@ console.log(arrSome[arrSome.length-1]);//도시락
 
 배열의 맨 마지막 인덱스 번호는 항상(배열명.length-1)
 
-<br>
-
 ```js
 arrSome.push('규오니');
 console.log(arrSome[arrSome.length-1]);
@@ -269,8 +267,6 @@ console.log('arrSome 배열의 길이는 '+arrSome.length+' 이다.');
 
 만약 없는 인덱스로 출력을 시도하면 undefined
 
-<br>
-
 ```js
 console.log(arrSome[100]);//undefined
 ```
@@ -278,8 +274,6 @@ console.log(arrSome[100]);//undefined
 <br>
 
 배열변수의 값 변경
-
-<br>
 
 ```js
 arrSome[0] = '과자';
@@ -289,8 +283,6 @@ arrSome[1] = '사탕';
 <br>
 
 for 반복문을 이용하여 배열 출력
-
-<br>
 
 ```js
 for(let i = 0; i < arrSome.length; i++){
@@ -304,8 +296,6 @@ for(let i = 0; i < arrSome.length; i++){
 
 빈 배열 선언후 출력
 
-<br>
-
 ```js
 const city = [];
 
@@ -317,8 +307,6 @@ city[2] = '대전';
 <br>
 
 while 반복문으로 배열을 출력
-
-<br>
 
 ```js
 let i=0;
@@ -333,8 +321,6 @@ while(i<city.length){
 <br>
 
 배열인지 아닌지 확인하는 방법
-
-<br>
 
 ```js
 console.log(`arrSome은 배열일까? ${typeof arrSome}`);//object
@@ -371,8 +357,6 @@ const gyou1 = {
 
 객체변수에 저장된 데이터 출력방법은 = 객체변수명.프로퍼티명
 
-<br>
-
 ```js
 console.log(gyou1.nation, gyou1.name, gyou1.age);//korea 규워니 27
 console.log(gyou1.nation);//korea
@@ -383,8 +367,6 @@ console.log(gyou1.age);//27
 <br>
 
 who와 gyou1은 같은 주소값을 가지게 된다.
-
-<br>
 
 ```js
 const who = gyou1;
@@ -397,8 +379,6 @@ console.log(who.age);//27
 <br>
 
 값 바꾸기
-
-<br>
 
 ```js
 who.nation = '미국';
@@ -418,8 +398,6 @@ console.log(gyou1.age);//27
 <br>
 
 객체의 프로퍼티 추가
-
-<br>
 
 ```js
 who.address = '서울시 강남구';
@@ -459,8 +437,6 @@ property에 하이픈(-)이 포함되어 있으면 대괄호[ ]표기법으로 �
 
 객체의 프로퍼티에 접근
 
-<br>
-
 ```js
 console.log(iAm.name);//1gyou1
 console.log(iAm.nation);//korea
@@ -470,8 +446,6 @@ console.log(iAm['foot-size']);//230
 <br>
 
 객체의 property 삭제
-
-<br>
 
 ```js
 delete iAm.name;
@@ -508,8 +482,6 @@ const gyou1 = {
 
 .(점)없이 호출하면 함수
 
-<br>
-
 ```js
 gyou1.info();
 //나는 서울에 사는 27살 규원입니다.
@@ -536,8 +508,6 @@ key와 value의 이름이 동일하면 key를 생략할 수 있다.
 
 이때 key는 value의 이름으로 자동 생성됨.
 
-<br>
-
 ```js
 const gyou1 = {
     name,//name : name 축약
@@ -549,8 +519,6 @@ console.log(gyou1);
 <br>
 
 객체에서 메소드를 정의할 때 function 키워드를 생략한 축약표현 가능
-
-<br>
 
 ```js
 const coin = {
