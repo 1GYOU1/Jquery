@@ -1,13 +1,21 @@
 ## __사용자정의 생성자함수__
 
+<br>
+
 ```js
 const hong = {name:'홍길동', age:20};
 const duly = {name:'둘리', age:7};
 const hani = {name:'하니', age:15};
 ```
+
+<br>
+
 위와 같이 데이터 구조가 같은 객체가 여러개 필요할 때 생성자함수 사용을 고려해 볼 수 있다. 
 
 생성자함수는 {key:value}의 형태로 된 객체변수를 생성하는 또 다른 방법이다.
+
+<br>
+
 ```js
 function Character(name, age){
     this.name = name;

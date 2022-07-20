@@ -1,4 +1,7 @@
 ## __일괄 반복처리__
+
+<br>
+
 함수의 형태
 <pre>
 function 함수명(매개변수1, 매개변수2, 매개변수3){
@@ -7,6 +10,7 @@ function 함수명(매개변수1, 매개변수2, 매개변수3){
 
 실행방법(호출) - 함수명(인자1, 인자2, 인자3);
 </pre>
+
 <br>
 
 함수의 선언
@@ -18,6 +22,9 @@ function coffeeFn(shoot,ice,cup){
     console.log(`커피 한잔 완성`);
 }
 ```
+
+<br>
+
 함수호출
 ```js
 coffeeFn(1,1,1);
@@ -30,7 +37,11 @@ coffeeFn(2,2,3);
 
 ![1gyou1](https://user-images.githubusercontent.com/90018379/179383625-a151afba-e26a-4d8e-8450-b3ee5484a003.PNG)
 
-문제1) 두개의 숫자를 매개변수명 x, y에 전달받아 그 합을 출력하는 함수를 선언하고 호출하시오.
+<br>
+
+__문제1)__ 
+
+두개의 숫자를 매개변수명 x, y에 전달받아 그 합을 출력하는 함수를 선언하고 호출하시오.
 
 ```js
 function myFn(x, y){
@@ -46,7 +57,11 @@ myFn(10, 20);//30
 
 ## __매개변수, 지역변수, 전역변수, scope__
 
-문제) 현재 나의 통장잔액은 3만원이다.
+<br>
+
+__문제)__ 
+
+현재 나의 통장잔액은 3만원이다.
 
 저금할 금액을 전달받아 합산해서 총액을 알려주는 함수를 선언하고 호출하고 싶다.
 
@@ -67,6 +82,8 @@ console.log(totMoney);
 console.log(money)
 에러 - 매개변수는 지역변수 개념이다.
 
+<br>
+
 ```js
 function saveFn(money){
     let totMoney = 30000;
@@ -79,10 +96,13 @@ saveFn(5000);
 ```
 ![1gyou1](https://user-images.githubusercontent.com/90018379/179385737-21e3a3ea-7fcc-4993-a06f-2413a9a2555c.PNG)
 
+<br>
 
 현재 Problen - 여러번 입금시 총액이 맞지 않음 => 업그레이드(Refactoring) 개선
 
 전역변수 - 함수바깥에서 선언한 전역변수는 함수 안에서 하용할 수 있다.
+
+<br>
 
 ```js
 let someMoney = 30000;
@@ -105,14 +125,20 @@ console.log(someMoney);//출력가능
 
 ## __return 값이 있는 함수__
 
+<br>
+
 return : 함수의 종료를 의미하며, 그 이후에 나온 코드는 실행 X
 
 return 값 : 호출한 곳에 '반환값'을 돌려준다.
 
 return : 실행 순서의 관점에서 보면 호출한 곳으로 돌아간다.
 
+<br>
 
-문제1)두개의 값을 전달받아 곱을 리턴하는 함수 kobFn(a,b)를 선언하세요.
+__문제1)__
+
+두개의 값을 전달받아 곱을 리턴하는 함수 kobFn(a,b)를 선언하세요.
+
 ```js
 function kobFn(a,b) {
     return a*b;
@@ -122,7 +148,12 @@ const result = kobFn(7,111);
 console.log(`result = ${result}`);
 //result = 777
 ```
-문제2) 두개의 수를 one, two에 전달받아 그 합을 return 하는 화살표함수 habFn를 선언하시오. 리턴받은 값을 sum 변수에 할당후 콘솔창에 "sum = 100" 과 같은 형식으로 출력하시오.
+
+<br>
+
+__문제2)__ 
+
+두개의 수를 one, two에 전달받아 그 합을 return 하는 화살표함수 habFn를 선언하시오. 리턴받은 값을 sum 변수에 할당후 콘솔창에 "sum = 100" 과 같은 형식으로 출력하시오.
 ```js
 function habFn(one, two){
     return one+two;
@@ -139,6 +170,8 @@ console.log(`sum = ${sum}`);
 
 ## __선언식 함수(기명함수)__
 
+<br>
+
 ```js
 function sumFn(a,b){
     console.log(a+b);
@@ -149,9 +182,14 @@ sumFn(100,200);//300
 <br>
 
 ## __표현식함수(익명함수)__
+
+<br>
+
 표현식 함수는 변수의 익명함수를 할당하는 방식
 
 익명함수는 이름이 없는 함수를 의미한다. -> function(){}
+
+<br>
 
 ```js
 const subFn = function(a,b){
@@ -166,9 +204,17 @@ subFn(300,200);100
 <br>
 
 ## __화살표함수__
+
+<br>
+
 함수 선언 방식을 간소화한 함수이다.
 
-문제) 전달받은 두 값의 곱를 출력하는 화살표함수 mulFn을 선언하시오.
+<br>
+
+__문제)__ 
+
+전달받은 두 값의 곱를 출력하는 화살표함수 mulFn을 선언하시오.
+
 ```js
 const mulFn = (a,b) =>{
     console.log(a*b)
@@ -178,6 +224,8 @@ mulFn(10,7);//70
 <br>
 
 ## __화살표함수 특징__
+
+<br>
 
 1. 익명함수를 변수에 대입해서 사용
 ```js
@@ -203,7 +251,10 @@ console.log(dinner('스테이크'));
 
 ## __화살표함수로 변환하기__
 
-문제1
+<br>
+
+__문제1__
+
 ```js
 function addFn(x, y){
     console.log(x+y);
@@ -214,7 +265,10 @@ const addFn = (x, y) => console.log(x+y);
 addFn(10, 20);
 //30
 ```
-문제2
+<br>
+
+__문제2__
+
 ```js
 function saveFn(money){
     let totMoney = 30000;
@@ -240,9 +294,13 @@ saveFn(3000);
 
 ## __콜백함수__
 
+<br>
+
 콜백 함수는 어떤 함수를 실행시키고 난 이후에 결과를 받을 함수 혹은, 그 다음에 실행될 함수를 의미합니다.
 
 어떤 함수의 매개변수로 또 다른 함수를 전달할 수 있는데, 주로 콜백함수는 매개변수 형태로 전달받아 실행시키게 된다.
+
+<br>
 
 ```js
 //콜백으로 사용할 myFn 함수

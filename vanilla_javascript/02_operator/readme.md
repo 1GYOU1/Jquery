@@ -12,24 +12,29 @@ let result = num_1 + num_2;
 
 //템플릿 문자열을 이용해서 출력
 console.log(`result = ${result}`);
+```
 
-console.log('----------')
+<br>
 
+__문제1)__ 
 
-//문제1
-//10을 할당받는 상수 x와 3을 할당받는 상수 y를 선언하시오.
-
+10을 할당받는 상수 x와 3을 할당받는 상수 y를 선언하시오.
+```js
 const x = 10;
 const y = 3;
 
 console.log(x+y);
+```
 
-console.log('----------')
+<br>
 
-//문제2
-//x, y 의 합을 상수 hab에 대입하는 코드를 작성후 콘솔창에 출력하시오.
-//출력형식 : hab = 20
+__문제2)__ 
 
+x, y 의 합을 상수 hab에 대입하는 코드를 작성후 콘솔창에 출력하시오.
+
+출력형식 : hab = 20
+
+```js
 const hab = x+y;
 
 console.log('hab =',hab);
@@ -77,19 +82,20 @@ console.log(typeof result);//변수의 타입확인
 
 <br>
 
-```js
-let busCard = 1000;
-let money = 15000;
+버스카드에 15000원을 충전하면 얼마가 될까?
 
-//버스카드에 15000원을 충전하면 얼마가 될까?
-
-/*
 점원이 버스카드를 충전기에 삽입한다.
 충전금액을 입력한다.
 
 기존 버스카드에 남아있는 잔액을 읽어와 충전금액과 합한다.
 합산한 금액을 버스카드에 대입한다.
-*/
+
+<br>
+
+```js
+let busCard = 1000;
+let money = 15000;
+
 busCard = busCard + money;//왼쪽 = 으로 넘겨줌. 자기자신에게 할당.//16000
 busCard += money;//약식표현법(복합대입연산자)//31000
 
@@ -227,6 +233,8 @@ console.log(`weight : ${typeof weight} - ${weight}`);//number - 75.9
 __?? (Null 병합 연산자)__
 
 왼쪽 피연산자의 값이 null 또는 undefined 이면 오른쪽 피연산자를 반환(return)하고, 그렇지 않으면 왼쪽 피연산자의 값을 반환하는 논리 연산자이다.
+
+<br>
 
 ```js
 //인터넷으로 데이터를 받아와서 저장

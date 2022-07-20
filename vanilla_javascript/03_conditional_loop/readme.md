@@ -57,7 +57,6 @@ console.log(`num = ${typeof num}`);//number
 ## __다중if(시험등급)__
 
 <br>
-문제)
 
 수학점수 score 를 입력받고,<br>
 90<=score<=100  이면 "1등급",<br>
@@ -159,9 +158,13 @@ if(true){
 (true) ? console.log('참') : console.log('거짓');//참
 ```
 
+<br>
+
 변수에 어떤 값을 대입할 때 
 
-삼항연산자 사용 사례
+삼항연산자 사용 사례 &downarrow;
+
+<br>
 
 ```js
 //student 변수에 age 값의 조건에 따라 다른 값을 저장(성인, 어린이)
@@ -203,7 +206,10 @@ const age = parseInt(prompt('나이를 입력하세요.'));
 
 <br>
 
-문제1) 'test' 문자열을 10번 출력하기.
+__문제1)__ 
+
+'test' 문자열을 10번 출력하기.
+
 ```js
 console.log('test');
 
@@ -215,7 +221,11 @@ while(i < 10){
 }
 ```
 
-문제2) j값이 현재 0인데 3보다 작을때까지 반복해서 콘솔창이 i값을 출력
+<br>
+
+__문제2)__ 
+
+j값이 현재 0인데 3보다 작을때까지 반복해서 콘솔창이 i값을 출력
 ```js
 console.log('test');
 
@@ -227,12 +237,20 @@ while(j < 3){
 }
 ```
 
-문제3) 1~100까지의 합
+<br>
+
+__문제3)__ 
+
+1~100까지의 합
 ```js
 let sum=0;
 let n=1;
 ```
-방법1
+
+<br>
+
+__방법1__
+
 ```js
 while(n<=100){
     sum += n;//1+2+3+...+100
@@ -241,7 +259,12 @@ while(n<=100){
 
 console.log(`sum = ${sum}`);//5050
 ```
-방법2 - break 키워드는 제어문을 탈출
+
+<br>
+
+__방법2__ - break 키워드는 제어문을 탈출
+
+
 ```js
  while(true){
     sum += n;
@@ -255,7 +278,12 @@ console.log(`sum = ${sum}`);//5050
 console.log(`sum = ${sum}`);//5050
 ```
 
-문제4) 10이하의 짝수, 홀수 합 구하기
+<br>
+
+__문제4)__ 
+
+10이하의 짝수, 홀수 합 구하기
+
 ```js
 let oddSum = 0;//홀수합
 let evenSum = 0;//짝수합
@@ -280,7 +308,10 @@ console.log(`짝수의 합 = ${evenSum}`);//2+4+6+8+10 = 30
 
 ## __for문__
 
+<br>
+
 for반복문은 while문을 축약해서 표현
+
 <br>
 
 ```js
@@ -298,14 +329,24 @@ for(let n=0;n<10;n++;){
     console.log(n);
 }
 ```
-문제1) 0~9까지 콘솔창에 출력
+<br>
+
+__문제1)__ 
+
+0~9까지 콘솔창에 출력
+
 ```js
 for(let i=0;i<10;i++){
             console.log(`i = ${i}`);
         }
 ```
 
-문제2) for문을 이용하여 1~100까지의 합을 구하시오
+<br>
+
+__문제2)__ 
+
+for문을 이용하여 1~100까지의 합을 구하시오
+
 ```js
 let sum=0;
 
@@ -315,7 +356,11 @@ let sum=0;
         console.log(`1~100까지의 합은 ${sum}`);
         //1~100까지의 합은 5050
 ```
-방법1)
+
+<br>
+
+__방법1)__
+
 ```js
 let oddSum=0;
 
@@ -326,7 +371,11 @@ for(i=1;i<100;i++){
     }
 }
 ```
-방법2)
+
+<br>
+
+__방법2)__
+
 ```js
 let oddSum=0;
 
@@ -334,7 +383,11 @@ for(let i=1;i<100;i+=2){
         oddSum += i;
     }
 ```
+
+<br>
+
 짝수의 합 구하기
+
 ```js
 let evenSum=0;
 
@@ -342,11 +395,17 @@ for(let i=2;i<100;i+=2){
         evenSum += i;
     }
 ```
-__continue__
+
+<br>
+
+<b><h3>continue</h3></b>
 
 continue를 만나는 순간 이후의 코드를 실행하지 않고 건너뛴다.
 
 for문에서 사용할 경우 i++ 증감식 부분으로 이동시킨다.
+
+<br>
+
 ```js
 for(let i = 1; i < 10; i++){
     if(i===5){
@@ -355,13 +414,26 @@ for(let i = 1; i < 10; i++){
     //i = 5 생략하고 진행.
 }
 ```
+
+<br>
+
 한줄이면 중괄호 생략하고 쓸 수 있음.
+
+<br>
+
 ```js
 if(i===5) continue;
 ```
-__break__
+
+<br>
+
+<b><h3>break</h3></b>
 
 break는 for문을 아예 끝냄.
+
+<br>
+
+
 ```js
 for(let i = 1; i < 10; i++){
     if(i===8) break;
