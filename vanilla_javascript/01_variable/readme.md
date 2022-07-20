@@ -220,8 +220,9 @@ console.log(arrSome[5]);//null
 
 배열의 끝에 데이터를 추가
 
-__방법1)__
+<br>
 
+__방법1)__
 
 ```js
 arrSome[6] = '햄버거';
@@ -230,12 +231,16 @@ console.log(arrSome[6]);//햄버거
 
 ![캡처3](https://user-images.githubusercontent.com/90018379/179382882-e74717c7-189e-4a5e-9622-398d093d83f7.PNG)
 
+<br>
+
 __방법2)__
 ```js
 arrSome.push('푸쉬맨');
 console.log(arrSome[7]);//푸쉬맨
 ```
 ![1gyou1](https://user-images.githubusercontent.com/90018379/179382898-a6f53e84-d3ce-496e-9eeb-f97b4e0cf4eb.PNG)
+
+<br>
 
 __방법3)__
 ```js
