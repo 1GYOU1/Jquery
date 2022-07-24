@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>10_인라인방식의_이벤트처리</title>
+</head>
+<body>
+    <div id="wrap">
+        <h1 onclick="msgFn('복권 당첨')">클릭하면 복권당첨 !!</h1>
+
+        <!-- 문제) 이미지를 클릭했을 때 msgFn 함수에 '독도는 우리땅' 문자열을 전달하시오 -->
+        <p>
+            <img onclick="msgFn('독도는 우리땅')" src="./../images/kakaofriends.png" alt="#">    
+        </p>
+    </div>
+    
+    <script>
+        const msgFn = function(msg){
+            alert(msg);
+        };
+        
+        // msgFn();
+    </script>
+</body>
+</html>

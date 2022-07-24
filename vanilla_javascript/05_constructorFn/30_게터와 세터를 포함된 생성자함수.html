@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>30_게터와 세터를 포함된 생성자함수</title>
+</head>
+<body>
+    <h1>게터와 세터를 포함된 생성자함수</h1>
+    
+    <script>
+
+    const Profile = function(id, name){
+                this.id = id;
+                this.name = name;
+            };
+
+            Profile.prototype = {
+                setId : function(id){
+                    this.id = id;
+                },
+
+                getId : function(){
+                    return this.id;
+                },
+
+                setName : function(name){
+                    this.name = name;
+                },
+
+                getName : function(){
+                    return this.name;
+                },
+
+                info : function(){
+                    console.log(`당신의 이름은 ${this.name}이고, id는 ${this.id} 입니다.`);
+                }
+            };
+        
+            const hong = new Profile('hgd', '홍길동');
+            hong.info();
+            //당신의 이름은 홍길동이고, id는 hgd 입니다.
+
+            hong.setId('duly');
+            hong.setName('둘리');
+
+            hong.info();
+            //당신의 이름은 둘리이고, id는 duly 입니다.
+
+            console.log(hong.getId());
+            //duly
+            console.log(hong.getName());
+            //둘리
+
+    </script>
+</body>
+</html>

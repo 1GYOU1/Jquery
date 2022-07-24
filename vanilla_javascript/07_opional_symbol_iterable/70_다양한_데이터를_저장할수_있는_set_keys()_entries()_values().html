@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>70_다양한_데이터를_저장할수_있는_set_keys()_entries()_values()</title>
+</head>
+<body>
+    <h1></h1>
+    
+    <script>
+        /*
+            Set은 중복을 허용하지 않는 값을 모아놓은 특별한 컬렉션이다.
+            Set은 key가 필요없으며, value만 저장하는 자료구조이다.
+        */
+
+        const mySet = new Set();
+
+        mySet.add('규원');
+        mySet.add('규투');
+        mySet.add('규쓰리');
+        mySet.add('규포');
+        mySet.add('규파이브');
+        
+        //Set은 유일무이한 값만 저장됨(중복허용X)
+        console.log(`mySet.size = ${mySet.size}`);
+        //mySet.size = 5
+
+        //for~of 반복문을 이용한 출력
+        for(let user of mySet){
+            console.log(user)
+        }
+        //규원
+        //규투
+        //규쓰리
+        //규포
+        //규파이브
+
+        console.log('----')
+
+        let keys = mySet.keys();
+        console.log(Array.isArray(keys))//false
+        console.log(typeof keys)//object
+        for(let key of keys){
+            console.log(key);
+        }
+        //규원
+        //규투
+        //규쓰리
+        //규포
+        //규파이브
+
+        console.log('----')
+
+        let values = mySet.values();
+        for(let value of values){
+            console.log(value)
+        }
+        //규원
+        //규투
+        //규쓰리
+        //규포
+        //규파이브
+
+        console.log('----')
+
+        //mySet의 항목을 열거할 수 있는 iterator 객체를 반환
+        const iterator = mySet.entries();
+        for(let i=0;i<mySet.size;i++){
+            console.log(iterator.next());
+        }
+        /*
+            {value: Array(2), done: false}
+            done: false
+            value: (2) ['규원', '규원']
+        */
+       /*
+            {value: Array(2), done: false}
+            done: false
+            value: (2) ['규투', '규투']
+        */
+       /*
+            {value: Array(2), done: false}
+            done: false
+            value: (2) ['규쓰리', '규쓰리']
+        */
+       /*
+            {value: Array(2), done: false}
+            done: false
+            value: (2) ['규포', '규포']
+        */
+       /*
+            {value: Array(2), done: false}
+            done: false
+            value: (2) ['규파이브', '규파이브']
+        */
+
+    </script>
+</body>
+</html>

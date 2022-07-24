@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>10_배열를_순환하며_탐색한_정보를_출력하는_for_of</title>
+</head>
+<body>
+    <h1>어드밴스 for ~ of 반복문</h1>
+    
+    <script>
+        //형태 : for(let item of 배열명){~}
+
+        const characters = ['규원','예진','태화'];
+
+        let cList = ''; //만들 최종 문자열 '규원 예진 태화';
+
+        //1. 전통적인 for문
+        for(let i=0; i<characters.length; i++) {
+            cList += characters[i] + ' ';//한칸 공백 넣어주기
+        }
+        console.log(`cList = ${cList}`)//cList = 규원 예진 태화
+
+        //2. for of 반복문으로 출력
+        for(let item of characters){
+            console.log(item)
+            // 규원
+            // 예진
+            // 태화
+        }
+
+        //3. 한줄로 출력
+        let str = '';
+        for(let item of characters){
+            str += item
+        }
+        console.log(str)//규원예진태화
+    </script>
+</body>
+</html>

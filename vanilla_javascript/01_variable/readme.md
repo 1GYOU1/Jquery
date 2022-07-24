@@ -533,3 +533,76 @@ const coin = {
 coin.go();//500원 앞
 coin.back();//500원 뒤
 ```
+
+<br>
+
+## __구조분해할당, 비구조할당__
+
+<br>
+
+__1. 배열 구조분해(비구조) 할당__
+```js
+ const pet = ['강아지', '고양이', '거북이', '달팽이', '토끼'];
+```
+배열에 담긴 데이터를 꺼내서 별개의 변수에 저장해야 할 일이 발생
+```js
+// const dog = pet[0];
+// const cat = pet[1];
+// const turtle = pet[2];
+// const snail = pet[3];
+// const rabbit = pet[4];
+```
+과정을 간소화하는 새로운 문법이 등장
+```js
+const [dog, cat, turtle, snail, rabbit] = pet;
+
+ //확인
+console.log(dog, cat, turtle, snail, rabbit);
+//강아지 고양이 거북이 달팽이 토끼
+```
+<br>
+
+__2. 객체 구조분해(비구조) 할당__
+```js
+const person = {
+    username : '1gyou1',
+    age : 27,
+    email : '1gyou1@naver.com'
+};
+```
+배열에 담긴 데이터를 꺼내서 별개의 변수에 저장해야 할 일이 발생
+```js
+// const username = person.username;
+// const age = person.age;
+// const hobby = person.hobby;
+```
+위 과정을 간소화하는 새로운 문법이 등장
+```js
+const {username, age, email} = person
+
+//확인
+console.log(username, age, email);
+//1gyou1 27 1gyou1@naver.com
+```
+<br>
+
+__3. 구조분해 할당을 통한 두 값의 맞교환__
+
+```js
+let a=3, b=5;
+```
+1) 옛날방식
+```js
+let tmp = a;
+//임시변수를 이용해서 a값 저장
+
+a=b;
+b=tmp;
+
+console.log(a,b)//a=5, b=3
+```
+2) 최신방식
+```js
+[a,b] = [b,a];
+console.log(a,b)//a=5, b=3
+```
