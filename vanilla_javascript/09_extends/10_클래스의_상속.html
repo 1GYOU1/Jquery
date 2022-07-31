@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>10_클래스의_상속</title>
+</head>
+<body>
+    <h1>클래스의 상속</h1>
+    <pre>
+
+        상속이란?
+
+        하위클래스가 상위클래스를 상속받았을 때,
+        하위클래스는 상위클래스의 모든 권한을 갖게 된다.
+
+        상속키워드 extends
+
+        1. 기존의 클래스를 재사용해서 새로운 클래스를 작성하는 것
+        2. 두 클래스를 조상과 자손으로 관계를 맺어주는 것
+        3. 자손은 조상의 모든 프로퍼티를 상속받는다.
+        4. 상속개념을 적용하면 재사용성을 높이고 관리가 용이
+        5. 단일 상속의 개념 - 상속받을 수 있는 클래스는 단 하나
+
+    </pre>
+    <script>
+        //할아버지 클래스
+        class Car{
+            carKraksion(){
+                console.log('빵빵 !@')
+            }
+        }
+        
+        //아빠 클래스
+        class Sedan extends Car{
+            sedanKraksion(){
+                console.log('빠바방 !@')
+            }
+        }
+        
+        //자식 클래스
+        class K7 extends Sedan{
+            K7Kraksion(){
+                console.log('빵빠바방 !@')
+            }
+        }
+
+        //상속한 K7 클래스의 인스턴스 생성
+        const myCar = new K7();
+
+        myCar.K7Kraksion();
+        
+    </script>
+</body>
+</html>

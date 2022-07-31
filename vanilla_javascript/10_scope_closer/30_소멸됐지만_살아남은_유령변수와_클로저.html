@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>30_소멸됐지만_살아남은_유령변수와_클로저</title>
+</head>
+<body>
+    <h1>유령변수와 클로저</h1>
+    
+    <script>
+        /*
+            일반적으로 지역변수는 함수가 실행되는 시점에 메모리가 생성되고, 
+            종료될때 소멸된다.
+        */
+        const closerFn = function(){
+            let score = 60;
+
+            return function(){
+                score++;
+                console.log(score);
+            };
+        };
+
+        /*
+            그런데, 위 예제 처럼 지역변수를 로직에서 활용하는 함수를 리턴하면 소멸되어야 할 지역변수가 소멸되지 않고 리턴된 함수 안에서 살아남아 계속 사용할 수 있게 된다.
+
+            이때 살아남은 변수를 '유령변수'라 할 수 있으며, 
+            리턴된 함수를 '클로저'라고 한다.
+        */
+        const printScore = closerFn();
+
+        printScore();//61
+        printScore();//62
+        printScore();//63
+        printScore();//64
+        printScore();//65
+        printScore();//66
+    </script>
+</body>
+</html>

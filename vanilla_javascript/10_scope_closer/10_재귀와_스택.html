@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>10_재귀와_스택</title>
+</head>
+<body>
+    <h1>재귀와 스택</h1>
+    
+    <script>
+        //1~100까지의 합 = 5050
+        //1~100까지의 합을 구하는 재귀함수 sum
+        //재귀함수 = 자기 자신을 호출
+
+        function sum(n){//100+99+...+3+2+1 구하기
+            if(n<=1) return 1;//종료조건
+                return n + sum(n-1);//n-1 = 99  //자기 자신을 호출
+            }
+        
+
+        const result = sum(100);
+        console.log(result)//5050
+
+        /*
+        
+            재귀함수의 경우, 
+            100부터 순회한 다음 호출스택에 쌓여 있는 값을 처리해 나가게 되는데
+            스택(Stack)은 LIFO(Last In Fist Out) 방식이기 때문에
+            제일 마지막에 반환된 1부터 100까지 순차적으로 더해서 값을 반환하게 된다.
+
+            위 예제는 100+99+..+2+1 순으로 들어왔기 때문에
+            나갈때는 1부터 나간다는 얘기.
+            
+        */
+    </script>
+</body>
+</html>

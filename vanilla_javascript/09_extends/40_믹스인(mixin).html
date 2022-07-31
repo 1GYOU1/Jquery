@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>40_믹스인(mixin)</title>
+</head>
+<body>
+    <h1>이미 구현된 메소드를 가져다 class에서 사용하는 기법</h1>
+    
+    <script>
+
+        const sayMixin = {
+            sayHi : function(){
+                console.log('sayHi() 메소드 호출');
+                console.log(`Hello ${this.name}`);
+            },
+            sayBye : function(){
+                console.log('sayBye() 메소드 호출');
+                console.log(`Bye ${this.name}`);
+            }
+        }
+        
+        class User{
+            name;
+            constructor(name){
+                this.name = name;
+            }
+        }
+
+        //Mixin 기법으로 메소드복사
+        Object.assign(User.prototype, sayMixin);
+
+        const gyou1 = new User('규원');
+        console.log(`gyou1.name = ${gyou1.name}`)//gyou1.name = 규원
+
+        //mixin 기법으로 연결한 메소드 호출
+        gyou1.sayHi();
+        //sayHi() 메소드 호출
+        //Hello 규원
+        gyou1.sayBye();
+        //sayBye() 메소드 호출
+        //Bye 규원
+    </script>
+</body>
+</html>

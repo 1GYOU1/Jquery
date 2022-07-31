@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM-Tree를 타고 이동할 수 있는 Node 속성</h1>
+    <dl>
+        <dt><strong>^0^</strong> ㅎㅎ</dt>
+        
+        <dd class="nation greeting">한국 - 안녕하세요</dd>
+        <dd class="nation greeting">중국 - 니하오</dd>
+        <dd class="nation greeting"><strong>부시족</strong> 리얼싸운드 -<strong>일렌트로캉막따따라바오리도? 따따라!</strong></dd>
+    </dl>   
+    
+    <script>
+        const $dl = document.querySelector('dl');
+
+        console.log('1. $dl의 자식태그 선택 =', $dl.children)
+        //배열형식
+        //1. $dl.children = HTMLCollection(4)
+
+        console.log('$dl.children =', $dl.children[0])
+        //<dt>...</dt>
+
+        console.log('2. $dl의 첫번째 자식태그 선택 =', $dl.firstElementChild)
+        //2. $dl의 첫번째 자식태그 선택 = <dt>...</dt>
+
+        console.log('3. $dl의 마지막 자식태그 선택 =', $dl.lastElementChild)
+        //3. $dl의 마지막 자식태그 선택 = <dd class="nation greting">...</dd>
+
+        //특정요소의 직계자식의 개수 파악
+        console.log('4. $dl의 직계자식 개수 = ',$dl.childElementCount);
+        console.log('5. $dl의 직계자식 개수 = ',$dl.children.length);
+        //4. $dl의 직계자식 개수 =  4
+
+        console.log('6. $dl의 직계부모 선택 = ',$dl.parentElement);
+        //body
+
+        console.log('7. $dl의 이전요소는 = ',$dl.previousElementSibling);
+        //<h1>DOM-Tree를 타고 이동할 수 있는 Node 속성</h1>
+
+        console.log('8. $dl의 다음요소는 = ',$dl.nextElementSibling);
+        //<script>부분이 나옴
+        
+
+    </script>
+</body>
+</html>

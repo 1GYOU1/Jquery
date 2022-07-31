@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>30_노드의 생성과 추가</title>
+</head>
+<body>
+    <h1></h1>
+    
+    <script>
+        /*
+            <h1 name = "규원" address="신당동">Hello 1GYOU1</h1>
+            만들기
+            
+            엄밀히 말해서 태그는 3가지의 Node로 이루어져 있다.
+                1. 요소노드 -> elementNode
+                2. 속성노드 -> attributeNode
+                3. 텍스트노드 -> textNode
+        */   
+
+        const $h1 = document.createElement('h1');//h1 요소노드 생성
+
+        //속성
+        $h1.setAttribute('name','규원');
+        $h1.setAttribute('address','신당동');
+
+        //텍스트노드
+        const $txt = document.createTextNode('Hello 1GYOU1')
+
+        $h1.appendChild($txt);//두개의 부품을 결합
+
+        document.body.appendChild($h1)//body에 추가
+
+    </script>
+</body>
+</html>

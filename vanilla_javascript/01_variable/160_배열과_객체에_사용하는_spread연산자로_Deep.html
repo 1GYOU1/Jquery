@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>160_배열과_객체에_사용하는_spread연산자로_Deep</title>
+</head>
+<body>
+    <h1>원본데이터를 훼손하지 않고 복사하는 spread 연산자</h1>
+    
+    <script>
+        //1. 배열에서 spread 연산자 사용법
+
+        const member = ['규원', '예진', '태화'];//주소값이 0X0101이라고 가정
+
+   
+        //아래 두줄과 같이 작성하면 ShallowCopy
+
+        // const newMember = member;//주소 값이 0X0101
+        // newMember.push('뀨');
+        
+        // console.log(member);//(4) ['규원', '예진', '태화', '뀨']
+        // console.log(newMember);//(4) ['규원', '예진', '태화', '뀨']
+
+
+        //--------------------------------------------------
+
+        //원본의 상태를 보존하는 DeepCopy (불변)
+
+        const newMember = [...member, '재희'];
+        newMember.push('뀨');
+
+        const nowMember = [...member, '철수', '영희', ...newMember];
+
+        
+        console.log('member = ',member);//(3) ['규원', '예진', '태화']
+        console.log('newMember = ',newMember);//(5) ['규원', '예진', '태화', '재희', '뀨']
+        console.log('nowMember = ',nowMember);//(10) ['규원', '예진', '태화', '철수', '영희', '규원', '예진', '태화', '재희', '뀨']
+
+
+        console.log('----');
+
+        //2. 객체에서 spread 연산자 사용법
+
+        const eBoy = {
+            kor : '국어'
+        };
+        const mBoy = {
+            kor : '국어',
+            eng : '영어'
+        };
+        const hBoy = {
+            kor : '국어',
+            eng : '영어',
+            math : '수학'
+        };
+
+        
+        //spread 연산자를 이용하면 원본객체의 데이터만 가져온다.
+        const eStudent = {
+            kor : '국어'
+        };
+
+        const mStudent = {
+            ...eStudent,
+            eng : '영어'
+        }
+
+        const hStudent = {
+            ...mStudent,
+            math : '수학'
+        }
+
+        console.log(hStudent)//{kor: '국어', eng: '영어', math: '수학'}
+    </script>
+</body>
+</html>
