@@ -606,3 +606,152 @@ console.log(a,b)//a=5, b=3
 [a,b] = [b,a];
 console.log(a,b)//a=5, b=3
 ```
+
+<br>
+
+----
+
+<br>
+
+## __값복사, 참조값복사 - DeepCopy, ShallowCopy__
+
+<br>
+
+__값 복사란?__
+
+두 개의 메모리가 존재하고 한쪽의 메모리에 있는 값이
+다른 메모리로 그 값만을 복사하는 행위를 말한다.
+    
+이 두 개의 메모리는 완전히 독립적인 상태이다.
+우리가 일반적으로 많이 하는 파일복사 값 복사에 해당한다. 
+    
+이렇게 두 변수가 완전히 독립성을 갖는 것을 <span style="background-color:#fff5b1">'깊은복사, Deep Copy'</span>라고 한다.
+
+<br>
+
+__참조값 복사란?__
+
+객체변수는 참조변수이며,
+참조변수의 할당은 참조값 값복사가 된다.
+    
+따라서 두 객체 변수는 같은 참조값(주소값)을 가지므로 서로 독립적이지 않다.
+즉, 같은 실체를 가리킨다.
+    
+이런 것을 <span style="background-color:#fff5b1">'얕은 복사, Shallow Copy'</span>라고 한다. 
+
+-> 주소 타고 값을 가져옴
+
+<br>
+
+```js
+const han = {
+    name : '규원',
+    age  : 27
+}
+```
+__객체의 얕은 복사 (Shallow Copy)__
+```js
+const gyou1 = han;//참조값 복사
+
+gyou1.name = '뀨';
+gyou1.age = 7;
+
+console.log(gyou1);
+//{name: '뀨', age: 7}
+console.log(han);
+//{name: '뀨', age: 7}
+```
+
+__객체의 깊은 복사 (Deep Copy)__
+
+- spread 연산자를 이용하여 가능
+- Object.assign(타겟, 원본) - 불변
+```js
+const gyou2 = {};
+Object.assign(gyou2, han);
+
+gyou2.address = '신당동';
+console.log('dyly =', han);//dyly = {name: '뀨', age: 7}
+
+//깊은 복사 ↓↓
+console.log('dyly =', gyou2);//dyly = {name: '뀨', age: 7, address: '신당동'}
+```
+
+<br>
+
+----
+
+<br>
+
+## __원본데이터를 훼손하지 않고 복사하는 spread 연산자__
+
+<br>
+
+<b>'배열'</b>에서 spread 연산자 사용법
+
+```js
+const member = ['규원', '예진', '태화'];
+```
+아래 두줄과 같이 작성하면 __ShallowCopy__
+```js
+const newMember = member;//원본 주소로 타고가서 가져옴
+newMember.push('뀨');
+
+console.log(member);//(4) ['규원', '예진', '태화', '뀨']
+console.log(newMember);//(4) ['규원', '예진', '태화', '뀨']
+```
+
+원본의 상태를 보존하는 __DeepCopy (불변)__
+
+```js
+const newMember = [...member, '재희'];
+newMember.push('뀨');
+
+const nowMember = [...member, '철수', '영희', ...newMember];
+
+console.log('member = ',member);//(3) ['규원', '예진', '태화']
+console.log('newMember = ',newMember);//(5) ['규원', '예진', '태화', '재희', '뀨']
+console.log('nowMember = ',nowMember);//(10) ['규원', '예진', '태화', '철수', '영희', '규원', '예진', '태화', '재희', '뀨']
+```
+
+<br>
+
+<b>'객체'</b>에서 spread 연산자 사용법
+
+```js
+const eBoy = {
+    kor : '국어'
+};
+const mBoy = {
+    kor : '국어',
+    eng : '영어'
+};
+const hBoy = {
+    kor : '국어',
+    eng : '영어',
+    math : '수학'
+};
+```
+- 비슷한 프로퍼티를 갖고 있는 서로 다른 세 객체
+- 생성할 때 프로퍼티가 많아도 모두 직접 타이핑해야 함.
+
+<br>
+
+spread 연산자를 이용하면 원본객체의 데이터만 가져온다.
+```js
+const eStudent = {
+    kor : '국어'
+};
+
+const mStudent = {
+    ...eStudent,
+    eng : '영어'
+}
+
+const hStudent = {
+    ...mStudent,
+    math : '수학'
+}
+
+console.log(hStudent)//{kor: '국어', eng: '영어', math: '수학'}
+```
