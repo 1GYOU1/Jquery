@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <h1>달에서 몸무게 구하기</h1>
+        <h2>지구에서 100kg인 무게가 왜 달에서는 17kg이 되는 걸까요? 바로 중력 때문입니다.</h2>
+    
+        <p style="line-height:40px;">
+          퀴즈) 달에서의 당신의 몸무게는? <br />
+          <button style="padding:10px 15px;">계산하기</button>
+        </p>
+    
+        <h3 class="result">달에서의 몸무게는 : <span>?</span> Kg</h3>
+      </div>
+    
+    <script>
+        document.querySelector('button').addEventListener('click', function() {
+            let weight = prompt('달에서의 당신의 몸무게는 ?', '몸무게를 입력해주세요.(kg)')
+            document.querySelector('.result > span').textContent = weight*0.17;
+        })
+
+    </script>
+
+<!-- 쌤 버전 -->
+    <!-- <script>
+        const $btn = document.querySelector('button');
+
+        $btn.addEventListener('click', function(){
+            let userWeight = parseInt(prompt('몸무게를 입력하세요'));
+            const moonWeight = userWeight * 0.17;
+            document.querySelector('.result>span').textContent = moonWeight;
+        });
+    </script> -->
+
+</body>
+</html>

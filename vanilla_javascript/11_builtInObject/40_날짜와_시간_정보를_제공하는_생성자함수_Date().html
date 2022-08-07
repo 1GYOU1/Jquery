@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>40_날짜와_시간_정보를_제공하는_생성자함수_Date()</title>
+</head>
+<body>
+    <h1>날짜, 시간 정보 구하기</h1>
+    
+    <script>
+        //현재날짜와 시간정보가 now 변수에 저장
+        const now = new Date();
+        console.log(now)
+
+        //년
+        const year = now.getFullYear();
+        console.log(year + '년')//2022년
+
+        //0~11 이라서 +1 필수
+        const month = now.getMonth();
+        console.log(month + 1 + '월')//8월
+
+        const day = now.getDate();
+        console.log(day + '일')//7일
+
+        //요일
+        const Day = now.getDay();//0~6(일 ~ 토)
+        let dayName = null;
+
+        switch(Day){
+            case 0 : dayName = 'Sunday'; break;
+            case 1 : dayName = 'Monday'; break;
+            case 2 : dayName = 'Tuesday'; break;
+            case 3 : dayName = 'Wednesday;'; break;
+            case 4 : dayName = 'Thursday'; break;
+            case 5 : dayName = 'Friday'; break;
+            case 6 : dayName = 'Saturday'; break;
+        }
+        console.log(dayName)//Sunday
+
+        //시 분 초
+
+        const hours = now.getHours();//0 ~ 23
+        console.log(hours + '시')//11시
+
+        const minutes = now.getMinutes();
+        console.log(minutes + '분')//29분
+
+        const seconds = now.getSeconds();
+        console.log(seconds + '초')//35초
+
+    </script>
+</body>
+</html>

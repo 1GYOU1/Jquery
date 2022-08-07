@@ -1,0 +1,10 @@
+sp_btn.png 에서
+width: 37px;
+height: 74px;
+
+< 이전
+background-position: -310px -300px;
+
+> 다음
+background-position: -310px -376px;
+

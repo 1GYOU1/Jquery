@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>60_예외오류를_발생시키는_throw_키워드</title>
+</head>
+<body>
+    <h1>자바스크립트의 예외오류</h1>
+    <h2>오류의 종류</h2>
+    <p>
+        1. 문법오류 <br>
+        - 자동으로 발견되기 때문에 수정이 용이.<br><br>
+        
+        2. 논리오류 <br>
+        - 코드작성자의 잘못된 논리의 흐름으로 발생한 것이기 때문에 자동발견 X,<br> 
+        가장 발견하기 어렵다.<br><br>
+        
+        3. 예외오류 <br>
+        - 인터넷끊김으로 인한 서버데이터 전송오류,<br> 저장장치에서 파일을 읽어오거나 저장할 때 물리적으로 에러가 발생하는 것처럼<br> 
+        코드와 관계없이 발생하는 오류<br><br>
+    </p>
+    <script>
+        const saveFn = function(coin_1, coin_2){
+
+            //데이터타입 확인
+            // console.log(typeof coin_1);
+            // console.log(typeof coin_2);
+
+            //전달받은 데이터에 대한 유효성검사 => 에러 강제 발생
+            if(typeof coin_1 !== 'number' || typeof coin_2 !== 'number'){
+                //throw 에러메세지 출력과 동시에 정지
+                throw('saveFn 함수 호출시 데이터는 반드시 number 타입이어야 합니다.');
+                //함수 호출시 데이터는 반드시 number 타입이어야 합니다.
+            }
+
+            let sum = coin_1 + coin_2;
+            console.log(sum + '원');
+        }
+        saveFn(1000,'이천');
+        saveFn(1000,2000);
+    </script>
+</body>
+</html>

@@ -28,6 +28,24 @@ for(let item of characters){
 }
 console.log(str)//규원예진태화
 ```
+<br>
+
+----
 
 <br>
 
+## __배열의 요소를 추가 수정 삭제하는 splice()__
+
+<br>
+배열명.splice(시작index, 삭제할 개수, 추가 원소) 메소드
+
+```js
+const days = ['월','화','수','목','금','토','일'];
+
+//원본 배열에서 '수'를 삭제해보기.
+
+days.splice(2, 1);
+
+console.log(days)
+//['월', '화', '목', '금', '토', '일']
+```

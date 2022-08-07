@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>20_1초단위로_메세지를_출력(실행순서에 초점-콜백지옥)</title>
+</head>
+<body>
+    <h1>1초단위로 메세지 출력</h1>
+    
+    <script>
+        /*
+            예약을 거는 방식으로 아래와 같이 출력.
+
+            2022-08-07T03:22:25.479Z
+            2022-08-07T03:22:26.479Z
+            2022-08-07T03:22:27.479Z
+            
+            const now = new Date();
+            document.write(now.toISOString());
+        */
+
+        // const now = new Date();
+        // document.write(now.toISOString());
+
+        // setTimeout(function(){
+        //     const now = new Date();
+        //     document.write(now.toISOString()+'<br>');
+        // },1000)
+        // setTimeout(function(){
+        //     const now = new Date();
+        //     document.write(now.toISOString()+'<br>');
+        // },2000)
+        // setTimeout(function(){
+        //     const now = new Date();
+        //     document.write(now.toISOString()+'<br>');
+        // },3000)
+
+        //콜백지옥
+        //첫번째 예약
+        setTimeout(function(){
+            const now = new Date();
+            document.write(now.toISOString()+'<br>');
+            //두번째 예약
+            setTimeout(function(){
+                const now = new Date();
+                document.write(now.toISOString()+'<br>');
+                //세번째 예약
+                setTimeout(function(){
+                const now = new Date();
+                document.write(now.toISOString()+'<br>');
+                },1000)
+
+            },1000)
+            
+        },1000)
+      
+    </script>
+</body>
+</html>

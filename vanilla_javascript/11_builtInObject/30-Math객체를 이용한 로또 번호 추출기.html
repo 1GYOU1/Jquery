@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>30-Math객체를 이용한 로또 번호 추출기</title>
+    <style>
+        .ball{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            font-size: 50px;
+            line-height: 100px;
+            text-align: center;
+            background-color: orange;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>오늘의 추천 로또번호</h1>
+
+    <!-- <span class="ball">1</span>
+    <span class="ball">2</span>
+    <span class="ball">3</span>
+    <span class="ball">4</span>
+    <span class="ball">5</span>
+    <span class="ball">6</span> -->
+
+    <script>
+
+    //1~45 구슬준비
+    const balls = new Array();
+    for(let i=1;i<=45;i++){
+        balls.push(i);
+    }
+    
+    //추출한 구슬을 저장할 변수
+    const lotto = new Array();
+
+    for(let i=0;i<6;i++){
+
+        
+        //45개의 구슬중에서 랜덤으로 6개를 선정 => 0~44
+        const nowIdx = Math.floor(Math.random() * balls.length);
+        
+        lotto.push(balls[nowIdx]);
+        
+        balls.splice(nowIdx,1);//선정한 구슬 제거
+        
+        console.log(balls)
+    }
+
+    console.log(lotto);
+
+    for(let i=0;i<6;i++){
+        document.write('<span class="ball">'+lotto[i]+'</span>');
+    }
+
+    </script>
+</body>
+</html>

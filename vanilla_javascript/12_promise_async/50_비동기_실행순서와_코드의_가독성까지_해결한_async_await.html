@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>50_비동기_실행순서와_코드의_가독성까지_해결한_async_await</title>
+</head>
+<body>
+    <h1>async, await</h1>
+    
+    <script>
+
+        //서버에서 데이터 수신 후, 결과를 리턴하는 함수
+        function workFn(){
+            // return '3초후 서버에서 데이터 수신완료'
+
+            return new Promise((resolve, reject) =>{
+                setTimeout(() => resolve('3초후 서버에서 데이터 수신완료'))
+            });
+        }
+
+        // console.log(workFn());
+
+        //수신한 데이터를 출력
+        async function printFn(){
+
+            //await 키워드를 사용하려면 반드시 함수 앞에 async 키워드를 명시해야한다.
+
+            //await을 붙이면 workFn()의 비동기처리가 완료될 때 까지 기다렸다가 다음 코드가 실행된다.
+
+            const result = await workFn();
+            console.log(result + ' 화면에 출력')
+        };
+
+        printFn();
+
+    </script>
+</body>
+</html>

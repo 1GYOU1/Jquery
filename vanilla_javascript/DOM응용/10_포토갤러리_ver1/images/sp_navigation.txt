@@ -1,0 +1,29 @@
+.btn {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.btn-next {
+    width: 80px;
+    height: 100px;
+    background-position: -10px -10px;
+}
+
+.btn-next_on {
+    width: 80px;
+    height: 100px;
+    background-position: -10px -130px;
+}
+
+.btn-prev {
+    width: 80px;
+    height: 100px;
+    background-position: -10px -250px;
+}
+
+.btn-prev_on {
+    width: 80px;
+    height: 100px;
+    background-position: -10px -370px;
+}

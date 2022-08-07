@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>자바스크립트로_CSS_효과주기</h1>
+
+    <div class="ex1">
+      <h2 id="cont" class="tit">자바스크립트 프로그래밍</h2>
+      <button>클릭~!</button>
+    </div>
+  
+    <div class="ex2">
+      <h2>JavaScript Programming</h2>
+      <button>클릭~!</button>
+    </div>
+    
+    <script>
+    /*
+      문제1. 첫번째 버튼을 눌렀을 때 h2 태그의 속성제어
+        1) style='color:red' 속성추가
+        2) id='cont' 속성 제거
+        3) class='tit'를 class='javascript'로 변경
+        
+      문제2. 두번째 버튼을 눌렀을 때 h2 태그의 속성제어
+        1) 글자색을 coral색으로 ....
+        2) 글자에 밑줄을 ....
+        3) 배경색을 honeydew색으로 ....        
+    */
+
+    $ex1_btn = document.querySelector('.ex1 > button');
+    $ex1_h2 = document.querySelector('.ex1 > h2');
+
+    $ex1_btn.addEventListener('click', function(){
+        $ex1_h2.setAttribute('style','color:red');
+        $ex1_h2.removeAttribute('id');
+        $ex1_h2.setAttribute('class','javascript');
+    });
+
+    $ex2_btn = document.querySelector('.ex2 > button');
+    $ex2_h2 = document.querySelector('.ex2 > h2');
+
+    $ex2_btn.addEventListener('click', function(){
+        $ex2_h2.style.color = 'coral';
+        $ex2_h2.style.textDecoration = 'underline';
+        $ex2_h2.style.backgroundColor = 'honeydew';
+    });
+    </script>
+</body>
+</html>
